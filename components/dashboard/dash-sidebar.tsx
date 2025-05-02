@@ -21,7 +21,7 @@ export default function DashSidebar() {
           <SidebarGroupLabel>Dashboard Page</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <ul className="space-y-4">
+              <ul className="grid space-y-4">
                 {dashData?.map((item) => (
                   <Link href={item?.href} key={item?.title}>
                     <Card>

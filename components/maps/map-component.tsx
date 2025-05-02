@@ -1,46 +1,61 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 
-import { LatLngTuple } from "leaflet";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import L from "leaflet";
+import type { LatLngTuple } from "leaflet";
 
-// Fix for default icon issue in React
-import iconUrl from "leaflet/dist/images/marker-icon.png";
-import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
-import shadowUrl from "leaflet/dist/images/marker-shadow.png";
-
-const defaultIcon = new L.Icon({
-  // @ts-ignore
-  iconUrl,
-  // @ts-ignore
-  iconRetinaUrl,
-  // @ts-ignore
-  shadowUrl,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
+// Dynamically import components
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
 });
 
 export default function MapComponent() {
-  const position: LatLngTuple = [27.133662, 81.963219];
+  const position: LatLngTuple = [51.505, -0.09];
+
+  useEffect(() => {
+    // Fix for missing marker icons
+    async function fixLeafletIcons() {
+      const L = await import("leaflet");
+
+      delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: "/leaflet/marker-icon-2x.png",
+        iconUrl: "/leaflet/marker-icon.png",
+        shadowUrl: "/leaflet/marker-shadow.png",
+      });
+    }
+
+    fixLeafletIcons();
+  }, []);
 
   return (
-    <div style={{ height: "50vh", width: "100%" }}>
+    <div style={{ height: "100vh", width: "100%" }}>
       <MapContainer
         center={position}
-        zoom={14}
+        zoom={13}
         scrollWheelZoom={false}
-        className="rounded-lg"
+        className="z-0"
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position} icon={defaultIcon}>
+        <Marker position={position}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
