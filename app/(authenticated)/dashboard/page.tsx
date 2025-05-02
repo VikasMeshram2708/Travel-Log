@@ -46,7 +46,7 @@ export default function DashboardPage() {
           </Card>
         ))}
       </ul>
-      {/* <MapComponent /> */}
+      <MapComponent />
       <VisitedSummary />
     </div>
   );
