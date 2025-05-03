@@ -19,10 +19,15 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model TravelLog
+ * Model TripLog
  * 
  */
-export type TravelLog = $Result.DefaultSelection<Prisma.$TravelLogPayload>
+export type TripLog = $Result.DefaultSelection<Prisma.$TripLogPayload>
+/**
+ * Model MediaFile
+ * 
+ */
+export type MediaFile = $Result.DefaultSelection<Prisma.$MediaFilePayload>
 
 /**
  * Enums
@@ -35,11 +40,23 @@ export namespace $Enums {
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
+
+export const MediaFileType: {
+  VIDEO: 'VIDEO',
+  IMAGE: 'IMAGE'
+};
+
+export type MediaFileType = (typeof MediaFileType)[keyof typeof MediaFileType]
+
 }
 
 export type UserRole = $Enums.UserRole
 
 export const UserRole: typeof $Enums.UserRole
+
+export type MediaFileType = $Enums.MediaFileType
+
+export const MediaFileType: typeof $Enums.MediaFileType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -177,14 +194,24 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.travelLog`: Exposes CRUD operations for the **TravelLog** model.
+   * `prisma.tripLog`: Exposes CRUD operations for the **TripLog** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more TravelLogs
-    * const travelLogs = await prisma.travelLog.findMany()
+    * // Fetch zero or more TripLogs
+    * const tripLogs = await prisma.tripLog.findMany()
     * ```
     */
-  get travelLog(): Prisma.TravelLogDelegate<ExtArgs, ClientOptions>;
+  get tripLog(): Prisma.TripLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mediaFile`: Exposes CRUD operations for the **MediaFile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MediaFiles
+    * const mediaFiles = await prisma.mediaFile.findMany()
+    * ```
+    */
+  get mediaFile(): Prisma.MediaFileDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -626,7 +653,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    TravelLog: 'TravelLog'
+    TripLog: 'TripLog',
+    MediaFile: 'MediaFile'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -645,7 +673,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "travelLog"
+      modelProps: "user" | "tripLog" | "mediaFile"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -723,77 +751,151 @@ export namespace Prisma {
           }
         }
       }
-      TravelLog: {
-        payload: Prisma.$TravelLogPayload<ExtArgs>
-        fields: Prisma.TravelLogFieldRefs
+      TripLog: {
+        payload: Prisma.$TripLogPayload<ExtArgs>
+        fields: Prisma.TripLogFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TravelLogFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload> | null
+            args: Prisma.TripLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TravelLogFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload>
+            args: Prisma.TripLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload>
           }
           findFirst: {
-            args: Prisma.TravelLogFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload> | null
+            args: Prisma.TripLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TravelLogFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload>
+            args: Prisma.TripLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload>
           }
           findMany: {
-            args: Prisma.TravelLogFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload>[]
+            args: Prisma.TripLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload>[]
           }
           create: {
-            args: Prisma.TravelLogCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload>
+            args: Prisma.TripLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload>
           }
           createMany: {
-            args: Prisma.TravelLogCreateManyArgs<ExtArgs>
+            args: Prisma.TripLogCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.TravelLogCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload>[]
+            args: Prisma.TripLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload>[]
           }
           delete: {
-            args: Prisma.TravelLogDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload>
+            args: Prisma.TripLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload>
           }
           update: {
-            args: Prisma.TravelLogUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload>
+            args: Prisma.TripLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload>
           }
           deleteMany: {
-            args: Prisma.TravelLogDeleteManyArgs<ExtArgs>
+            args: Prisma.TripLogDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TravelLogUpdateManyArgs<ExtArgs>
+            args: Prisma.TripLogUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.TravelLogUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload>[]
+            args: Prisma.TripLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload>[]
           }
           upsert: {
-            args: Prisma.TravelLogUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TravelLogPayload>
+            args: Prisma.TripLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TripLogPayload>
           }
           aggregate: {
-            args: Prisma.TravelLogAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTravelLog>
+            args: Prisma.TripLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTripLog>
           }
           groupBy: {
-            args: Prisma.TravelLogGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TravelLogGroupByOutputType>[]
+            args: Prisma.TripLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TripLogGroupByOutputType>[]
           }
           count: {
-            args: Prisma.TravelLogCountArgs<ExtArgs>
-            result: $Utils.Optional<TravelLogCountAggregateOutputType> | number
+            args: Prisma.TripLogCountArgs<ExtArgs>
+            result: $Utils.Optional<TripLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      MediaFile: {
+        payload: Prisma.$MediaFilePayload<ExtArgs>
+        fields: Prisma.MediaFileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MediaFileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MediaFileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
+          }
+          findFirst: {
+            args: Prisma.MediaFileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MediaFileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
+          }
+          findMany: {
+            args: Prisma.MediaFileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>[]
+          }
+          create: {
+            args: Prisma.MediaFileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
+          }
+          createMany: {
+            args: Prisma.MediaFileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MediaFileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>[]
+          }
+          delete: {
+            args: Prisma.MediaFileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
+          }
+          update: {
+            args: Prisma.MediaFileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
+          }
+          deleteMany: {
+            args: Prisma.MediaFileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MediaFileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MediaFileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>[]
+          }
+          upsert: {
+            args: Prisma.MediaFileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
+          }
+          aggregate: {
+            args: Prisma.MediaFileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMediaFile>
+          }
+          groupBy: {
+            args: Prisma.MediaFileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MediaFileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MediaFileCountArgs<ExtArgs>
+            result: $Utils.Optional<MediaFileCountAggregateOutputType> | number
           }
         }
       }
@@ -882,7 +984,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
-    travelLog?: TravelLogOmit
+    tripLog?: TripLogOmit
+    mediaFile?: MediaFileOmit
   }
 
   /* Types for Logging */
@@ -977,11 +1080,11 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    travelLog: number
+    tripLogs: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    travelLog?: boolean | UserCountOutputTypeCountTravelLogArgs
+    tripLogs?: boolean | UserCountOutputTypeCountTripLogsArgs
   }
 
   // Custom InputTypes
@@ -998,8 +1101,39 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountTravelLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TravelLogWhereInput
+  export type UserCountOutputTypeCountTripLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TripLogWhereInput
+  }
+
+
+  /**
+   * Count Type TripLogCountOutputType
+   */
+
+  export type TripLogCountOutputType = {
+    mediaFiles: number
+  }
+
+  export type TripLogCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mediaFiles?: boolean | TripLogCountOutputTypeCountMediaFilesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TripLogCountOutputType without action
+   */
+  export type TripLogCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TripLogCountOutputType
+     */
+    select?: TripLogCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TripLogCountOutputType without action
+   */
+  export type TripLogCountOutputTypeCountMediaFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaFileWhereInput
   }
 
 
@@ -1195,7 +1329,7 @@ export namespace Prisma {
     picture?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    travelLog?: boolean | User$travelLogArgs<ExtArgs>
+    tripLogs?: boolean | User$tripLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1234,7 +1368,7 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "tenantId" | "name" | "role" | "picture" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    travelLog?: boolean | User$travelLogArgs<ExtArgs>
+    tripLogs?: boolean | User$tripLogsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1243,7 +1377,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      travelLog: Prisma.$TravelLogPayload<ExtArgs>[]
+      tripLogs: Prisma.$TripLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1648,7 +1782,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    travelLog<T extends User$travelLogArgs<ExtArgs> = {}>(args?: Subset<T, User$travelLogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tripLogs<T extends User$tripLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$tripLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2074,27 +2208,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.travelLog
+   * User.tripLogs
    */
-  export type User$travelLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$tripLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
-    where?: TravelLogWhereInput
-    orderBy?: TravelLogOrderByWithRelationInput | TravelLogOrderByWithRelationInput[]
-    cursor?: TravelLogWhereUniqueInput
+    include?: TripLogInclude<ExtArgs> | null
+    where?: TripLogWhereInput
+    orderBy?: TripLogOrderByWithRelationInput | TripLogOrderByWithRelationInput[]
+    cursor?: TripLogWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: TravelLogScalarFieldEnum | TravelLogScalarFieldEnum[]
+    distinct?: TripLogScalarFieldEnum | TripLogScalarFieldEnum[]
   }
 
   /**
@@ -2117,48 +2251,59 @@ export namespace Prisma {
 
 
   /**
-   * Model TravelLog
+   * Model TripLog
    */
 
-  export type AggregateTravelLog = {
-    _count: TravelLogCountAggregateOutputType | null
-    _min: TravelLogMinAggregateOutputType | null
-    _max: TravelLogMaxAggregateOutputType | null
+  export type AggregateTripLog = {
+    _count: TripLogCountAggregateOutputType | null
+    _min: TripLogMinAggregateOutputType | null
+    _max: TripLogMaxAggregateOutputType | null
   }
 
-  export type TravelLogMinAggregateOutputType = {
+  export type TripLogMinAggregateOutputType = {
     id: string | null
+    country: string | null
+    countryCode: string | null
+    city: string | null
     location: string | null
     latitude: string | null
     longitude: string | null
-    date: Date | null
+    visitedOn: Date | null
+    duration: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
   }
 
-  export type TravelLogMaxAggregateOutputType = {
+  export type TripLogMaxAggregateOutputType = {
     id: string | null
+    country: string | null
+    countryCode: string | null
+    city: string | null
     location: string | null
     latitude: string | null
     longitude: string | null
-    date: Date | null
+    visitedOn: Date | null
+    duration: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
   }
 
-  export type TravelLogCountAggregateOutputType = {
+  export type TripLogCountAggregateOutputType = {
     id: number
+    country: number
+    countryCode: number
+    city: number
     location: number
     latitude: number
     longitude: number
-    mediaFiles: number
-    tags: number
-    date: number
+    visitedOn: number
+    duration: number
     notes: number
+    tags: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -2166,365 +2311,399 @@ export namespace Prisma {
   }
 
 
-  export type TravelLogMinAggregateInputType = {
+  export type TripLogMinAggregateInputType = {
     id?: true
+    country?: true
+    countryCode?: true
+    city?: true
     location?: true
     latitude?: true
     longitude?: true
-    date?: true
+    visitedOn?: true
+    duration?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
   }
 
-  export type TravelLogMaxAggregateInputType = {
+  export type TripLogMaxAggregateInputType = {
     id?: true
+    country?: true
+    countryCode?: true
+    city?: true
     location?: true
     latitude?: true
     longitude?: true
-    date?: true
+    visitedOn?: true
+    duration?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
   }
 
-  export type TravelLogCountAggregateInputType = {
+  export type TripLogCountAggregateInputType = {
     id?: true
+    country?: true
+    countryCode?: true
+    city?: true
     location?: true
     latitude?: true
     longitude?: true
-    mediaFiles?: true
+    visitedOn?: true
+    duration?: true
+    notes?: true
     tags?: true
-    date?: true
-    notes?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
     _all?: true
   }
 
-  export type TravelLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TravelLog to aggregate.
+     * Filter which TripLog to aggregate.
      */
-    where?: TravelLogWhereInput
+    where?: TripLogWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TravelLogs to fetch.
+     * Determine the order of TripLogs to fetch.
      */
-    orderBy?: TravelLogOrderByWithRelationInput | TravelLogOrderByWithRelationInput[]
+    orderBy?: TripLogOrderByWithRelationInput | TripLogOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: TravelLogWhereUniqueInput
+    cursor?: TripLogWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TravelLogs from the position of the cursor.
+     * Take `±n` TripLogs from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TravelLogs.
+     * Skip the first `n` TripLogs.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned TravelLogs
+     * Count returned TripLogs
     **/
-    _count?: true | TravelLogCountAggregateInputType
+    _count?: true | TripLogCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TravelLogMinAggregateInputType
+    _min?: TripLogMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TravelLogMaxAggregateInputType
+    _max?: TripLogMaxAggregateInputType
   }
 
-  export type GetTravelLogAggregateType<T extends TravelLogAggregateArgs> = {
-        [P in keyof T & keyof AggregateTravelLog]: P extends '_count' | 'count'
+  export type GetTripLogAggregateType<T extends TripLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateTripLog]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTravelLog[P]>
-      : GetScalarType<T[P], AggregateTravelLog[P]>
+        : GetScalarType<T[P], AggregateTripLog[P]>
+      : GetScalarType<T[P], AggregateTripLog[P]>
   }
 
 
 
 
-  export type TravelLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TravelLogWhereInput
-    orderBy?: TravelLogOrderByWithAggregationInput | TravelLogOrderByWithAggregationInput[]
-    by: TravelLogScalarFieldEnum[] | TravelLogScalarFieldEnum
-    having?: TravelLogScalarWhereWithAggregatesInput
+  export type TripLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TripLogWhereInput
+    orderBy?: TripLogOrderByWithAggregationInput | TripLogOrderByWithAggregationInput[]
+    by: TripLogScalarFieldEnum[] | TripLogScalarFieldEnum
+    having?: TripLogScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TravelLogCountAggregateInputType | true
-    _min?: TravelLogMinAggregateInputType
-    _max?: TravelLogMaxAggregateInputType
+    _count?: TripLogCountAggregateInputType | true
+    _min?: TripLogMinAggregateInputType
+    _max?: TripLogMaxAggregateInputType
   }
 
-  export type TravelLogGroupByOutputType = {
+  export type TripLogGroupByOutputType = {
     id: string
+    country: string
+    countryCode: string
+    city: string
     location: string
     latitude: string
     longitude: string
-    mediaFiles: string[]
-    tags: string[]
-    date: Date
+    visitedOn: Date
+    duration: string
     notes: string | null
+    tags: string[]
     createdAt: Date
     updatedAt: Date
     userId: string | null
-    _count: TravelLogCountAggregateOutputType | null
-    _min: TravelLogMinAggregateOutputType | null
-    _max: TravelLogMaxAggregateOutputType | null
+    _count: TripLogCountAggregateOutputType | null
+    _min: TripLogMinAggregateOutputType | null
+    _max: TripLogMaxAggregateOutputType | null
   }
 
-  type GetTravelLogGroupByPayload<T extends TravelLogGroupByArgs> = Prisma.PrismaPromise<
+  type GetTripLogGroupByPayload<T extends TripLogGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TravelLogGroupByOutputType, T['by']> &
+      PickEnumerable<TripLogGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TravelLogGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof TripLogGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TravelLogGroupByOutputType[P]>
-            : GetScalarType<T[P], TravelLogGroupByOutputType[P]>
+              : GetScalarType<T[P], TripLogGroupByOutputType[P]>
+            : GetScalarType<T[P], TripLogGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type TravelLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TripLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    country?: boolean
+    countryCode?: boolean
+    city?: boolean
     location?: boolean
     latitude?: boolean
     longitude?: boolean
-    mediaFiles?: boolean
-    tags?: boolean
-    date?: boolean
+    visitedOn?: boolean
+    duration?: boolean
     notes?: boolean
+    tags?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    User?: boolean | TravelLog$UserArgs<ExtArgs>
-  }, ExtArgs["result"]["travelLog"]>
+    mediaFiles?: boolean | TripLog$mediaFilesArgs<ExtArgs>
+    user?: boolean | TripLog$userArgs<ExtArgs>
+    _count?: boolean | TripLogCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tripLog"]>
 
-  export type TravelLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TripLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    country?: boolean
+    countryCode?: boolean
+    city?: boolean
     location?: boolean
     latitude?: boolean
     longitude?: boolean
-    mediaFiles?: boolean
-    tags?: boolean
-    date?: boolean
+    visitedOn?: boolean
+    duration?: boolean
     notes?: boolean
+    tags?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    User?: boolean | TravelLog$UserArgs<ExtArgs>
-  }, ExtArgs["result"]["travelLog"]>
+    user?: boolean | TripLog$userArgs<ExtArgs>
+  }, ExtArgs["result"]["tripLog"]>
 
-  export type TravelLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TripLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    country?: boolean
+    countryCode?: boolean
+    city?: boolean
     location?: boolean
     latitude?: boolean
     longitude?: boolean
-    mediaFiles?: boolean
-    tags?: boolean
-    date?: boolean
+    visitedOn?: boolean
+    duration?: boolean
     notes?: boolean
+    tags?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    User?: boolean | TravelLog$UserArgs<ExtArgs>
-  }, ExtArgs["result"]["travelLog"]>
+    user?: boolean | TripLog$userArgs<ExtArgs>
+  }, ExtArgs["result"]["tripLog"]>
 
-  export type TravelLogSelectScalar = {
+  export type TripLogSelectScalar = {
     id?: boolean
+    country?: boolean
+    countryCode?: boolean
+    city?: boolean
     location?: boolean
     latitude?: boolean
     longitude?: boolean
-    mediaFiles?: boolean
-    tags?: boolean
-    date?: boolean
+    visitedOn?: boolean
+    duration?: boolean
     notes?: boolean
+    tags?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
   }
 
-  export type TravelLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "location" | "latitude" | "longitude" | "mediaFiles" | "tags" | "date" | "notes" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["travelLog"]>
-  export type TravelLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | TravelLog$UserArgs<ExtArgs>
+  export type TripLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country" | "countryCode" | "city" | "location" | "latitude" | "longitude" | "visitedOn" | "duration" | "notes" | "tags" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["tripLog"]>
+  export type TripLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mediaFiles?: boolean | TripLog$mediaFilesArgs<ExtArgs>
+    user?: boolean | TripLog$userArgs<ExtArgs>
+    _count?: boolean | TripLogCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type TravelLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | TravelLog$UserArgs<ExtArgs>
+  export type TripLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | TripLog$userArgs<ExtArgs>
   }
-  export type TravelLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | TravelLog$UserArgs<ExtArgs>
+  export type TripLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | TripLog$userArgs<ExtArgs>
   }
 
-  export type $TravelLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "TravelLog"
+  export type $TripLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TripLog"
     objects: {
-      User: Prisma.$UserPayload<ExtArgs> | null
+      mediaFiles: Prisma.$MediaFilePayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      country: string
+      countryCode: string
+      city: string
       location: string
       latitude: string
       longitude: string
-      mediaFiles: string[]
-      tags: string[]
-      date: Date
+      visitedOn: Date
+      duration: string
       notes: string | null
+      tags: string[]
       createdAt: Date
       updatedAt: Date
       userId: string | null
-    }, ExtArgs["result"]["travelLog"]>
+    }, ExtArgs["result"]["tripLog"]>
     composites: {}
   }
 
-  type TravelLogGetPayload<S extends boolean | null | undefined | TravelLogDefaultArgs> = $Result.GetResult<Prisma.$TravelLogPayload, S>
+  type TripLogGetPayload<S extends boolean | null | undefined | TripLogDefaultArgs> = $Result.GetResult<Prisma.$TripLogPayload, S>
 
-  type TravelLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TravelLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TravelLogCountAggregateInputType | true
+  type TripLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TripLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TripLogCountAggregateInputType | true
     }
 
-  export interface TravelLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TravelLog'], meta: { name: 'TravelLog' } }
+  export interface TripLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TripLog'], meta: { name: 'TripLog' } }
     /**
-     * Find zero or one TravelLog that matches the filter.
-     * @param {TravelLogFindUniqueArgs} args - Arguments to find a TravelLog
+     * Find zero or one TripLog that matches the filter.
+     * @param {TripLogFindUniqueArgs} args - Arguments to find a TripLog
      * @example
-     * // Get one TravelLog
-     * const travelLog = await prisma.travelLog.findUnique({
+     * // Get one TripLog
+     * const tripLog = await prisma.tripLog.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends TravelLogFindUniqueArgs>(args: SelectSubset<T, TravelLogFindUniqueArgs<ExtArgs>>): Prisma__TravelLogClient<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends TripLogFindUniqueArgs>(args: SelectSubset<T, TripLogFindUniqueArgs<ExtArgs>>): Prisma__TripLogClient<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one TravelLog that matches the filter or throw an error with `error.code='P2025'`
+     * Find one TripLog that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {TravelLogFindUniqueOrThrowArgs} args - Arguments to find a TravelLog
+     * @param {TripLogFindUniqueOrThrowArgs} args - Arguments to find a TripLog
      * @example
-     * // Get one TravelLog
-     * const travelLog = await prisma.travelLog.findUniqueOrThrow({
+     * // Get one TripLog
+     * const tripLog = await prisma.tripLog.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TravelLogFindUniqueOrThrowArgs>(args: SelectSubset<T, TravelLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TravelLogClient<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends TripLogFindUniqueOrThrowArgs>(args: SelectSubset<T, TripLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TripLogClient<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TravelLog that matches the filter.
+     * Find the first TripLog that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TravelLogFindFirstArgs} args - Arguments to find a TravelLog
+     * @param {TripLogFindFirstArgs} args - Arguments to find a TripLog
      * @example
-     * // Get one TravelLog
-     * const travelLog = await prisma.travelLog.findFirst({
+     * // Get one TripLog
+     * const tripLog = await prisma.tripLog.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends TravelLogFindFirstArgs>(args?: SelectSubset<T, TravelLogFindFirstArgs<ExtArgs>>): Prisma__TravelLogClient<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends TripLogFindFirstArgs>(args?: SelectSubset<T, TripLogFindFirstArgs<ExtArgs>>): Prisma__TripLogClient<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first TravelLog that matches the filter or
+     * Find the first TripLog that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TravelLogFindFirstOrThrowArgs} args - Arguments to find a TravelLog
+     * @param {TripLogFindFirstOrThrowArgs} args - Arguments to find a TripLog
      * @example
-     * // Get one TravelLog
-     * const travelLog = await prisma.travelLog.findFirstOrThrow({
+     * // Get one TripLog
+     * const tripLog = await prisma.tripLog.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends TravelLogFindFirstOrThrowArgs>(args?: SelectSubset<T, TravelLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__TravelLogClient<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends TripLogFindFirstOrThrowArgs>(args?: SelectSubset<T, TripLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__TripLogClient<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more TravelLogs that matches the filter.
+     * Find zero or more TripLogs that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TravelLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {TripLogFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all TravelLogs
-     * const travelLogs = await prisma.travelLog.findMany()
+     * // Get all TripLogs
+     * const tripLogs = await prisma.tripLog.findMany()
      * 
-     * // Get first 10 TravelLogs
-     * const travelLogs = await prisma.travelLog.findMany({ take: 10 })
+     * // Get first 10 TripLogs
+     * const tripLogs = await prisma.tripLog.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const travelLogWithIdOnly = await prisma.travelLog.findMany({ select: { id: true } })
+     * const tripLogWithIdOnly = await prisma.tripLog.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends TravelLogFindManyArgs>(args?: SelectSubset<T, TravelLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends TripLogFindManyArgs>(args?: SelectSubset<T, TripLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a TravelLog.
-     * @param {TravelLogCreateArgs} args - Arguments to create a TravelLog.
+     * Create a TripLog.
+     * @param {TripLogCreateArgs} args - Arguments to create a TripLog.
      * @example
-     * // Create one TravelLog
-     * const TravelLog = await prisma.travelLog.create({
+     * // Create one TripLog
+     * const TripLog = await prisma.tripLog.create({
      *   data: {
-     *     // ... data to create a TravelLog
+     *     // ... data to create a TripLog
      *   }
      * })
      * 
      */
-    create<T extends TravelLogCreateArgs>(args: SelectSubset<T, TravelLogCreateArgs<ExtArgs>>): Prisma__TravelLogClient<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends TripLogCreateArgs>(args: SelectSubset<T, TripLogCreateArgs<ExtArgs>>): Prisma__TripLogClient<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many TravelLogs.
-     * @param {TravelLogCreateManyArgs} args - Arguments to create many TravelLogs.
+     * Create many TripLogs.
+     * @param {TripLogCreateManyArgs} args - Arguments to create many TripLogs.
      * @example
-     * // Create many TravelLogs
-     * const travelLog = await prisma.travelLog.createMany({
+     * // Create many TripLogs
+     * const tripLog = await prisma.tripLog.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends TravelLogCreateManyArgs>(args?: SelectSubset<T, TravelLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends TripLogCreateManyArgs>(args?: SelectSubset<T, TripLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many TravelLogs and returns the data saved in the database.
-     * @param {TravelLogCreateManyAndReturnArgs} args - Arguments to create many TravelLogs.
+     * Create many TripLogs and returns the data saved in the database.
+     * @param {TripLogCreateManyAndReturnArgs} args - Arguments to create many TripLogs.
      * @example
-     * // Create many TravelLogs
-     * const travelLog = await prisma.travelLog.createManyAndReturn({
+     * // Create many TripLogs
+     * const tripLog = await prisma.tripLog.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many TravelLogs and only return the `id`
-     * const travelLogWithIdOnly = await prisma.travelLog.createManyAndReturn({
+     * // Create many TripLogs and only return the `id`
+     * const tripLogWithIdOnly = await prisma.tripLog.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2534,28 +2713,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends TravelLogCreateManyAndReturnArgs>(args?: SelectSubset<T, TravelLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends TripLogCreateManyAndReturnArgs>(args?: SelectSubset<T, TripLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a TravelLog.
-     * @param {TravelLogDeleteArgs} args - Arguments to delete one TravelLog.
+     * Delete a TripLog.
+     * @param {TripLogDeleteArgs} args - Arguments to delete one TripLog.
      * @example
-     * // Delete one TravelLog
-     * const TravelLog = await prisma.travelLog.delete({
+     * // Delete one TripLog
+     * const TripLog = await prisma.tripLog.delete({
      *   where: {
-     *     // ... filter to delete one TravelLog
+     *     // ... filter to delete one TripLog
      *   }
      * })
      * 
      */
-    delete<T extends TravelLogDeleteArgs>(args: SelectSubset<T, TravelLogDeleteArgs<ExtArgs>>): Prisma__TravelLogClient<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends TripLogDeleteArgs>(args: SelectSubset<T, TripLogDeleteArgs<ExtArgs>>): Prisma__TripLogClient<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one TravelLog.
-     * @param {TravelLogUpdateArgs} args - Arguments to update one TravelLog.
+     * Update one TripLog.
+     * @param {TripLogUpdateArgs} args - Arguments to update one TripLog.
      * @example
-     * // Update one TravelLog
-     * const travelLog = await prisma.travelLog.update({
+     * // Update one TripLog
+     * const tripLog = await prisma.tripLog.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2565,30 +2744,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends TravelLogUpdateArgs>(args: SelectSubset<T, TravelLogUpdateArgs<ExtArgs>>): Prisma__TravelLogClient<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends TripLogUpdateArgs>(args: SelectSubset<T, TripLogUpdateArgs<ExtArgs>>): Prisma__TripLogClient<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more TravelLogs.
-     * @param {TravelLogDeleteManyArgs} args - Arguments to filter TravelLogs to delete.
+     * Delete zero or more TripLogs.
+     * @param {TripLogDeleteManyArgs} args - Arguments to filter TripLogs to delete.
      * @example
-     * // Delete a few TravelLogs
-     * const { count } = await prisma.travelLog.deleteMany({
+     * // Delete a few TripLogs
+     * const { count } = await prisma.tripLog.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends TravelLogDeleteManyArgs>(args?: SelectSubset<T, TravelLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends TripLogDeleteManyArgs>(args?: SelectSubset<T, TripLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more TravelLogs.
+     * Update zero or more TripLogs.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TravelLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {TripLogUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many TravelLogs
-     * const travelLog = await prisma.travelLog.updateMany({
+     * // Update many TripLogs
+     * const tripLog = await prisma.tripLog.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2598,14 +2777,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends TravelLogUpdateManyArgs>(args: SelectSubset<T, TravelLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends TripLogUpdateManyArgs>(args: SelectSubset<T, TripLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more TravelLogs and returns the data updated in the database.
-     * @param {TravelLogUpdateManyAndReturnArgs} args - Arguments to update many TravelLogs.
+     * Update zero or more TripLogs and returns the data updated in the database.
+     * @param {TripLogUpdateManyAndReturnArgs} args - Arguments to update many TripLogs.
      * @example
-     * // Update many TravelLogs
-     * const travelLog = await prisma.travelLog.updateManyAndReturn({
+     * // Update many TripLogs
+     * const tripLog = await prisma.tripLog.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2614,8 +2793,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more TravelLogs and only return the `id`
-     * const travelLogWithIdOnly = await prisma.travelLog.updateManyAndReturn({
+     * // Update zero or more TripLogs and only return the `id`
+     * const tripLogWithIdOnly = await prisma.tripLog.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -2628,56 +2807,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends TravelLogUpdateManyAndReturnArgs>(args: SelectSubset<T, TravelLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends TripLogUpdateManyAndReturnArgs>(args: SelectSubset<T, TripLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one TravelLog.
-     * @param {TravelLogUpsertArgs} args - Arguments to update or create a TravelLog.
+     * Create or update one TripLog.
+     * @param {TripLogUpsertArgs} args - Arguments to update or create a TripLog.
      * @example
-     * // Update or create a TravelLog
-     * const travelLog = await prisma.travelLog.upsert({
+     * // Update or create a TripLog
+     * const tripLog = await prisma.tripLog.upsert({
      *   create: {
-     *     // ... data to create a TravelLog
+     *     // ... data to create a TripLog
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the TravelLog we want to update
+     *     // ... the filter for the TripLog we want to update
      *   }
      * })
      */
-    upsert<T extends TravelLogUpsertArgs>(args: SelectSubset<T, TravelLogUpsertArgs<ExtArgs>>): Prisma__TravelLogClient<$Result.GetResult<Prisma.$TravelLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends TripLogUpsertArgs>(args: SelectSubset<T, TripLogUpsertArgs<ExtArgs>>): Prisma__TripLogClient<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of TravelLogs.
+     * Count the number of TripLogs.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TravelLogCountArgs} args - Arguments to filter TravelLogs to count.
+     * @param {TripLogCountArgs} args - Arguments to filter TripLogs to count.
      * @example
-     * // Count the number of TravelLogs
-     * const count = await prisma.travelLog.count({
+     * // Count the number of TripLogs
+     * const count = await prisma.tripLog.count({
      *   where: {
-     *     // ... the filter for the TravelLogs we want to count
+     *     // ... the filter for the TripLogs we want to count
      *   }
      * })
     **/
-    count<T extends TravelLogCountArgs>(
-      args?: Subset<T, TravelLogCountArgs>,
+    count<T extends TripLogCountArgs>(
+      args?: Subset<T, TripLogCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TravelLogCountAggregateOutputType>
+          : GetScalarType<T['select'], TripLogCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a TravelLog.
+     * Allows you to perform aggregations operations on a TripLog.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TravelLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {TripLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2697,13 +2876,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TravelLogAggregateArgs>(args: Subset<T, TravelLogAggregateArgs>): Prisma.PrismaPromise<GetTravelLogAggregateType<T>>
+    aggregate<T extends TripLogAggregateArgs>(args: Subset<T, TripLogAggregateArgs>): Prisma.PrismaPromise<GetTripLogAggregateType<T>>
 
     /**
-     * Group by TravelLog.
+     * Group by TripLog.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TravelLogGroupByArgs} args - Group by arguments.
+     * @param {TripLogGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2718,14 +2897,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends TravelLogGroupByArgs,
+      T extends TripLogGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TravelLogGroupByArgs['orderBy'] }
-        : { orderBy?: TravelLogGroupByArgs['orderBy'] },
+        ? { orderBy: TripLogGroupByArgs['orderBy'] }
+        : { orderBy?: TripLogGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2774,22 +2953,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, TravelLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTravelLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, TripLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTripLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the TravelLog model
+   * Fields of the TripLog model
    */
-  readonly fields: TravelLogFieldRefs;
+  readonly fields: TripLogFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for TravelLog.
+   * The delegate class that acts as a "Promise-like" for TripLog.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TravelLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__TripLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    User<T extends TravelLog$UserArgs<ExtArgs> = {}>(args?: Subset<T, TravelLog$UserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    mediaFiles<T extends TripLog$mediaFilesArgs<ExtArgs> = {}>(args?: Subset<T, TripLog$mediaFilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends TripLog$userArgs<ExtArgs> = {}>(args?: Subset<T, TripLog$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2816,419 +2996,446 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the TravelLog model
+   * Fields of the TripLog model
    */
-  interface TravelLogFieldRefs {
-    readonly id: FieldRef<"TravelLog", 'String'>
-    readonly location: FieldRef<"TravelLog", 'String'>
-    readonly latitude: FieldRef<"TravelLog", 'String'>
-    readonly longitude: FieldRef<"TravelLog", 'String'>
-    readonly mediaFiles: FieldRef<"TravelLog", 'String[]'>
-    readonly tags: FieldRef<"TravelLog", 'String[]'>
-    readonly date: FieldRef<"TravelLog", 'DateTime'>
-    readonly notes: FieldRef<"TravelLog", 'String'>
-    readonly createdAt: FieldRef<"TravelLog", 'DateTime'>
-    readonly updatedAt: FieldRef<"TravelLog", 'DateTime'>
-    readonly userId: FieldRef<"TravelLog", 'String'>
+  interface TripLogFieldRefs {
+    readonly id: FieldRef<"TripLog", 'String'>
+    readonly country: FieldRef<"TripLog", 'String'>
+    readonly countryCode: FieldRef<"TripLog", 'String'>
+    readonly city: FieldRef<"TripLog", 'String'>
+    readonly location: FieldRef<"TripLog", 'String'>
+    readonly latitude: FieldRef<"TripLog", 'String'>
+    readonly longitude: FieldRef<"TripLog", 'String'>
+    readonly visitedOn: FieldRef<"TripLog", 'DateTime'>
+    readonly duration: FieldRef<"TripLog", 'String'>
+    readonly notes: FieldRef<"TripLog", 'String'>
+    readonly tags: FieldRef<"TripLog", 'String[]'>
+    readonly createdAt: FieldRef<"TripLog", 'DateTime'>
+    readonly updatedAt: FieldRef<"TripLog", 'DateTime'>
+    readonly userId: FieldRef<"TripLog", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * TravelLog findUnique
+   * TripLog findUnique
    */
-  export type TravelLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
     /**
-     * Filter, which TravelLog to fetch.
+     * Filter, which TripLog to fetch.
      */
-    where: TravelLogWhereUniqueInput
+    where: TripLogWhereUniqueInput
   }
 
   /**
-   * TravelLog findUniqueOrThrow
+   * TripLog findUniqueOrThrow
    */
-  export type TravelLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
     /**
-     * Filter, which TravelLog to fetch.
+     * Filter, which TripLog to fetch.
      */
-    where: TravelLogWhereUniqueInput
+    where: TripLogWhereUniqueInput
   }
 
   /**
-   * TravelLog findFirst
+   * TripLog findFirst
    */
-  export type TravelLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
     /**
-     * Filter, which TravelLog to fetch.
+     * Filter, which TripLog to fetch.
      */
-    where?: TravelLogWhereInput
+    where?: TripLogWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TravelLogs to fetch.
+     * Determine the order of TripLogs to fetch.
      */
-    orderBy?: TravelLogOrderByWithRelationInput | TravelLogOrderByWithRelationInput[]
+    orderBy?: TripLogOrderByWithRelationInput | TripLogOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TravelLogs.
+     * Sets the position for searching for TripLogs.
      */
-    cursor?: TravelLogWhereUniqueInput
+    cursor?: TripLogWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TravelLogs from the position of the cursor.
+     * Take `±n` TripLogs from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TravelLogs.
+     * Skip the first `n` TripLogs.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TravelLogs.
+     * Filter by unique combinations of TripLogs.
      */
-    distinct?: TravelLogScalarFieldEnum | TravelLogScalarFieldEnum[]
+    distinct?: TripLogScalarFieldEnum | TripLogScalarFieldEnum[]
   }
 
   /**
-   * TravelLog findFirstOrThrow
+   * TripLog findFirstOrThrow
    */
-  export type TravelLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
     /**
-     * Filter, which TravelLog to fetch.
+     * Filter, which TripLog to fetch.
      */
-    where?: TravelLogWhereInput
+    where?: TripLogWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TravelLogs to fetch.
+     * Determine the order of TripLogs to fetch.
      */
-    orderBy?: TravelLogOrderByWithRelationInput | TravelLogOrderByWithRelationInput[]
+    orderBy?: TripLogOrderByWithRelationInput | TripLogOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for TravelLogs.
+     * Sets the position for searching for TripLogs.
      */
-    cursor?: TravelLogWhereUniqueInput
+    cursor?: TripLogWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TravelLogs from the position of the cursor.
+     * Take `±n` TripLogs from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TravelLogs.
+     * Skip the first `n` TripLogs.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of TravelLogs.
+     * Filter by unique combinations of TripLogs.
      */
-    distinct?: TravelLogScalarFieldEnum | TravelLogScalarFieldEnum[]
+    distinct?: TripLogScalarFieldEnum | TripLogScalarFieldEnum[]
   }
 
   /**
-   * TravelLog findMany
+   * TripLog findMany
    */
-  export type TravelLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
     /**
-     * Filter, which TravelLogs to fetch.
+     * Filter, which TripLogs to fetch.
      */
-    where?: TravelLogWhereInput
+    where?: TripLogWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of TravelLogs to fetch.
+     * Determine the order of TripLogs to fetch.
      */
-    orderBy?: TravelLogOrderByWithRelationInput | TravelLogOrderByWithRelationInput[]
+    orderBy?: TripLogOrderByWithRelationInput | TripLogOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing TravelLogs.
+     * Sets the position for listing TripLogs.
      */
-    cursor?: TravelLogWhereUniqueInput
+    cursor?: TripLogWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` TravelLogs from the position of the cursor.
+     * Take `±n` TripLogs from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` TravelLogs.
+     * Skip the first `n` TripLogs.
      */
     skip?: number
-    distinct?: TravelLogScalarFieldEnum | TravelLogScalarFieldEnum[]
+    distinct?: TripLogScalarFieldEnum | TripLogScalarFieldEnum[]
   }
 
   /**
-   * TravelLog create
+   * TripLog create
    */
-  export type TravelLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
     /**
-     * The data needed to create a TravelLog.
+     * The data needed to create a TripLog.
      */
-    data: XOR<TravelLogCreateInput, TravelLogUncheckedCreateInput>
+    data: XOR<TripLogCreateInput, TripLogUncheckedCreateInput>
   }
 
   /**
-   * TravelLog createMany
+   * TripLog createMany
    */
-  export type TravelLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many TravelLogs.
+     * The data used to create many TripLogs.
      */
-    data: TravelLogCreateManyInput | TravelLogCreateManyInput[]
+    data: TripLogCreateManyInput | TripLogCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * TravelLog createManyAndReturn
+   * TripLog createManyAndReturn
    */
-  export type TravelLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelectCreateManyAndReturn<ExtArgs> | null
+    select?: TripLogSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
-     * The data used to create many TravelLogs.
+     * The data used to create many TripLogs.
      */
-    data: TravelLogCreateManyInput | TravelLogCreateManyInput[]
+    data: TripLogCreateManyInput | TripLogCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: TripLogIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * TravelLog update
+   * TripLog update
    */
-  export type TravelLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
     /**
-     * The data needed to update a TravelLog.
+     * The data needed to update a TripLog.
      */
-    data: XOR<TravelLogUpdateInput, TravelLogUncheckedUpdateInput>
+    data: XOR<TripLogUpdateInput, TripLogUncheckedUpdateInput>
     /**
-     * Choose, which TravelLog to update.
+     * Choose, which TripLog to update.
      */
-    where: TravelLogWhereUniqueInput
+    where: TripLogWhereUniqueInput
   }
 
   /**
-   * TravelLog updateMany
+   * TripLog updateMany
    */
-  export type TravelLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update TravelLogs.
+     * The data used to update TripLogs.
      */
-    data: XOR<TravelLogUpdateManyMutationInput, TravelLogUncheckedUpdateManyInput>
+    data: XOR<TripLogUpdateManyMutationInput, TripLogUncheckedUpdateManyInput>
     /**
-     * Filter which TravelLogs to update
+     * Filter which TripLogs to update
      */
-    where?: TravelLogWhereInput
+    where?: TripLogWhereInput
     /**
-     * Limit how many TravelLogs to update.
+     * Limit how many TripLogs to update.
      */
     limit?: number
   }
 
   /**
-   * TravelLog updateManyAndReturn
+   * TripLog updateManyAndReturn
    */
-  export type TravelLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: TripLogSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
-     * The data used to update TravelLogs.
+     * The data used to update TripLogs.
      */
-    data: XOR<TravelLogUpdateManyMutationInput, TravelLogUncheckedUpdateManyInput>
+    data: XOR<TripLogUpdateManyMutationInput, TripLogUncheckedUpdateManyInput>
     /**
-     * Filter which TravelLogs to update
+     * Filter which TripLogs to update
      */
-    where?: TravelLogWhereInput
+    where?: TripLogWhereInput
     /**
-     * Limit how many TravelLogs to update.
+     * Limit how many TripLogs to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: TripLogIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * TravelLog upsert
+   * TripLog upsert
    */
-  export type TravelLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
     /**
-     * The filter to search for the TravelLog to update in case it exists.
+     * The filter to search for the TripLog to update in case it exists.
      */
-    where: TravelLogWhereUniqueInput
+    where: TripLogWhereUniqueInput
     /**
-     * In case the TravelLog found by the `where` argument doesn't exist, create a new TravelLog with this data.
+     * In case the TripLog found by the `where` argument doesn't exist, create a new TripLog with this data.
      */
-    create: XOR<TravelLogCreateInput, TravelLogUncheckedCreateInput>
+    create: XOR<TripLogCreateInput, TripLogUncheckedCreateInput>
     /**
-     * In case the TravelLog was found with the provided `where` argument, update it with this data.
+     * In case the TripLog was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<TravelLogUpdateInput, TravelLogUncheckedUpdateInput>
+    update: XOR<TripLogUpdateInput, TripLogUncheckedUpdateInput>
   }
 
   /**
-   * TravelLog delete
+   * TripLog delete
    */
-  export type TravelLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
     /**
-     * Filter which TravelLog to delete.
+     * Filter which TripLog to delete.
      */
-    where: TravelLogWhereUniqueInput
+    where: TripLogWhereUniqueInput
   }
 
   /**
-   * TravelLog deleteMany
+   * TripLog deleteMany
    */
-  export type TravelLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which TravelLogs to delete
+     * Filter which TripLogs to delete
      */
-    where?: TravelLogWhereInput
+    where?: TripLogWhereInput
     /**
-     * Limit how many TravelLogs to delete.
+     * Limit how many TripLogs to delete.
      */
     limit?: number
   }
 
   /**
-   * TravelLog.User
+   * TripLog.mediaFiles
    */
-  export type TravelLog$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLog$mediaFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    where?: MediaFileWhereInput
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    cursor?: MediaFileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MediaFileScalarFieldEnum | MediaFileScalarFieldEnum[]
+  }
+
+  /**
+   * TripLog.user
+   */
+  export type TripLog$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -3245,21 +3452,1111 @@ export namespace Prisma {
   }
 
   /**
-   * TravelLog without action
+   * TripLog without action
    */
-  export type TravelLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TripLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the TravelLog
+     * Select specific fields to fetch from the TripLog
      */
-    select?: TravelLogSelect<ExtArgs> | null
+    select?: TripLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the TravelLog
+     * Omit specific fields from the TripLog
      */
-    omit?: TravelLogOmit<ExtArgs> | null
+    omit?: TripLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TravelLogInclude<ExtArgs> | null
+    include?: TripLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MediaFile
+   */
+
+  export type AggregateMediaFile = {
+    _count: MediaFileCountAggregateOutputType | null
+    _min: MediaFileMinAggregateOutputType | null
+    _max: MediaFileMaxAggregateOutputType | null
+  }
+
+  export type MediaFileMinAggregateOutputType = {
+    id: string | null
+    fileId: string | null
+    fileSize: string | null
+    url: string | null
+    mediaType: $Enums.MediaFileType | null
+    tripLogId: string | null
+  }
+
+  export type MediaFileMaxAggregateOutputType = {
+    id: string | null
+    fileId: string | null
+    fileSize: string | null
+    url: string | null
+    mediaType: $Enums.MediaFileType | null
+    tripLogId: string | null
+  }
+
+  export type MediaFileCountAggregateOutputType = {
+    id: number
+    fileId: number
+    fileSize: number
+    url: number
+    mediaType: number
+    tripLogId: number
+    _all: number
+  }
+
+
+  export type MediaFileMinAggregateInputType = {
+    id?: true
+    fileId?: true
+    fileSize?: true
+    url?: true
+    mediaType?: true
+    tripLogId?: true
+  }
+
+  export type MediaFileMaxAggregateInputType = {
+    id?: true
+    fileId?: true
+    fileSize?: true
+    url?: true
+    mediaType?: true
+    tripLogId?: true
+  }
+
+  export type MediaFileCountAggregateInputType = {
+    id?: true
+    fileId?: true
+    fileSize?: true
+    url?: true
+    mediaType?: true
+    tripLogId?: true
+    _all?: true
+  }
+
+  export type MediaFileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaFile to aggregate.
+     */
+    where?: MediaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaFiles to fetch.
+     */
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MediaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MediaFiles
+    **/
+    _count?: true | MediaFileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MediaFileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MediaFileMaxAggregateInputType
+  }
+
+  export type GetMediaFileAggregateType<T extends MediaFileAggregateArgs> = {
+        [P in keyof T & keyof AggregateMediaFile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMediaFile[P]>
+      : GetScalarType<T[P], AggregateMediaFile[P]>
+  }
+
+
+
+
+  export type MediaFileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaFileWhereInput
+    orderBy?: MediaFileOrderByWithAggregationInput | MediaFileOrderByWithAggregationInput[]
+    by: MediaFileScalarFieldEnum[] | MediaFileScalarFieldEnum
+    having?: MediaFileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MediaFileCountAggregateInputType | true
+    _min?: MediaFileMinAggregateInputType
+    _max?: MediaFileMaxAggregateInputType
+  }
+
+  export type MediaFileGroupByOutputType = {
+    id: string
+    fileId: string
+    fileSize: string
+    url: string
+    mediaType: $Enums.MediaFileType
+    tripLogId: string | null
+    _count: MediaFileCountAggregateOutputType | null
+    _min: MediaFileMinAggregateOutputType | null
+    _max: MediaFileMaxAggregateOutputType | null
+  }
+
+  type GetMediaFileGroupByPayload<T extends MediaFileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MediaFileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MediaFileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MediaFileGroupByOutputType[P]>
+            : GetScalarType<T[P], MediaFileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MediaFileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fileId?: boolean
+    fileSize?: boolean
+    url?: boolean
+    mediaType?: boolean
+    tripLogId?: boolean
+    tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
+  }, ExtArgs["result"]["mediaFile"]>
+
+  export type MediaFileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fileId?: boolean
+    fileSize?: boolean
+    url?: boolean
+    mediaType?: boolean
+    tripLogId?: boolean
+    tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
+  }, ExtArgs["result"]["mediaFile"]>
+
+  export type MediaFileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fileId?: boolean
+    fileSize?: boolean
+    url?: boolean
+    mediaType?: boolean
+    tripLogId?: boolean
+    tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
+  }, ExtArgs["result"]["mediaFile"]>
+
+  export type MediaFileSelectScalar = {
+    id?: boolean
+    fileId?: boolean
+    fileSize?: boolean
+    url?: boolean
+    mediaType?: boolean
+    tripLogId?: boolean
+  }
+
+  export type MediaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fileId" | "fileSize" | "url" | "mediaType" | "tripLogId", ExtArgs["result"]["mediaFile"]>
+  export type MediaFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
+  }
+  export type MediaFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
+  }
+  export type MediaFileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
+  }
+
+  export type $MediaFilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MediaFile"
+    objects: {
+      tripLog: Prisma.$TripLogPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fileId: string
+      fileSize: string
+      url: string
+      mediaType: $Enums.MediaFileType
+      tripLogId: string | null
+    }, ExtArgs["result"]["mediaFile"]>
+    composites: {}
+  }
+
+  type MediaFileGetPayload<S extends boolean | null | undefined | MediaFileDefaultArgs> = $Result.GetResult<Prisma.$MediaFilePayload, S>
+
+  type MediaFileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MediaFileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MediaFileCountAggregateInputType | true
+    }
+
+  export interface MediaFileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MediaFile'], meta: { name: 'MediaFile' } }
+    /**
+     * Find zero or one MediaFile that matches the filter.
+     * @param {MediaFileFindUniqueArgs} args - Arguments to find a MediaFile
+     * @example
+     * // Get one MediaFile
+     * const mediaFile = await prisma.mediaFile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MediaFileFindUniqueArgs>(args: SelectSubset<T, MediaFileFindUniqueArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MediaFile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MediaFileFindUniqueOrThrowArgs} args - Arguments to find a MediaFile
+     * @example
+     * // Get one MediaFile
+     * const mediaFile = await prisma.mediaFile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MediaFileFindUniqueOrThrowArgs>(args: SelectSubset<T, MediaFileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MediaFile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileFindFirstArgs} args - Arguments to find a MediaFile
+     * @example
+     * // Get one MediaFile
+     * const mediaFile = await prisma.mediaFile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MediaFileFindFirstArgs>(args?: SelectSubset<T, MediaFileFindFirstArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MediaFile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileFindFirstOrThrowArgs} args - Arguments to find a MediaFile
+     * @example
+     * // Get one MediaFile
+     * const mediaFile = await prisma.mediaFile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MediaFileFindFirstOrThrowArgs>(args?: SelectSubset<T, MediaFileFindFirstOrThrowArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MediaFiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MediaFiles
+     * const mediaFiles = await prisma.mediaFile.findMany()
+     * 
+     * // Get first 10 MediaFiles
+     * const mediaFiles = await prisma.mediaFile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mediaFileWithIdOnly = await prisma.mediaFile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MediaFileFindManyArgs>(args?: SelectSubset<T, MediaFileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MediaFile.
+     * @param {MediaFileCreateArgs} args - Arguments to create a MediaFile.
+     * @example
+     * // Create one MediaFile
+     * const MediaFile = await prisma.mediaFile.create({
+     *   data: {
+     *     // ... data to create a MediaFile
+     *   }
+     * })
+     * 
+     */
+    create<T extends MediaFileCreateArgs>(args: SelectSubset<T, MediaFileCreateArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MediaFiles.
+     * @param {MediaFileCreateManyArgs} args - Arguments to create many MediaFiles.
+     * @example
+     * // Create many MediaFiles
+     * const mediaFile = await prisma.mediaFile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MediaFileCreateManyArgs>(args?: SelectSubset<T, MediaFileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MediaFiles and returns the data saved in the database.
+     * @param {MediaFileCreateManyAndReturnArgs} args - Arguments to create many MediaFiles.
+     * @example
+     * // Create many MediaFiles
+     * const mediaFile = await prisma.mediaFile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MediaFiles and only return the `id`
+     * const mediaFileWithIdOnly = await prisma.mediaFile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MediaFileCreateManyAndReturnArgs>(args?: SelectSubset<T, MediaFileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MediaFile.
+     * @param {MediaFileDeleteArgs} args - Arguments to delete one MediaFile.
+     * @example
+     * // Delete one MediaFile
+     * const MediaFile = await prisma.mediaFile.delete({
+     *   where: {
+     *     // ... filter to delete one MediaFile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MediaFileDeleteArgs>(args: SelectSubset<T, MediaFileDeleteArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MediaFile.
+     * @param {MediaFileUpdateArgs} args - Arguments to update one MediaFile.
+     * @example
+     * // Update one MediaFile
+     * const mediaFile = await prisma.mediaFile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MediaFileUpdateArgs>(args: SelectSubset<T, MediaFileUpdateArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MediaFiles.
+     * @param {MediaFileDeleteManyArgs} args - Arguments to filter MediaFiles to delete.
+     * @example
+     * // Delete a few MediaFiles
+     * const { count } = await prisma.mediaFile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MediaFileDeleteManyArgs>(args?: SelectSubset<T, MediaFileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MediaFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MediaFiles
+     * const mediaFile = await prisma.mediaFile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MediaFileUpdateManyArgs>(args: SelectSubset<T, MediaFileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MediaFiles and returns the data updated in the database.
+     * @param {MediaFileUpdateManyAndReturnArgs} args - Arguments to update many MediaFiles.
+     * @example
+     * // Update many MediaFiles
+     * const mediaFile = await prisma.mediaFile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MediaFiles and only return the `id`
+     * const mediaFileWithIdOnly = await prisma.mediaFile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MediaFileUpdateManyAndReturnArgs>(args: SelectSubset<T, MediaFileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MediaFile.
+     * @param {MediaFileUpsertArgs} args - Arguments to update or create a MediaFile.
+     * @example
+     * // Update or create a MediaFile
+     * const mediaFile = await prisma.mediaFile.upsert({
+     *   create: {
+     *     // ... data to create a MediaFile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MediaFile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MediaFileUpsertArgs>(args: SelectSubset<T, MediaFileUpsertArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MediaFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileCountArgs} args - Arguments to filter MediaFiles to count.
+     * @example
+     * // Count the number of MediaFiles
+     * const count = await prisma.mediaFile.count({
+     *   where: {
+     *     // ... the filter for the MediaFiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends MediaFileCountArgs>(
+      args?: Subset<T, MediaFileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MediaFileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MediaFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MediaFileAggregateArgs>(args: Subset<T, MediaFileAggregateArgs>): Prisma.PrismaPromise<GetMediaFileAggregateType<T>>
+
+    /**
+     * Group by MediaFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MediaFileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MediaFileGroupByArgs['orderBy'] }
+        : { orderBy?: MediaFileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MediaFileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMediaFileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MediaFile model
+   */
+  readonly fields: MediaFileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MediaFile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MediaFileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tripLog<T extends MediaFile$tripLogArgs<ExtArgs> = {}>(args?: Subset<T, MediaFile$tripLogArgs<ExtArgs>>): Prisma__TripLogClient<$Result.GetResult<Prisma.$TripLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MediaFile model
+   */
+  interface MediaFileFieldRefs {
+    readonly id: FieldRef<"MediaFile", 'String'>
+    readonly fileId: FieldRef<"MediaFile", 'String'>
+    readonly fileSize: FieldRef<"MediaFile", 'String'>
+    readonly url: FieldRef<"MediaFile", 'String'>
+    readonly mediaType: FieldRef<"MediaFile", 'MediaFileType'>
+    readonly tripLogId: FieldRef<"MediaFile", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MediaFile findUnique
+   */
+  export type MediaFileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaFile to fetch.
+     */
+    where: MediaFileWhereUniqueInput
+  }
+
+  /**
+   * MediaFile findUniqueOrThrow
+   */
+  export type MediaFileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaFile to fetch.
+     */
+    where: MediaFileWhereUniqueInput
+  }
+
+  /**
+   * MediaFile findFirst
+   */
+  export type MediaFileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaFile to fetch.
+     */
+    where?: MediaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaFiles to fetch.
+     */
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaFiles.
+     */
+    cursor?: MediaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaFiles.
+     */
+    distinct?: MediaFileScalarFieldEnum | MediaFileScalarFieldEnum[]
+  }
+
+  /**
+   * MediaFile findFirstOrThrow
+   */
+  export type MediaFileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaFile to fetch.
+     */
+    where?: MediaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaFiles to fetch.
+     */
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaFiles.
+     */
+    cursor?: MediaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaFiles.
+     */
+    distinct?: MediaFileScalarFieldEnum | MediaFileScalarFieldEnum[]
+  }
+
+  /**
+   * MediaFile findMany
+   */
+  export type MediaFileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaFiles to fetch.
+     */
+    where?: MediaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaFiles to fetch.
+     */
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MediaFiles.
+     */
+    cursor?: MediaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaFiles.
+     */
+    skip?: number
+    distinct?: MediaFileScalarFieldEnum | MediaFileScalarFieldEnum[]
+  }
+
+  /**
+   * MediaFile create
+   */
+  export type MediaFileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MediaFile.
+     */
+    data: XOR<MediaFileCreateInput, MediaFileUncheckedCreateInput>
+  }
+
+  /**
+   * MediaFile createMany
+   */
+  export type MediaFileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MediaFiles.
+     */
+    data: MediaFileCreateManyInput | MediaFileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MediaFile createManyAndReturn
+   */
+  export type MediaFileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * The data used to create many MediaFiles.
+     */
+    data: MediaFileCreateManyInput | MediaFileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MediaFile update
+   */
+  export type MediaFileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MediaFile.
+     */
+    data: XOR<MediaFileUpdateInput, MediaFileUncheckedUpdateInput>
+    /**
+     * Choose, which MediaFile to update.
+     */
+    where: MediaFileWhereUniqueInput
+  }
+
+  /**
+   * MediaFile updateMany
+   */
+  export type MediaFileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MediaFiles.
+     */
+    data: XOR<MediaFileUpdateManyMutationInput, MediaFileUncheckedUpdateManyInput>
+    /**
+     * Filter which MediaFiles to update
+     */
+    where?: MediaFileWhereInput
+    /**
+     * Limit how many MediaFiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MediaFile updateManyAndReturn
+   */
+  export type MediaFileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * The data used to update MediaFiles.
+     */
+    data: XOR<MediaFileUpdateManyMutationInput, MediaFileUncheckedUpdateManyInput>
+    /**
+     * Filter which MediaFiles to update
+     */
+    where?: MediaFileWhereInput
+    /**
+     * Limit how many MediaFiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MediaFile upsert
+   */
+  export type MediaFileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MediaFile to update in case it exists.
+     */
+    where: MediaFileWhereUniqueInput
+    /**
+     * In case the MediaFile found by the `where` argument doesn't exist, create a new MediaFile with this data.
+     */
+    create: XOR<MediaFileCreateInput, MediaFileUncheckedCreateInput>
+    /**
+     * In case the MediaFile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MediaFileUpdateInput, MediaFileUncheckedUpdateInput>
+  }
+
+  /**
+   * MediaFile delete
+   */
+  export type MediaFileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
+     * Filter which MediaFile to delete.
+     */
+    where: MediaFileWhereUniqueInput
+  }
+
+  /**
+   * MediaFile deleteMany
+   */
+  export type MediaFileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaFiles to delete
+     */
+    where?: MediaFileWhereInput
+    /**
+     * Limit how many MediaFiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MediaFile.tripLog
+   */
+  export type MediaFile$tripLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TripLog
+     */
+    select?: TripLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TripLog
+     */
+    omit?: TripLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TripLogInclude<ExtArgs> | null
+    where?: TripLogWhereInput
+  }
+
+  /**
+   * MediaFile without action
+   */
+  export type MediaFileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MediaFile
+     */
+    omit?: MediaFileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
   }
 
 
@@ -3291,21 +4588,36 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const TravelLogScalarFieldEnum: {
+  export const TripLogScalarFieldEnum: {
     id: 'id',
+    country: 'country',
+    countryCode: 'countryCode',
+    city: 'city',
     location: 'location',
     latitude: 'latitude',
     longitude: 'longitude',
-    mediaFiles: 'mediaFiles',
-    tags: 'tags',
-    date: 'date',
+    visitedOn: 'visitedOn',
+    duration: 'duration',
     notes: 'notes',
+    tags: 'tags',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId'
   };
 
-  export type TravelLogScalarFieldEnum = (typeof TravelLogScalarFieldEnum)[keyof typeof TravelLogScalarFieldEnum]
+  export type TripLogScalarFieldEnum = (typeof TripLogScalarFieldEnum)[keyof typeof TripLogScalarFieldEnum]
+
+
+  export const MediaFileScalarFieldEnum: {
+    id: 'id',
+    fileId: 'fileId',
+    fileSize: 'fileSize',
+    url: 'url',
+    mediaType: 'mediaType',
+    tripLogId: 'tripLogId'
+  };
+
+  export type MediaFileScalarFieldEnum = (typeof MediaFileScalarFieldEnum)[keyof typeof MediaFileScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3380,6 +4692,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'MediaFileType'
+   */
+  export type EnumMediaFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MediaFileType'>
+    
+
+
+  /**
+   * Reference to a field of type 'MediaFileType[]'
+   */
+  export type ListEnumMediaFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MediaFileType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3408,7 +4734,7 @@ export namespace Prisma {
     picture?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    travelLog?: TravelLogListRelationFilter
+    tripLogs?: TripLogListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -3420,7 +4746,7 @@ export namespace Prisma {
     picture?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    travelLog?: TravelLogOrderByRelationAggregateInput
+    tripLogs?: TripLogOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3435,7 +4761,7 @@ export namespace Prisma {
     picture?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    travelLog?: TravelLogListRelationFilter
+    tripLogs?: TripLogListRelationFilter
   }, "id" | "email" | "tenantId">
 
   export type UserOrderByWithAggregationInput = {
@@ -3466,89 +4792,167 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
-  export type TravelLogWhereInput = {
-    AND?: TravelLogWhereInput | TravelLogWhereInput[]
-    OR?: TravelLogWhereInput[]
-    NOT?: TravelLogWhereInput | TravelLogWhereInput[]
-    id?: StringFilter<"TravelLog"> | string
-    location?: StringFilter<"TravelLog"> | string
-    latitude?: StringFilter<"TravelLog"> | string
-    longitude?: StringFilter<"TravelLog"> | string
-    mediaFiles?: StringNullableListFilter<"TravelLog">
-    tags?: StringNullableListFilter<"TravelLog">
-    date?: DateTimeFilter<"TravelLog"> | Date | string
-    notes?: StringNullableFilter<"TravelLog"> | string | null
-    createdAt?: DateTimeFilter<"TravelLog"> | Date | string
-    updatedAt?: DateTimeFilter<"TravelLog"> | Date | string
-    userId?: StringNullableFilter<"TravelLog"> | string | null
-    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  export type TripLogWhereInput = {
+    AND?: TripLogWhereInput | TripLogWhereInput[]
+    OR?: TripLogWhereInput[]
+    NOT?: TripLogWhereInput | TripLogWhereInput[]
+    id?: StringFilter<"TripLog"> | string
+    country?: StringFilter<"TripLog"> | string
+    countryCode?: StringFilter<"TripLog"> | string
+    city?: StringFilter<"TripLog"> | string
+    location?: StringFilter<"TripLog"> | string
+    latitude?: StringFilter<"TripLog"> | string
+    longitude?: StringFilter<"TripLog"> | string
+    visitedOn?: DateTimeFilter<"TripLog"> | Date | string
+    duration?: StringFilter<"TripLog"> | string
+    notes?: StringNullableFilter<"TripLog"> | string | null
+    tags?: StringNullableListFilter<"TripLog">
+    createdAt?: DateTimeFilter<"TripLog"> | Date | string
+    updatedAt?: DateTimeFilter<"TripLog"> | Date | string
+    userId?: StringNullableFilter<"TripLog"> | string | null
+    mediaFiles?: MediaFileListRelationFilter
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
-  export type TravelLogOrderByWithRelationInput = {
+  export type TripLogOrderByWithRelationInput = {
     id?: SortOrder
+    country?: SortOrder
+    countryCode?: SortOrder
+    city?: SortOrder
     location?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    mediaFiles?: SortOrder
-    tags?: SortOrder
-    date?: SortOrder
+    visitedOn?: SortOrder
+    duration?: SortOrder
     notes?: SortOrderInput | SortOrder
+    tags?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrderInput | SortOrder
-    User?: UserOrderByWithRelationInput
+    mediaFiles?: MediaFileOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
   }
 
-  export type TravelLogWhereUniqueInput = Prisma.AtLeast<{
+  export type TripLogWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: TravelLogWhereInput | TravelLogWhereInput[]
-    OR?: TravelLogWhereInput[]
-    NOT?: TravelLogWhereInput | TravelLogWhereInput[]
-    location?: StringFilter<"TravelLog"> | string
-    latitude?: StringFilter<"TravelLog"> | string
-    longitude?: StringFilter<"TravelLog"> | string
-    mediaFiles?: StringNullableListFilter<"TravelLog">
-    tags?: StringNullableListFilter<"TravelLog">
-    date?: DateTimeFilter<"TravelLog"> | Date | string
-    notes?: StringNullableFilter<"TravelLog"> | string | null
-    createdAt?: DateTimeFilter<"TravelLog"> | Date | string
-    updatedAt?: DateTimeFilter<"TravelLog"> | Date | string
-    userId?: StringNullableFilter<"TravelLog"> | string | null
-    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    AND?: TripLogWhereInput | TripLogWhereInput[]
+    OR?: TripLogWhereInput[]
+    NOT?: TripLogWhereInput | TripLogWhereInput[]
+    country?: StringFilter<"TripLog"> | string
+    countryCode?: StringFilter<"TripLog"> | string
+    city?: StringFilter<"TripLog"> | string
+    location?: StringFilter<"TripLog"> | string
+    latitude?: StringFilter<"TripLog"> | string
+    longitude?: StringFilter<"TripLog"> | string
+    visitedOn?: DateTimeFilter<"TripLog"> | Date | string
+    duration?: StringFilter<"TripLog"> | string
+    notes?: StringNullableFilter<"TripLog"> | string | null
+    tags?: StringNullableListFilter<"TripLog">
+    createdAt?: DateTimeFilter<"TripLog"> | Date | string
+    updatedAt?: DateTimeFilter<"TripLog"> | Date | string
+    userId?: StringNullableFilter<"TripLog"> | string | null
+    mediaFiles?: MediaFileListRelationFilter
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
-  export type TravelLogOrderByWithAggregationInput = {
+  export type TripLogOrderByWithAggregationInput = {
     id?: SortOrder
+    country?: SortOrder
+    countryCode?: SortOrder
+    city?: SortOrder
     location?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    mediaFiles?: SortOrder
-    tags?: SortOrder
-    date?: SortOrder
+    visitedOn?: SortOrder
+    duration?: SortOrder
     notes?: SortOrderInput | SortOrder
+    tags?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrderInput | SortOrder
-    _count?: TravelLogCountOrderByAggregateInput
-    _max?: TravelLogMaxOrderByAggregateInput
-    _min?: TravelLogMinOrderByAggregateInput
+    _count?: TripLogCountOrderByAggregateInput
+    _max?: TripLogMaxOrderByAggregateInput
+    _min?: TripLogMinOrderByAggregateInput
   }
 
-  export type TravelLogScalarWhereWithAggregatesInput = {
-    AND?: TravelLogScalarWhereWithAggregatesInput | TravelLogScalarWhereWithAggregatesInput[]
-    OR?: TravelLogScalarWhereWithAggregatesInput[]
-    NOT?: TravelLogScalarWhereWithAggregatesInput | TravelLogScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"TravelLog"> | string
-    location?: StringWithAggregatesFilter<"TravelLog"> | string
-    latitude?: StringWithAggregatesFilter<"TravelLog"> | string
-    longitude?: StringWithAggregatesFilter<"TravelLog"> | string
-    mediaFiles?: StringNullableListFilter<"TravelLog">
-    tags?: StringNullableListFilter<"TravelLog">
-    date?: DateTimeWithAggregatesFilter<"TravelLog"> | Date | string
-    notes?: StringNullableWithAggregatesFilter<"TravelLog"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"TravelLog"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"TravelLog"> | Date | string
-    userId?: StringNullableWithAggregatesFilter<"TravelLog"> | string | null
+  export type TripLogScalarWhereWithAggregatesInput = {
+    AND?: TripLogScalarWhereWithAggregatesInput | TripLogScalarWhereWithAggregatesInput[]
+    OR?: TripLogScalarWhereWithAggregatesInput[]
+    NOT?: TripLogScalarWhereWithAggregatesInput | TripLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TripLog"> | string
+    country?: StringWithAggregatesFilter<"TripLog"> | string
+    countryCode?: StringWithAggregatesFilter<"TripLog"> | string
+    city?: StringWithAggregatesFilter<"TripLog"> | string
+    location?: StringWithAggregatesFilter<"TripLog"> | string
+    latitude?: StringWithAggregatesFilter<"TripLog"> | string
+    longitude?: StringWithAggregatesFilter<"TripLog"> | string
+    visitedOn?: DateTimeWithAggregatesFilter<"TripLog"> | Date | string
+    duration?: StringWithAggregatesFilter<"TripLog"> | string
+    notes?: StringNullableWithAggregatesFilter<"TripLog"> | string | null
+    tags?: StringNullableListFilter<"TripLog">
+    createdAt?: DateTimeWithAggregatesFilter<"TripLog"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TripLog"> | Date | string
+    userId?: StringNullableWithAggregatesFilter<"TripLog"> | string | null
+  }
+
+  export type MediaFileWhereInput = {
+    AND?: MediaFileWhereInput | MediaFileWhereInput[]
+    OR?: MediaFileWhereInput[]
+    NOT?: MediaFileWhereInput | MediaFileWhereInput[]
+    id?: StringFilter<"MediaFile"> | string
+    fileId?: StringFilter<"MediaFile"> | string
+    fileSize?: StringFilter<"MediaFile"> | string
+    url?: StringFilter<"MediaFile"> | string
+    mediaType?: EnumMediaFileTypeFilter<"MediaFile"> | $Enums.MediaFileType
+    tripLogId?: StringNullableFilter<"MediaFile"> | string | null
+    tripLog?: XOR<TripLogNullableScalarRelationFilter, TripLogWhereInput> | null
+  }
+
+  export type MediaFileOrderByWithRelationInput = {
+    id?: SortOrder
+    fileId?: SortOrder
+    fileSize?: SortOrder
+    url?: SortOrder
+    mediaType?: SortOrder
+    tripLogId?: SortOrderInput | SortOrder
+    tripLog?: TripLogOrderByWithRelationInput
+  }
+
+  export type MediaFileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    fileId?: string
+    AND?: MediaFileWhereInput | MediaFileWhereInput[]
+    OR?: MediaFileWhereInput[]
+    NOT?: MediaFileWhereInput | MediaFileWhereInput[]
+    fileSize?: StringFilter<"MediaFile"> | string
+    url?: StringFilter<"MediaFile"> | string
+    mediaType?: EnumMediaFileTypeFilter<"MediaFile"> | $Enums.MediaFileType
+    tripLogId?: StringNullableFilter<"MediaFile"> | string | null
+    tripLog?: XOR<TripLogNullableScalarRelationFilter, TripLogWhereInput> | null
+  }, "id" | "fileId">
+
+  export type MediaFileOrderByWithAggregationInput = {
+    id?: SortOrder
+    fileId?: SortOrder
+    fileSize?: SortOrder
+    url?: SortOrder
+    mediaType?: SortOrder
+    tripLogId?: SortOrderInput | SortOrder
+    _count?: MediaFileCountOrderByAggregateInput
+    _max?: MediaFileMaxOrderByAggregateInput
+    _min?: MediaFileMinOrderByAggregateInput
+  }
+
+  export type MediaFileScalarWhereWithAggregatesInput = {
+    AND?: MediaFileScalarWhereWithAggregatesInput | MediaFileScalarWhereWithAggregatesInput[]
+    OR?: MediaFileScalarWhereWithAggregatesInput[]
+    NOT?: MediaFileScalarWhereWithAggregatesInput | MediaFileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MediaFile"> | string
+    fileId?: StringWithAggregatesFilter<"MediaFile"> | string
+    fileSize?: StringWithAggregatesFilter<"MediaFile"> | string
+    url?: StringWithAggregatesFilter<"MediaFile"> | string
+    mediaType?: EnumMediaFileTypeWithAggregatesFilter<"MediaFile"> | $Enums.MediaFileType
+    tripLogId?: StringNullableWithAggregatesFilter<"MediaFile"> | string | null
   }
 
   export type UserCreateInput = {
@@ -3560,7 +4964,7 @@ export namespace Prisma {
     picture?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    travelLog?: TravelLogCreateNestedManyWithoutUserInput
+    tripLogs?: TripLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -3572,7 +4976,7 @@ export namespace Prisma {
     picture?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    travelLog?: TravelLogUncheckedCreateNestedManyWithoutUserInput
+    tripLogs?: TripLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -3584,7 +4988,7 @@ export namespace Prisma {
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    travelLog?: TravelLogUpdateManyWithoutUserNestedInput
+    tripLogs?: TripLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -3596,7 +5000,7 @@ export namespace Prisma {
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    travelLog?: TravelLogUncheckedUpdateManyWithoutUserNestedInput
+    tripLogs?: TripLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3632,101 +5036,188 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TravelLogCreateInput = {
+  export type TripLogCreateInput = {
     id?: string
+    country: string
+    countryCode: string
+    city: string
     location: string
     latitude: string
     longitude: string
-    mediaFiles?: TravelLogCreatemediaFilesInput | string[]
-    tags?: TravelLogCreatetagsInput | string[]
-    date: Date | string
+    visitedOn: Date | string
+    duration: string
     notes?: string | null
+    tags?: TripLogCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
-    User?: UserCreateNestedOneWithoutTravelLogInput
+    mediaFiles?: MediaFileCreateNestedManyWithoutTripLogInput
+    user?: UserCreateNestedOneWithoutTripLogsInput
   }
 
-  export type TravelLogUncheckedCreateInput = {
+  export type TripLogUncheckedCreateInput = {
     id?: string
+    country: string
+    countryCode: string
+    city: string
     location: string
     latitude: string
     longitude: string
-    mediaFiles?: TravelLogCreatemediaFilesInput | string[]
-    tags?: TravelLogCreatetagsInput | string[]
-    date: Date | string
+    visitedOn: Date | string
+    duration: string
     notes?: string | null
+    tags?: TripLogCreatetagsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    mediaFiles?: MediaFileUncheckedCreateNestedManyWithoutTripLogInput
+  }
+
+  export type TripLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    countryCode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
+    visitedOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: TripLogUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mediaFiles?: MediaFileUpdateManyWithoutTripLogNestedInput
+    user?: UserUpdateOneWithoutTripLogsNestedInput
+  }
+
+  export type TripLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    countryCode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
+    visitedOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: TripLogUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    mediaFiles?: MediaFileUncheckedUpdateManyWithoutTripLogNestedInput
+  }
+
+  export type TripLogCreateManyInput = {
+    id?: string
+    country: string
+    countryCode: string
+    city: string
+    location: string
+    latitude: string
+    longitude: string
+    visitedOn: Date | string
+    duration: string
+    notes?: string | null
+    tags?: TripLogCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     userId?: string | null
   }
 
-  export type TravelLogUpdateInput = {
+  export type TripLogUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    countryCode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     longitude?: StringFieldUpdateOperationsInput | string
-    mediaFiles?: TravelLogUpdatemediaFilesInput | string[]
-    tags?: TravelLogUpdatetagsInput | string[]
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    visitedOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: TripLogUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneWithoutTravelLogNestedInput
   }
 
-  export type TravelLogUncheckedUpdateInput = {
+  export type TripLogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    countryCode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     longitude?: StringFieldUpdateOperationsInput | string
-    mediaFiles?: TravelLogUpdatemediaFilesInput | string[]
-    tags?: TravelLogUpdatetagsInput | string[]
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    visitedOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: TripLogUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type TravelLogCreateManyInput = {
+  export type MediaFileCreateInput = {
     id?: string
-    location: string
-    latitude: string
-    longitude: string
-    mediaFiles?: TravelLogCreatemediaFilesInput | string[]
-    tags?: TravelLogCreatetagsInput | string[]
-    date: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId?: string | null
+    fileId: string
+    fileSize: string
+    url: string
+    mediaType?: $Enums.MediaFileType
+    tripLog?: TripLogCreateNestedOneWithoutMediaFilesInput
   }
 
-  export type TravelLogUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    longitude?: StringFieldUpdateOperationsInput | string
-    mediaFiles?: TravelLogUpdatemediaFilesInput | string[]
-    tags?: TravelLogUpdatetagsInput | string[]
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type MediaFileUncheckedCreateInput = {
+    id?: string
+    fileId: string
+    fileSize: string
+    url: string
+    mediaType?: $Enums.MediaFileType
+    tripLogId?: string | null
   }
 
-  export type TravelLogUncheckedUpdateManyInput = {
+  export type MediaFileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    longitude?: StringFieldUpdateOperationsInput | string
-    mediaFiles?: TravelLogUpdatemediaFilesInput | string[]
-    tags?: TravelLogUpdatetagsInput | string[]
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    fileId?: StringFieldUpdateOperationsInput | string
+    fileSize?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+    tripLog?: TripLogUpdateOneWithoutMediaFilesNestedInput
+  }
+
+  export type MediaFileUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    fileSize?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+    tripLogId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MediaFileCreateManyInput = {
+    id?: string
+    fileId: string
+    fileSize: string
+    url: string
+    mediaType?: $Enums.MediaFileType
+    tripLogId?: string | null
+  }
+
+  export type MediaFileUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    fileSize?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+  }
+
+  export type MediaFileUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    fileSize?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+    tripLogId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3777,10 +5268,10 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type TravelLogListRelationFilter = {
-    every?: TravelLogWhereInput
-    some?: TravelLogWhereInput
-    none?: TravelLogWhereInput
+  export type TripLogListRelationFilter = {
+    every?: TripLogWhereInput
+    some?: TripLogWhereInput
+    none?: TripLogWhereInput
   }
 
   export type SortOrderInput = {
@@ -3788,7 +5279,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type TravelLogOrderByRelationAggregateInput = {
+  export type TripLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3893,61 +5384,131 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type MediaFileListRelationFilter = {
+    every?: MediaFileWhereInput
+    some?: MediaFileWhereInput
+    none?: MediaFileWhereInput
+  }
+
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
   }
 
-  export type TravelLogCountOrderByAggregateInput = {
+  export type MediaFileOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TripLogCountOrderByAggregateInput = {
     id?: SortOrder
+    country?: SortOrder
+    countryCode?: SortOrder
+    city?: SortOrder
     location?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    mediaFiles?: SortOrder
+    visitedOn?: SortOrder
+    duration?: SortOrder
+    notes?: SortOrder
     tags?: SortOrder
-    date?: SortOrder
-    notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
   }
 
-  export type TravelLogMaxOrderByAggregateInput = {
+  export type TripLogMaxOrderByAggregateInput = {
     id?: SortOrder
+    country?: SortOrder
+    countryCode?: SortOrder
+    city?: SortOrder
     location?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    date?: SortOrder
+    visitedOn?: SortOrder
+    duration?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
   }
 
-  export type TravelLogMinOrderByAggregateInput = {
+  export type TripLogMinOrderByAggregateInput = {
     id?: SortOrder
+    country?: SortOrder
+    countryCode?: SortOrder
+    city?: SortOrder
     location?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    date?: SortOrder
+    visitedOn?: SortOrder
+    duration?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
   }
 
-  export type TravelLogCreateNestedManyWithoutUserInput = {
-    create?: XOR<TravelLogCreateWithoutUserInput, TravelLogUncheckedCreateWithoutUserInput> | TravelLogCreateWithoutUserInput[] | TravelLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TravelLogCreateOrConnectWithoutUserInput | TravelLogCreateOrConnectWithoutUserInput[]
-    createMany?: TravelLogCreateManyUserInputEnvelope
-    connect?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
+  export type EnumMediaFileTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.MediaFileType | EnumMediaFileTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.MediaFileType[] | ListEnumMediaFileTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MediaFileType[] | ListEnumMediaFileTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumMediaFileTypeFilter<$PrismaModel> | $Enums.MediaFileType
   }
 
-  export type TravelLogUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<TravelLogCreateWithoutUserInput, TravelLogUncheckedCreateWithoutUserInput> | TravelLogCreateWithoutUserInput[] | TravelLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TravelLogCreateOrConnectWithoutUserInput | TravelLogCreateOrConnectWithoutUserInput[]
-    createMany?: TravelLogCreateManyUserInputEnvelope
-    connect?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
+  export type TripLogNullableScalarRelationFilter = {
+    is?: TripLogWhereInput | null
+    isNot?: TripLogWhereInput | null
+  }
+
+  export type MediaFileCountOrderByAggregateInput = {
+    id?: SortOrder
+    fileId?: SortOrder
+    fileSize?: SortOrder
+    url?: SortOrder
+    mediaType?: SortOrder
+    tripLogId?: SortOrder
+  }
+
+  export type MediaFileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fileId?: SortOrder
+    fileSize?: SortOrder
+    url?: SortOrder
+    mediaType?: SortOrder
+    tripLogId?: SortOrder
+  }
+
+  export type MediaFileMinOrderByAggregateInput = {
+    id?: SortOrder
+    fileId?: SortOrder
+    fileSize?: SortOrder
+    url?: SortOrder
+    mediaType?: SortOrder
+    tripLogId?: SortOrder
+  }
+
+  export type EnumMediaFileTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MediaFileType | EnumMediaFileTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.MediaFileType[] | ListEnumMediaFileTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MediaFileType[] | ListEnumMediaFileTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumMediaFileTypeWithAggregatesFilter<$PrismaModel> | $Enums.MediaFileType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMediaFileTypeFilter<$PrismaModel>
+    _max?: NestedEnumMediaFileTypeFilter<$PrismaModel>
+  }
+
+  export type TripLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<TripLogCreateWithoutUserInput, TripLogUncheckedCreateWithoutUserInput> | TripLogCreateWithoutUserInput[] | TripLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TripLogCreateOrConnectWithoutUserInput | TripLogCreateOrConnectWithoutUserInput[]
+    createMany?: TripLogCreateManyUserInputEnvelope
+    connect?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
+  }
+
+  export type TripLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TripLogCreateWithoutUserInput, TripLogUncheckedCreateWithoutUserInput> | TripLogCreateWithoutUserInput[] | TripLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TripLogCreateOrConnectWithoutUserInput | TripLogCreateOrConnectWithoutUserInput[]
+    createMany?: TripLogCreateManyUserInputEnvelope
+    connect?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3966,66 +5527,119 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type TravelLogUpdateManyWithoutUserNestedInput = {
-    create?: XOR<TravelLogCreateWithoutUserInput, TravelLogUncheckedCreateWithoutUserInput> | TravelLogCreateWithoutUserInput[] | TravelLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TravelLogCreateOrConnectWithoutUserInput | TravelLogCreateOrConnectWithoutUserInput[]
-    upsert?: TravelLogUpsertWithWhereUniqueWithoutUserInput | TravelLogUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: TravelLogCreateManyUserInputEnvelope
-    set?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
-    disconnect?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
-    delete?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
-    connect?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
-    update?: TravelLogUpdateWithWhereUniqueWithoutUserInput | TravelLogUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: TravelLogUpdateManyWithWhereWithoutUserInput | TravelLogUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: TravelLogScalarWhereInput | TravelLogScalarWhereInput[]
+  export type TripLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TripLogCreateWithoutUserInput, TripLogUncheckedCreateWithoutUserInput> | TripLogCreateWithoutUserInput[] | TripLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TripLogCreateOrConnectWithoutUserInput | TripLogCreateOrConnectWithoutUserInput[]
+    upsert?: TripLogUpsertWithWhereUniqueWithoutUserInput | TripLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TripLogCreateManyUserInputEnvelope
+    set?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
+    disconnect?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
+    delete?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
+    connect?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
+    update?: TripLogUpdateWithWhereUniqueWithoutUserInput | TripLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TripLogUpdateManyWithWhereWithoutUserInput | TripLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TripLogScalarWhereInput | TripLogScalarWhereInput[]
   }
 
-  export type TravelLogUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<TravelLogCreateWithoutUserInput, TravelLogUncheckedCreateWithoutUserInput> | TravelLogCreateWithoutUserInput[] | TravelLogUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: TravelLogCreateOrConnectWithoutUserInput | TravelLogCreateOrConnectWithoutUserInput[]
-    upsert?: TravelLogUpsertWithWhereUniqueWithoutUserInput | TravelLogUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: TravelLogCreateManyUserInputEnvelope
-    set?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
-    disconnect?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
-    delete?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
-    connect?: TravelLogWhereUniqueInput | TravelLogWhereUniqueInput[]
-    update?: TravelLogUpdateWithWhereUniqueWithoutUserInput | TravelLogUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: TravelLogUpdateManyWithWhereWithoutUserInput | TravelLogUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: TravelLogScalarWhereInput | TravelLogScalarWhereInput[]
+  export type TripLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TripLogCreateWithoutUserInput, TripLogUncheckedCreateWithoutUserInput> | TripLogCreateWithoutUserInput[] | TripLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TripLogCreateOrConnectWithoutUserInput | TripLogCreateOrConnectWithoutUserInput[]
+    upsert?: TripLogUpsertWithWhereUniqueWithoutUserInput | TripLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TripLogCreateManyUserInputEnvelope
+    set?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
+    disconnect?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
+    delete?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
+    connect?: TripLogWhereUniqueInput | TripLogWhereUniqueInput[]
+    update?: TripLogUpdateWithWhereUniqueWithoutUserInput | TripLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TripLogUpdateManyWithWhereWithoutUserInput | TripLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TripLogScalarWhereInput | TripLogScalarWhereInput[]
   }
 
-  export type TravelLogCreatemediaFilesInput = {
+  export type TripLogCreatetagsInput = {
     set: string[]
   }
 
-  export type TravelLogCreatetagsInput = {
-    set: string[]
+  export type MediaFileCreateNestedManyWithoutTripLogInput = {
+    create?: XOR<MediaFileCreateWithoutTripLogInput, MediaFileUncheckedCreateWithoutTripLogInput> | MediaFileCreateWithoutTripLogInput[] | MediaFileUncheckedCreateWithoutTripLogInput[]
+    connectOrCreate?: MediaFileCreateOrConnectWithoutTripLogInput | MediaFileCreateOrConnectWithoutTripLogInput[]
+    createMany?: MediaFileCreateManyTripLogInputEnvelope
+    connect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
   }
 
-  export type UserCreateNestedOneWithoutTravelLogInput = {
-    create?: XOR<UserCreateWithoutTravelLogInput, UserUncheckedCreateWithoutTravelLogInput>
-    connectOrCreate?: UserCreateOrConnectWithoutTravelLogInput
+  export type UserCreateNestedOneWithoutTripLogsInput = {
+    create?: XOR<UserCreateWithoutTripLogsInput, UserUncheckedCreateWithoutTripLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTripLogsInput
     connect?: UserWhereUniqueInput
   }
 
-  export type TravelLogUpdatemediaFilesInput = {
+  export type MediaFileUncheckedCreateNestedManyWithoutTripLogInput = {
+    create?: XOR<MediaFileCreateWithoutTripLogInput, MediaFileUncheckedCreateWithoutTripLogInput> | MediaFileCreateWithoutTripLogInput[] | MediaFileUncheckedCreateWithoutTripLogInput[]
+    connectOrCreate?: MediaFileCreateOrConnectWithoutTripLogInput | MediaFileCreateOrConnectWithoutTripLogInput[]
+    createMany?: MediaFileCreateManyTripLogInputEnvelope
+    connect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+  }
+
+  export type TripLogUpdatetagsInput = {
     set?: string[]
     push?: string | string[]
   }
 
-  export type TravelLogUpdatetagsInput = {
-    set?: string[]
-    push?: string | string[]
+  export type MediaFileUpdateManyWithoutTripLogNestedInput = {
+    create?: XOR<MediaFileCreateWithoutTripLogInput, MediaFileUncheckedCreateWithoutTripLogInput> | MediaFileCreateWithoutTripLogInput[] | MediaFileUncheckedCreateWithoutTripLogInput[]
+    connectOrCreate?: MediaFileCreateOrConnectWithoutTripLogInput | MediaFileCreateOrConnectWithoutTripLogInput[]
+    upsert?: MediaFileUpsertWithWhereUniqueWithoutTripLogInput | MediaFileUpsertWithWhereUniqueWithoutTripLogInput[]
+    createMany?: MediaFileCreateManyTripLogInputEnvelope
+    set?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    disconnect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    delete?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    connect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    update?: MediaFileUpdateWithWhereUniqueWithoutTripLogInput | MediaFileUpdateWithWhereUniqueWithoutTripLogInput[]
+    updateMany?: MediaFileUpdateManyWithWhereWithoutTripLogInput | MediaFileUpdateManyWithWhereWithoutTripLogInput[]
+    deleteMany?: MediaFileScalarWhereInput | MediaFileScalarWhereInput[]
   }
 
-  export type UserUpdateOneWithoutTravelLogNestedInput = {
-    create?: XOR<UserCreateWithoutTravelLogInput, UserUncheckedCreateWithoutTravelLogInput>
-    connectOrCreate?: UserCreateOrConnectWithoutTravelLogInput
-    upsert?: UserUpsertWithoutTravelLogInput
+  export type UserUpdateOneWithoutTripLogsNestedInput = {
+    create?: XOR<UserCreateWithoutTripLogsInput, UserUncheckedCreateWithoutTripLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTripLogsInput
+    upsert?: UserUpsertWithoutTripLogsInput
     disconnect?: UserWhereInput | boolean
     delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTravelLogInput, UserUpdateWithoutTravelLogInput>, UserUncheckedUpdateWithoutTravelLogInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTripLogsInput, UserUpdateWithoutTripLogsInput>, UserUncheckedUpdateWithoutTripLogsInput>
+  }
+
+  export type MediaFileUncheckedUpdateManyWithoutTripLogNestedInput = {
+    create?: XOR<MediaFileCreateWithoutTripLogInput, MediaFileUncheckedCreateWithoutTripLogInput> | MediaFileCreateWithoutTripLogInput[] | MediaFileUncheckedCreateWithoutTripLogInput[]
+    connectOrCreate?: MediaFileCreateOrConnectWithoutTripLogInput | MediaFileCreateOrConnectWithoutTripLogInput[]
+    upsert?: MediaFileUpsertWithWhereUniqueWithoutTripLogInput | MediaFileUpsertWithWhereUniqueWithoutTripLogInput[]
+    createMany?: MediaFileCreateManyTripLogInputEnvelope
+    set?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    disconnect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    delete?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    connect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    update?: MediaFileUpdateWithWhereUniqueWithoutTripLogInput | MediaFileUpdateWithWhereUniqueWithoutTripLogInput[]
+    updateMany?: MediaFileUpdateManyWithWhereWithoutTripLogInput | MediaFileUpdateManyWithWhereWithoutTripLogInput[]
+    deleteMany?: MediaFileScalarWhereInput | MediaFileScalarWhereInput[]
+  }
+
+  export type TripLogCreateNestedOneWithoutMediaFilesInput = {
+    create?: XOR<TripLogCreateWithoutMediaFilesInput, TripLogUncheckedCreateWithoutMediaFilesInput>
+    connectOrCreate?: TripLogCreateOrConnectWithoutMediaFilesInput
+    connect?: TripLogWhereUniqueInput
+  }
+
+  export type EnumMediaFileTypeFieldUpdateOperationsInput = {
+    set?: $Enums.MediaFileType
+  }
+
+  export type TripLogUpdateOneWithoutMediaFilesNestedInput = {
+    create?: XOR<TripLogCreateWithoutMediaFilesInput, TripLogUncheckedCreateWithoutMediaFilesInput>
+    connectOrCreate?: TripLogCreateOrConnectWithoutMediaFilesInput
+    upsert?: TripLogUpsertWithoutMediaFilesInput
+    disconnect?: TripLogWhereInput | boolean
+    delete?: TripLogWhereInput | boolean
+    connect?: TripLogWhereUniqueInput
+    update?: XOR<XOR<TripLogUpdateToOneWithWhereWithoutMediaFilesInput, TripLogUpdateWithoutMediaFilesInput>, TripLogUncheckedUpdateWithoutMediaFilesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4154,76 +5768,130 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type TravelLogCreateWithoutUserInput = {
+  export type NestedEnumMediaFileTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.MediaFileType | EnumMediaFileTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.MediaFileType[] | ListEnumMediaFileTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MediaFileType[] | ListEnumMediaFileTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumMediaFileTypeFilter<$PrismaModel> | $Enums.MediaFileType
+  }
+
+  export type NestedEnumMediaFileTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MediaFileType | EnumMediaFileTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.MediaFileType[] | ListEnumMediaFileTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MediaFileType[] | ListEnumMediaFileTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumMediaFileTypeWithAggregatesFilter<$PrismaModel> | $Enums.MediaFileType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMediaFileTypeFilter<$PrismaModel>
+    _max?: NestedEnumMediaFileTypeFilter<$PrismaModel>
+  }
+
+  export type TripLogCreateWithoutUserInput = {
     id?: string
+    country: string
+    countryCode: string
+    city: string
     location: string
     latitude: string
     longitude: string
-    mediaFiles?: TravelLogCreatemediaFilesInput | string[]
-    tags?: TravelLogCreatetagsInput | string[]
-    date: Date | string
+    visitedOn: Date | string
+    duration: string
     notes?: string | null
+    tags?: TripLogCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    mediaFiles?: MediaFileCreateNestedManyWithoutTripLogInput
   }
 
-  export type TravelLogUncheckedCreateWithoutUserInput = {
+  export type TripLogUncheckedCreateWithoutUserInput = {
     id?: string
+    country: string
+    countryCode: string
+    city: string
     location: string
     latitude: string
     longitude: string
-    mediaFiles?: TravelLogCreatemediaFilesInput | string[]
-    tags?: TravelLogCreatetagsInput | string[]
-    date: Date | string
+    visitedOn: Date | string
+    duration: string
     notes?: string | null
+    tags?: TripLogCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    mediaFiles?: MediaFileUncheckedCreateNestedManyWithoutTripLogInput
   }
 
-  export type TravelLogCreateOrConnectWithoutUserInput = {
-    where: TravelLogWhereUniqueInput
-    create: XOR<TravelLogCreateWithoutUserInput, TravelLogUncheckedCreateWithoutUserInput>
+  export type TripLogCreateOrConnectWithoutUserInput = {
+    where: TripLogWhereUniqueInput
+    create: XOR<TripLogCreateWithoutUserInput, TripLogUncheckedCreateWithoutUserInput>
   }
 
-  export type TravelLogCreateManyUserInputEnvelope = {
-    data: TravelLogCreateManyUserInput | TravelLogCreateManyUserInput[]
+  export type TripLogCreateManyUserInputEnvelope = {
+    data: TripLogCreateManyUserInput | TripLogCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type TravelLogUpsertWithWhereUniqueWithoutUserInput = {
-    where: TravelLogWhereUniqueInput
-    update: XOR<TravelLogUpdateWithoutUserInput, TravelLogUncheckedUpdateWithoutUserInput>
-    create: XOR<TravelLogCreateWithoutUserInput, TravelLogUncheckedCreateWithoutUserInput>
+  export type TripLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: TripLogWhereUniqueInput
+    update: XOR<TripLogUpdateWithoutUserInput, TripLogUncheckedUpdateWithoutUserInput>
+    create: XOR<TripLogCreateWithoutUserInput, TripLogUncheckedCreateWithoutUserInput>
   }
 
-  export type TravelLogUpdateWithWhereUniqueWithoutUserInput = {
-    where: TravelLogWhereUniqueInput
-    data: XOR<TravelLogUpdateWithoutUserInput, TravelLogUncheckedUpdateWithoutUserInput>
+  export type TripLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: TripLogWhereUniqueInput
+    data: XOR<TripLogUpdateWithoutUserInput, TripLogUncheckedUpdateWithoutUserInput>
   }
 
-  export type TravelLogUpdateManyWithWhereWithoutUserInput = {
-    where: TravelLogScalarWhereInput
-    data: XOR<TravelLogUpdateManyMutationInput, TravelLogUncheckedUpdateManyWithoutUserInput>
+  export type TripLogUpdateManyWithWhereWithoutUserInput = {
+    where: TripLogScalarWhereInput
+    data: XOR<TripLogUpdateManyMutationInput, TripLogUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type TravelLogScalarWhereInput = {
-    AND?: TravelLogScalarWhereInput | TravelLogScalarWhereInput[]
-    OR?: TravelLogScalarWhereInput[]
-    NOT?: TravelLogScalarWhereInput | TravelLogScalarWhereInput[]
-    id?: StringFilter<"TravelLog"> | string
-    location?: StringFilter<"TravelLog"> | string
-    latitude?: StringFilter<"TravelLog"> | string
-    longitude?: StringFilter<"TravelLog"> | string
-    mediaFiles?: StringNullableListFilter<"TravelLog">
-    tags?: StringNullableListFilter<"TravelLog">
-    date?: DateTimeFilter<"TravelLog"> | Date | string
-    notes?: StringNullableFilter<"TravelLog"> | string | null
-    createdAt?: DateTimeFilter<"TravelLog"> | Date | string
-    updatedAt?: DateTimeFilter<"TravelLog"> | Date | string
-    userId?: StringNullableFilter<"TravelLog"> | string | null
+  export type TripLogScalarWhereInput = {
+    AND?: TripLogScalarWhereInput | TripLogScalarWhereInput[]
+    OR?: TripLogScalarWhereInput[]
+    NOT?: TripLogScalarWhereInput | TripLogScalarWhereInput[]
+    id?: StringFilter<"TripLog"> | string
+    country?: StringFilter<"TripLog"> | string
+    countryCode?: StringFilter<"TripLog"> | string
+    city?: StringFilter<"TripLog"> | string
+    location?: StringFilter<"TripLog"> | string
+    latitude?: StringFilter<"TripLog"> | string
+    longitude?: StringFilter<"TripLog"> | string
+    visitedOn?: DateTimeFilter<"TripLog"> | Date | string
+    duration?: StringFilter<"TripLog"> | string
+    notes?: StringNullableFilter<"TripLog"> | string | null
+    tags?: StringNullableListFilter<"TripLog">
+    createdAt?: DateTimeFilter<"TripLog"> | Date | string
+    updatedAt?: DateTimeFilter<"TripLog"> | Date | string
+    userId?: StringNullableFilter<"TripLog"> | string | null
   }
 
-  export type UserCreateWithoutTravelLogInput = {
+  export type MediaFileCreateWithoutTripLogInput = {
+    id?: string
+    fileId: string
+    fileSize: string
+    url: string
+    mediaType?: $Enums.MediaFileType
+  }
+
+  export type MediaFileUncheckedCreateWithoutTripLogInput = {
+    id?: string
+    fileId: string
+    fileSize: string
+    url: string
+    mediaType?: $Enums.MediaFileType
+  }
+
+  export type MediaFileCreateOrConnectWithoutTripLogInput = {
+    where: MediaFileWhereUniqueInput
+    create: XOR<MediaFileCreateWithoutTripLogInput, MediaFileUncheckedCreateWithoutTripLogInput>
+  }
+
+  export type MediaFileCreateManyTripLogInputEnvelope = {
+    data: MediaFileCreateManyTripLogInput | MediaFileCreateManyTripLogInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutTripLogsInput = {
     id?: string
     email: string
     tenantId: string
@@ -4234,7 +5902,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type UserUncheckedCreateWithoutTravelLogInput = {
+  export type UserUncheckedCreateWithoutTripLogsInput = {
     id?: string
     email: string
     tenantId: string
@@ -4245,23 +5913,51 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type UserCreateOrConnectWithoutTravelLogInput = {
+  export type UserCreateOrConnectWithoutTripLogsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutTravelLogInput, UserUncheckedCreateWithoutTravelLogInput>
+    create: XOR<UserCreateWithoutTripLogsInput, UserUncheckedCreateWithoutTripLogsInput>
   }
 
-  export type UserUpsertWithoutTravelLogInput = {
-    update: XOR<UserUpdateWithoutTravelLogInput, UserUncheckedUpdateWithoutTravelLogInput>
-    create: XOR<UserCreateWithoutTravelLogInput, UserUncheckedCreateWithoutTravelLogInput>
+  export type MediaFileUpsertWithWhereUniqueWithoutTripLogInput = {
+    where: MediaFileWhereUniqueInput
+    update: XOR<MediaFileUpdateWithoutTripLogInput, MediaFileUncheckedUpdateWithoutTripLogInput>
+    create: XOR<MediaFileCreateWithoutTripLogInput, MediaFileUncheckedCreateWithoutTripLogInput>
+  }
+
+  export type MediaFileUpdateWithWhereUniqueWithoutTripLogInput = {
+    where: MediaFileWhereUniqueInput
+    data: XOR<MediaFileUpdateWithoutTripLogInput, MediaFileUncheckedUpdateWithoutTripLogInput>
+  }
+
+  export type MediaFileUpdateManyWithWhereWithoutTripLogInput = {
+    where: MediaFileScalarWhereInput
+    data: XOR<MediaFileUpdateManyMutationInput, MediaFileUncheckedUpdateManyWithoutTripLogInput>
+  }
+
+  export type MediaFileScalarWhereInput = {
+    AND?: MediaFileScalarWhereInput | MediaFileScalarWhereInput[]
+    OR?: MediaFileScalarWhereInput[]
+    NOT?: MediaFileScalarWhereInput | MediaFileScalarWhereInput[]
+    id?: StringFilter<"MediaFile"> | string
+    fileId?: StringFilter<"MediaFile"> | string
+    fileSize?: StringFilter<"MediaFile"> | string
+    url?: StringFilter<"MediaFile"> | string
+    mediaType?: EnumMediaFileTypeFilter<"MediaFile"> | $Enums.MediaFileType
+    tripLogId?: StringNullableFilter<"MediaFile"> | string | null
+  }
+
+  export type UserUpsertWithoutTripLogsInput = {
+    update: XOR<UserUpdateWithoutTripLogsInput, UserUncheckedUpdateWithoutTripLogsInput>
+    create: XOR<UserCreateWithoutTripLogsInput, UserUncheckedCreateWithoutTripLogsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutTravelLogInput = {
+  export type UserUpdateToOneWithWhereWithoutTripLogsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutTravelLogInput, UserUncheckedUpdateWithoutTravelLogInput>
+    data: XOR<UserUpdateWithoutTripLogsInput, UserUncheckedUpdateWithoutTripLogsInput>
   }
 
-  export type UserUpdateWithoutTravelLogInput = {
+  export type UserUpdateWithoutTripLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
@@ -4272,7 +5968,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserUncheckedUpdateWithoutTravelLogInput = {
+  export type UserUncheckedUpdateWithoutTripLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     tenantId?: StringFieldUpdateOperationsInput | string
@@ -4283,56 +5979,186 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TravelLogCreateManyUserInput = {
+  export type TripLogCreateWithoutMediaFilesInput = {
     id?: string
+    country: string
+    countryCode: string
+    city: string
     location: string
     latitude: string
     longitude: string
-    mediaFiles?: TravelLogCreatemediaFilesInput | string[]
-    tags?: TravelLogCreatetagsInput | string[]
-    date: Date | string
+    visitedOn: Date | string
+    duration: string
     notes?: string | null
+    tags?: TripLogCreatetagsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutTripLogsInput
+  }
+
+  export type TripLogUncheckedCreateWithoutMediaFilesInput = {
+    id?: string
+    country: string
+    countryCode: string
+    city: string
+    location: string
+    latitude: string
+    longitude: string
+    visitedOn: Date | string
+    duration: string
+    notes?: string | null
+    tags?: TripLogCreatetagsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+  }
+
+  export type TripLogCreateOrConnectWithoutMediaFilesInput = {
+    where: TripLogWhereUniqueInput
+    create: XOR<TripLogCreateWithoutMediaFilesInput, TripLogUncheckedCreateWithoutMediaFilesInput>
+  }
+
+  export type TripLogUpsertWithoutMediaFilesInput = {
+    update: XOR<TripLogUpdateWithoutMediaFilesInput, TripLogUncheckedUpdateWithoutMediaFilesInput>
+    create: XOR<TripLogCreateWithoutMediaFilesInput, TripLogUncheckedCreateWithoutMediaFilesInput>
+    where?: TripLogWhereInput
+  }
+
+  export type TripLogUpdateToOneWithWhereWithoutMediaFilesInput = {
+    where?: TripLogWhereInput
+    data: XOR<TripLogUpdateWithoutMediaFilesInput, TripLogUncheckedUpdateWithoutMediaFilesInput>
+  }
+
+  export type TripLogUpdateWithoutMediaFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    countryCode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
+    visitedOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: TripLogUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutTripLogsNestedInput
+  }
+
+  export type TripLogUncheckedUpdateWithoutMediaFilesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    countryCode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
+    visitedOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: TripLogUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TripLogCreateManyUserInput = {
+    id?: string
+    country: string
+    countryCode: string
+    city: string
+    location: string
+    latitude: string
+    longitude: string
+    visitedOn: Date | string
+    duration: string
+    notes?: string | null
+    tags?: TripLogCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type TravelLogUpdateWithoutUserInput = {
+  export type TripLogUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    countryCode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     longitude?: StringFieldUpdateOperationsInput | string
-    mediaFiles?: TravelLogUpdatemediaFilesInput | string[]
-    tags?: TravelLogUpdatetagsInput | string[]
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    visitedOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: TripLogUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mediaFiles?: MediaFileUpdateManyWithoutTripLogNestedInput
+  }
+
+  export type TripLogUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    countryCode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
+    visitedOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: TripLogUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mediaFiles?: MediaFileUncheckedUpdateManyWithoutTripLogNestedInput
+  }
+
+  export type TripLogUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    countryCode?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    longitude?: StringFieldUpdateOperationsInput | string
+    visitedOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: TripLogUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TravelLogUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    longitude?: StringFieldUpdateOperationsInput | string
-    mediaFiles?: TravelLogUpdatemediaFilesInput | string[]
-    tags?: TravelLogUpdatetagsInput | string[]
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type MediaFileCreateManyTripLogInput = {
+    id?: string
+    fileId: string
+    fileSize: string
+    url: string
+    mediaType?: $Enums.MediaFileType
   }
 
-  export type TravelLogUncheckedUpdateManyWithoutUserInput = {
+  export type MediaFileUpdateWithoutTripLogInput = {
     id?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    longitude?: StringFieldUpdateOperationsInput | string
-    mediaFiles?: TravelLogUpdatemediaFilesInput | string[]
-    tags?: TravelLogUpdatetagsInput | string[]
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    fileSize?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+  }
+
+  export type MediaFileUncheckedUpdateWithoutTripLogInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    fileSize?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+  }
+
+  export type MediaFileUncheckedUpdateManyWithoutTripLogInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileId?: StringFieldUpdateOperationsInput | string
+    fileSize?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
   }
 
 

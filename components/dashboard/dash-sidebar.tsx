@@ -5,39 +5,49 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { dashData } from "@/data";
-import { Card, CardContent } from "../ui/card";
 import Link from "next/link";
+import { Button, buttonVariants } from "../ui/button";
+import { LogOut } from "lucide-react";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import { cn } from "@/lib/utils";
 
 export default function DashSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Dashboard Page</SidebarGroupLabel>
-          <SidebarGroupContent>
+          <SidebarGroupLabel className="text-lg sm:text-xl md:text-2xl font-semibold">
+            <Link href="/">Travel Logs</Link>
+          </SidebarGroupLabel>
+          <SidebarGroupContent className="py-5">
             <SidebarMenu>
-              <ul className="grid space-y-4">
-                {dashData?.map((item) => (
-                  <Link href={item?.href} key={item?.title}>
-                    <Card>
-                      <CardContent className="flex items-center gap-x-4">
-                        {item?.icon}
-                        <p className="capitalize">{item?.title}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </ul>
+              {dashData.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <Link href={item.href}>
+                      {item?.icon}
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        <SidebarFooter>
+          <LogoutLink
+            className={cn(buttonVariants({ variant: "destructive" }), "")}
+          >
+            <LogOut />
+            Logout
+          </LogoutLink>
+        </SidebarFooter>
       </SidebarContent>
-      <SidebarFooter />
     </Sidebar>
   );
 }

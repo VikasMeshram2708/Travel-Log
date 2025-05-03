@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import type { LatLngTuple } from "leaflet";
+import { useSearchParams } from "next/navigation";
 
 // Dynamically import components
 const MapContainer = dynamic(
@@ -23,7 +25,17 @@ const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
 });
 
 export default function MapComponent() {
-  const position: LatLngTuple = [51.505, -0.09];
+  const [position, setPosition] = useState<LatLngTuple>([28.6448, 77.216721]);
+  const params = useSearchParams();
+  const lat = params.get("lat") ?? 0;
+  const lng = params.get("lng") ?? 0;
+
+  useEffect(() => {
+    // console.log("location", { lat, lng });
+    if (lat || lng) {
+      setPosition([+lat, +lng]);
+    }
+  }, [lat, lng]);
 
   useEffect(() => {
     // Fix for missing marker icons
@@ -43,7 +55,7 @@ export default function MapComponent() {
   }, []);
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "50vh", width: "100%" }}>
       <MapContainer
         center={position}
         zoom={13}

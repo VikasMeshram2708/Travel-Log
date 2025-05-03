@@ -11,7 +11,7 @@ export async function Navbar() {
   if (!(await isAuthenticated())) {
     return (
       <nav className="bg-background w-full border-b shadow">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/">
             <h1 className="text-xl sm:text-2xl font-semibold">Travel Log</h1>
           </Link>
@@ -29,7 +29,10 @@ export async function Navbar() {
   }
   return (
     <nav className="bg-background w-full border-b shadow">
-      <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div
+        className="max-w-7xl
+       mx-auto px-6 py-4 flex items-center justify-between"
+      >
         <Link href="/">
           <h1 className="text-xl sm:text-2xl font-semibold">Travel Log</h1>
         </Link>

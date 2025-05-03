@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import Image from "next/image";
 import prisma from "@/lib/prisma";
+import ImageUpload from "./image-upload";
 
 export default async function VisitedSummary() {
   const [count, places] = await Promise.all([
@@ -47,7 +48,10 @@ export default async function VisitedSummary() {
             ))}
           </ul>
         ) : (
-          <p>Upload Your Memories here...</p>
+          <>
+            <p>Upload Your Memories here...</p>
+            <ImageUpload />
+          </>
         )}
       </Suspense>
     </div>

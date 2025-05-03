@@ -3,43 +3,24 @@ import { Home, LocationEdit, PersonStanding, Settings } from "lucide-react";
 export const dashData = [
   {
     title: "Home",
-    href: "/",
+    href: "/dashboard",
     icon: <Home />,
+  },
+  {
+    title: "Recent Places",
+    href: "/dashboard/recent-places",
+    icon: <LocationEdit />,
   },
   {
     title: "Profile",
     href: "/dashboard/profile",
     icon: <PersonStanding />,
   },
-  {
-    title: "Recent Places",
-    href: "/dashboard/recents",
-    icon: <LocationEdit />,
-  },
-  {
-    title: "Settings",
-    href: "/dashboard/settings",
-    icon: <Settings />,
-  },
-];
-
-// recently visited places with co-ordinates, photos, location name, tag
-export const recentlyVisited = [
-  {
-    title: "Kolhapur",
-    lat: "16.69",
-    lon: "74.23",
-  },
-  {
-    title: "Nagpur",
-    lat: "21.14631000",
-    lon: "79.08491000",
-  },
-  {
-    title: "Gondia",
-    lat: "27.133662",
-    lon: "81.963219",
-  },
+  // {
+  //   title: "Settings",
+  //   href: "/dashboard/settings",
+  //   icon: <Settings />,
+  // },
 ];
 
 // visited summary image gallery

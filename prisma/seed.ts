@@ -1,64 +1,82 @@
 import prisma from "@/lib/prisma";
 
 async function main() {
-  const newUser = await prisma.user.upsert({
-    where: {
-      tenantId: "tes1",
-    },
-    create: {
-      name: "test1",
-      email: "test1@gmail.com",
-      picture: "",
-      role: "USER",
-      tenantId: "tes1",
-    },
-    update: {
-      name: "test1",
-      email: "test1@gmail.com",
-      picture: "",
-      role: "USER",
-      tenantId: "tes1",
-    },
-  });
+  await prisma.$transaction(async (tsx) => {
+    const user = await tsx.user.upsert({
+      where: {
+        tenantId: crypto.randomUUID(),
+      },
+      create: {
+        name: "test1",
+        email: "test1@gmail.com",
+        picture: "",
+        role: "USER",
+        tenantId: "tes1",
+      },
+      update: {
+        name: "test1",
+        email: "test1@gmail.com",
+        picture: "",
+        role: "USER",
+        tenantId: "tes1",
+      },
+    });
 
-  await prisma.travelLog.upsert({
-    where: {
-      userId: newUser.id, // Changed from tenantId to the user's id
-    },
-    update: {
-      date: new Date(), // Changed from Date to date (Prisma usually uses lowercase)
-      latitude: "27.133662",
-      longitude: "81.963219",
-      tags: ["Best Places in Gondia District", "Top 10 best places in gondia"],
-      notes: "test notes",
-      mediaFiles: [
-        "https://picsum.photos/id/1015/800/600",
-        "https://picsum.photos/id/1016/800/600",
-        "https://picsum.photos/id/1020/800/600",
-        "https://picsum.photos/id/1024/800/600",
-        "https://picsum.photos/id/1035/800/600",
-      ],
-      location: "gondia, maharashtra, india",
-    },
-    create: {
-      date: new Date(), // Changed from Date to date
-      userId: newUser.id, // Using the newly created user's id
-      latitude: "27.133662",
-      longitude: "81.963219",
-      tags: ["Best Places in Gondia District", "Top 10 best places in gondia"],
-      notes: "test notes",
-      mediaFiles: [
-        "https://picsum.photos/id/1015/800/600",
-        "https://picsum.photos/id/1016/800/600",
-        "https://picsum.photos/id/1020/800/600",
-        "https://picsum.photos/id/1024/800/600",
-        "https://picsum.photos/id/1035/800/600",
-      ],
-      location: "gondia, maharashtra, india",
-    },
+    // Create TripLog with media files and tags
+    const tripLog = await tsx.tripLog.create({
+      data: {
+        country: "India",
+        countryCode: "IN",
+        city: "Gondia",
+        location: "Gondia, Maharashtra, India",
+        latitude: "27.133662",
+        longitude: "81.963219",
+        visitedOn: new Date(),
+        duration: "1.5 days",
+        notes: "test notes",
+        user: {
+          connect: {
+            id: user?.id,
+          },
+        },
+        tags: [
+          "Best Places in Gondia District",
+          "Top 10 best places in gondia",
+        ],
+        mediaFiles: {
+          create: [
+            {
+              url: "https://picsum.photos/id/1015/800/600",
+              mediaType: "IMAGE",
+            },
+            {
+              url: "https://picsum.photos/id/1016/800/600",
+              mediaType: "IMAGE",
+            },
+            {
+              url: "https://picsum.photos/id/1020/800/600",
+              mediaType: "IMAGE",
+            },
+            {
+              url: "https://picsum.photos/id/1024/800/600",
+              mediaType: "IMAGE",
+            },
+            {
+              url: "https://picsum.photos/id/1035/800/600",
+              mediaType: "IMAGE",
+            },
+          ],
+        },
+      },
+    });
+
+    console.log("TripLog created with ID:", tripLog.id);
   });
 }
 
 main()
-  .then(() => console.log("db seeded"))
-  .catch((e: Error) => console.error(e?.message));
+  .then(() => console.log("DB seeded successfully"))
+  .catch((e: Error) => {
+    console.error("Seed failed:", e.message);
+    process.exit(1);
+  });
