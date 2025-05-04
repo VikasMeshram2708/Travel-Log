@@ -123,7 +123,7 @@ export async function saveMediaMemory(data: MediaSchema) {
 
 // Save image (Currently not implemented, placeholder)
 export async function saveImage(data: unknown) {
-  console.log("Received image data", data);
+  // console.log("Received image data", data);
   return {
     success: true,
   };

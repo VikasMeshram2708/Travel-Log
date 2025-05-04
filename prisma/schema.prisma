@@ -71,3 +71,20 @@ model MediaFile {
 
   @@index([tripLogId])
 }
+
+model ContactUs {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model NewLetter {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

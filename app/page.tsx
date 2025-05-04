@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Compass, Notebook } from "lucide-react";
@@ -59,6 +60,7 @@ export default function Home() {
           <p>Trusted by travelers from 20+ countries</p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

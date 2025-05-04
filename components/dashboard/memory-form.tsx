@@ -62,7 +62,7 @@ export default function MemoryForm() {
 
   const onSubmit = async (data: MemorySchema) => {
     try {
-      console.log("myd", data);
+      // console.log("myd", data);
       const { success, message } = await saveMemory(data);
       if (!success) {
         throw new Error(message || "Failed to save memory. Please try again.");
@@ -102,7 +102,7 @@ export default function MemoryForm() {
   useEffect(() => {
     async function getDetails() {
       const result = await findCity(debounceCityQuery);
-      console.log("cityres", result);
+      // console.log("cityres", result);
       setCityValue(result);
     }
     if (debounceCityQuery.length > 0) {

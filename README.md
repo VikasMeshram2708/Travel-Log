@@ -10,7 +10,11 @@
 
 - [x] Image Upload Feature
 
-- [ ] Rest Static Pages (e.g Privacy Policy, About, etc.)
+- [x] News Letter / Contact Us form submission.
+
+- [ ] Delete Feature for Trip Logs.
+
+- [x] Rest Static Pages (e.g Privacy Policy, About, etc.)
 
 - [x] Debounce functionality
 

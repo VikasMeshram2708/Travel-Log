@@ -69,3 +69,19 @@ export const mediaSchema = z.object({
 });
 
 export type MediaSchema = z.infer<typeof mediaSchema>;
+
+// Contact us page
+export const contactSchema = z.object({
+  name: z
+    .string()
+    .min(1, { message: "Name is required" })
+    .max(100, { message: "Name must be within 100 characters" }),
+  email: z.string().email({ message: "Please enter a valid email" }),
+  subject: z.string().min(1, { message: "Subject is required" }).max(100, {
+    message: "Subject must be within 100 characters",
+  }),
+  message: z.string().min(1, { message: "Message is required" }).max(250, {
+    message: "Message must be within 250 characters.",
+  }),
+});
+export type ContactSchema = z.infer<typeof contactSchema>;

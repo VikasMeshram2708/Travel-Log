@@ -1,12 +1,35 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import prisma from "@/lib/prisma";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { Globe, MapPin, Plane } from "lucide-react";
+import { EllipsisVertical, Globe, MapPin, Plane } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import PlacesActionBtn from "@/components/dashboard/places-action-btn";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 export async function generateStaticProps() {
   const { getUser } = getKindeServerSession();
@@ -56,8 +79,26 @@ export default async function RecentPlaces() {
   });
 
   return (
-    <div className="px-4 py-6 space-y-6">
-      {/* <pre>{JSON.stringify(user?.tripLogs, null, 2)}</pre> */}
+    <div className="space-y-6">
+      <SidebarTrigger />
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/dashboard/recent-places">
+              Recent Places
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold flex items-center gap-2">
           <Globe className="w-5 h-5" />
@@ -74,24 +115,43 @@ export default async function RecentPlaces() {
         {user?.tripLogs && user.tripLogs.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {user.tripLogs.map((travel) => (
-              <Link
+              <Card
                 key={travel.id}
-                href={`/dashboard/recent-places/${encodeURIComponent(
-                  travel.location.toLowerCase().replace(/\s+/g, "-")
-                )}?lat=${encodeURIComponent(
-                  travel.latitude
-                )}&lng=${encodeURIComponent(
-                  travel.longitude
-                )}&tlId=${encodeURIComponent(travel.id)} `}
+                className="hover:shadow-lg transition-shadow"
               >
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardHeader className="pb-2">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center justify-between">
                     <CardTitle className="text-lg flex items-center gap-2 capitalize">
                       <MapPin className="w-4 h-4 text-primary" />
                       {travel.location}
                     </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
+                    <CardDescription>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger>
+                          <EllipsisVertical />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+                          <PlacesActionBtn
+                            tripId={travel.id ?? ""}
+                            tripName={travel.location}
+                          />
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </CardDescription>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <Link
+                    href={`/dashboard/recent-places/${encodeURIComponent(
+                      travel.location.toLowerCase().replace(/\s+/g, "-")
+                    )}?lat=${encodeURIComponent(
+                      travel.latitude
+                    )}&lng=${encodeURIComponent(
+                      travel.longitude
+                    )}&tlId=${encodeURIComponent(travel.id)} `}
+                  >
                     <p className="text-sm text-muted-foreground">
                       {travel.visitedOn.toLocaleDateString("en-IN", {
                         year: "numeric",
@@ -99,9 +159,9 @@ export default async function RecentPlaces() {
                         day: "numeric",
                       })}
                     </p>
-                  </CardContent>
-                </Card>
-              </Link>
+                  </Link>
+                </CardContent>
+              </Card>
             ))}
           </div>
         ) : (

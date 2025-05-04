@@ -28,6 +28,16 @@ export type TripLog = $Result.DefaultSelection<Prisma.$TripLogPayload>
  * 
  */
 export type MediaFile = $Result.DefaultSelection<Prisma.$MediaFilePayload>
+/**
+ * Model ContactUs
+ * 
+ */
+export type ContactUs = $Result.DefaultSelection<Prisma.$ContactUsPayload>
+/**
+ * Model NewLetter
+ * 
+ */
+export type NewLetter = $Result.DefaultSelection<Prisma.$NewLetterPayload>
 
 /**
  * Enums
@@ -212,6 +222,26 @@ export class PrismaClient<
     * ```
     */
   get mediaFile(): Prisma.MediaFileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contactUs`: Exposes CRUD operations for the **ContactUs** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Contactuses
+    * const contactuses = await prisma.contactUs.findMany()
+    * ```
+    */
+  get contactUs(): Prisma.ContactUsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.newLetter`: Exposes CRUD operations for the **NewLetter** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NewLetters
+    * const newLetters = await prisma.newLetter.findMany()
+    * ```
+    */
+  get newLetter(): Prisma.NewLetterDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -654,7 +684,9 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     TripLog: 'TripLog',
-    MediaFile: 'MediaFile'
+    MediaFile: 'MediaFile',
+    ContactUs: 'ContactUs',
+    NewLetter: 'NewLetter'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -673,7 +705,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "tripLog" | "mediaFile"
+      modelProps: "user" | "tripLog" | "mediaFile" | "contactUs" | "newLetter"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -899,6 +931,154 @@ export namespace Prisma {
           }
         }
       }
+      ContactUs: {
+        payload: Prisma.$ContactUsPayload<ExtArgs>
+        fields: Prisma.ContactUsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContactUsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContactUsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload>
+          }
+          findFirst: {
+            args: Prisma.ContactUsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContactUsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload>
+          }
+          findMany: {
+            args: Prisma.ContactUsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload>[]
+          }
+          create: {
+            args: Prisma.ContactUsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload>
+          }
+          createMany: {
+            args: Prisma.ContactUsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContactUsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload>[]
+          }
+          delete: {
+            args: Prisma.ContactUsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload>
+          }
+          update: {
+            args: Prisma.ContactUsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContactUsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContactUsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContactUsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContactUsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactUsPayload>
+          }
+          aggregate: {
+            args: Prisma.ContactUsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContactUs>
+          }
+          groupBy: {
+            args: Prisma.ContactUsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContactUsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContactUsCountArgs<ExtArgs>
+            result: $Utils.Optional<ContactUsCountAggregateOutputType> | number
+          }
+        }
+      }
+      NewLetter: {
+        payload: Prisma.$NewLetterPayload<ExtArgs>
+        fields: Prisma.NewLetterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NewLetterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NewLetterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload>
+          }
+          findFirst: {
+            args: Prisma.NewLetterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NewLetterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload>
+          }
+          findMany: {
+            args: Prisma.NewLetterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload>[]
+          }
+          create: {
+            args: Prisma.NewLetterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload>
+          }
+          createMany: {
+            args: Prisma.NewLetterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NewLetterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload>[]
+          }
+          delete: {
+            args: Prisma.NewLetterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload>
+          }
+          update: {
+            args: Prisma.NewLetterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload>
+          }
+          deleteMany: {
+            args: Prisma.NewLetterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NewLetterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NewLetterUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload>[]
+          }
+          upsert: {
+            args: Prisma.NewLetterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewLetterPayload>
+          }
+          aggregate: {
+            args: Prisma.NewLetterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNewLetter>
+          }
+          groupBy: {
+            args: Prisma.NewLetterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NewLetterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NewLetterCountArgs<ExtArgs>
+            result: $Utils.Optional<NewLetterCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -986,6 +1166,8 @@ export namespace Prisma {
     user?: UserOmit
     tripLog?: TripLogOmit
     mediaFile?: MediaFileOmit
+    contactUs?: ContactUsOmit
+    newLetter?: NewLetterOmit
   }
 
   /* Types for Logging */
@@ -4561,6 +4743,2009 @@ export namespace Prisma {
 
 
   /**
+   * Model ContactUs
+   */
+
+  export type AggregateContactUs = {
+    _count: ContactUsCountAggregateOutputType | null
+    _min: ContactUsMinAggregateOutputType | null
+    _max: ContactUsMaxAggregateOutputType | null
+  }
+
+  export type ContactUsMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    email: string | null
+    subject: string | null
+    message: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactUsMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    email: string | null
+    subject: string | null
+    message: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactUsCountAggregateOutputType = {
+    id: number
+    name: number
+    email: number
+    subject: number
+    message: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ContactUsMinAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    subject?: true
+    message?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactUsMaxAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    subject?: true
+    message?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactUsCountAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    subject?: true
+    message?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ContactUsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactUs to aggregate.
+     */
+    where?: ContactUsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contactuses to fetch.
+     */
+    orderBy?: ContactUsOrderByWithRelationInput | ContactUsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContactUsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contactuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contactuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Contactuses
+    **/
+    _count?: true | ContactUsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContactUsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContactUsMaxAggregateInputType
+  }
+
+  export type GetContactUsAggregateType<T extends ContactUsAggregateArgs> = {
+        [P in keyof T & keyof AggregateContactUs]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContactUs[P]>
+      : GetScalarType<T[P], AggregateContactUs[P]>
+  }
+
+
+
+
+  export type ContactUsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactUsWhereInput
+    orderBy?: ContactUsOrderByWithAggregationInput | ContactUsOrderByWithAggregationInput[]
+    by: ContactUsScalarFieldEnum[] | ContactUsScalarFieldEnum
+    having?: ContactUsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContactUsCountAggregateInputType | true
+    _min?: ContactUsMinAggregateInputType
+    _max?: ContactUsMaxAggregateInputType
+  }
+
+  export type ContactUsGroupByOutputType = {
+    id: string
+    name: string
+    email: string
+    subject: string
+    message: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ContactUsCountAggregateOutputType | null
+    _min: ContactUsMinAggregateOutputType | null
+    _max: ContactUsMaxAggregateOutputType | null
+  }
+
+  type GetContactUsGroupByPayload<T extends ContactUsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContactUsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContactUsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContactUsGroupByOutputType[P]>
+            : GetScalarType<T[P], ContactUsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContactUsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    subject?: boolean
+    message?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactUs"]>
+
+  export type ContactUsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    subject?: boolean
+    message?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactUs"]>
+
+  export type ContactUsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    subject?: boolean
+    message?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactUs"]>
+
+  export type ContactUsSelectScalar = {
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    subject?: boolean
+    message?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ContactUsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "subject" | "message" | "createdAt" | "updatedAt", ExtArgs["result"]["contactUs"]>
+
+  export type $ContactUsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContactUs"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      email: string
+      subject: string
+      message: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contactUs"]>
+    composites: {}
+  }
+
+  type ContactUsGetPayload<S extends boolean | null | undefined | ContactUsDefaultArgs> = $Result.GetResult<Prisma.$ContactUsPayload, S>
+
+  type ContactUsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContactUsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContactUsCountAggregateInputType | true
+    }
+
+  export interface ContactUsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContactUs'], meta: { name: 'ContactUs' } }
+    /**
+     * Find zero or one ContactUs that matches the filter.
+     * @param {ContactUsFindUniqueArgs} args - Arguments to find a ContactUs
+     * @example
+     * // Get one ContactUs
+     * const contactUs = await prisma.contactUs.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContactUsFindUniqueArgs>(args: SelectSubset<T, ContactUsFindUniqueArgs<ExtArgs>>): Prisma__ContactUsClient<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContactUs that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContactUsFindUniqueOrThrowArgs} args - Arguments to find a ContactUs
+     * @example
+     * // Get one ContactUs
+     * const contactUs = await prisma.contactUs.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContactUsFindUniqueOrThrowArgs>(args: SelectSubset<T, ContactUsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContactUsClient<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactUs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactUsFindFirstArgs} args - Arguments to find a ContactUs
+     * @example
+     * // Get one ContactUs
+     * const contactUs = await prisma.contactUs.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContactUsFindFirstArgs>(args?: SelectSubset<T, ContactUsFindFirstArgs<ExtArgs>>): Prisma__ContactUsClient<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactUs that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactUsFindFirstOrThrowArgs} args - Arguments to find a ContactUs
+     * @example
+     * // Get one ContactUs
+     * const contactUs = await prisma.contactUs.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContactUsFindFirstOrThrowArgs>(args?: SelectSubset<T, ContactUsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContactUsClient<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Contactuses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactUsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Contactuses
+     * const contactuses = await prisma.contactUs.findMany()
+     * 
+     * // Get first 10 Contactuses
+     * const contactuses = await prisma.contactUs.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contactUsWithIdOnly = await prisma.contactUs.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContactUsFindManyArgs>(args?: SelectSubset<T, ContactUsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContactUs.
+     * @param {ContactUsCreateArgs} args - Arguments to create a ContactUs.
+     * @example
+     * // Create one ContactUs
+     * const ContactUs = await prisma.contactUs.create({
+     *   data: {
+     *     // ... data to create a ContactUs
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContactUsCreateArgs>(args: SelectSubset<T, ContactUsCreateArgs<ExtArgs>>): Prisma__ContactUsClient<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Contactuses.
+     * @param {ContactUsCreateManyArgs} args - Arguments to create many Contactuses.
+     * @example
+     * // Create many Contactuses
+     * const contactUs = await prisma.contactUs.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContactUsCreateManyArgs>(args?: SelectSubset<T, ContactUsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Contactuses and returns the data saved in the database.
+     * @param {ContactUsCreateManyAndReturnArgs} args - Arguments to create many Contactuses.
+     * @example
+     * // Create many Contactuses
+     * const contactUs = await prisma.contactUs.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Contactuses and only return the `id`
+     * const contactUsWithIdOnly = await prisma.contactUs.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContactUsCreateManyAndReturnArgs>(args?: SelectSubset<T, ContactUsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ContactUs.
+     * @param {ContactUsDeleteArgs} args - Arguments to delete one ContactUs.
+     * @example
+     * // Delete one ContactUs
+     * const ContactUs = await prisma.contactUs.delete({
+     *   where: {
+     *     // ... filter to delete one ContactUs
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContactUsDeleteArgs>(args: SelectSubset<T, ContactUsDeleteArgs<ExtArgs>>): Prisma__ContactUsClient<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContactUs.
+     * @param {ContactUsUpdateArgs} args - Arguments to update one ContactUs.
+     * @example
+     * // Update one ContactUs
+     * const contactUs = await prisma.contactUs.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContactUsUpdateArgs>(args: SelectSubset<T, ContactUsUpdateArgs<ExtArgs>>): Prisma__ContactUsClient<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Contactuses.
+     * @param {ContactUsDeleteManyArgs} args - Arguments to filter Contactuses to delete.
+     * @example
+     * // Delete a few Contactuses
+     * const { count } = await prisma.contactUs.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContactUsDeleteManyArgs>(args?: SelectSubset<T, ContactUsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Contactuses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactUsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Contactuses
+     * const contactUs = await prisma.contactUs.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContactUsUpdateManyArgs>(args: SelectSubset<T, ContactUsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Contactuses and returns the data updated in the database.
+     * @param {ContactUsUpdateManyAndReturnArgs} args - Arguments to update many Contactuses.
+     * @example
+     * // Update many Contactuses
+     * const contactUs = await prisma.contactUs.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Contactuses and only return the `id`
+     * const contactUsWithIdOnly = await prisma.contactUs.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContactUsUpdateManyAndReturnArgs>(args: SelectSubset<T, ContactUsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ContactUs.
+     * @param {ContactUsUpsertArgs} args - Arguments to update or create a ContactUs.
+     * @example
+     * // Update or create a ContactUs
+     * const contactUs = await prisma.contactUs.upsert({
+     *   create: {
+     *     // ... data to create a ContactUs
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContactUs we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContactUsUpsertArgs>(args: SelectSubset<T, ContactUsUpsertArgs<ExtArgs>>): Prisma__ContactUsClient<$Result.GetResult<Prisma.$ContactUsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Contactuses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactUsCountArgs} args - Arguments to filter Contactuses to count.
+     * @example
+     * // Count the number of Contactuses
+     * const count = await prisma.contactUs.count({
+     *   where: {
+     *     // ... the filter for the Contactuses we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContactUsCountArgs>(
+      args?: Subset<T, ContactUsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContactUsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContactUs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactUsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContactUsAggregateArgs>(args: Subset<T, ContactUsAggregateArgs>): Prisma.PrismaPromise<GetContactUsAggregateType<T>>
+
+    /**
+     * Group by ContactUs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactUsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContactUsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContactUsGroupByArgs['orderBy'] }
+        : { orderBy?: ContactUsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContactUsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContactUsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContactUs model
+   */
+  readonly fields: ContactUsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContactUs.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContactUsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContactUs model
+   */
+  interface ContactUsFieldRefs {
+    readonly id: FieldRef<"ContactUs", 'String'>
+    readonly name: FieldRef<"ContactUs", 'String'>
+    readonly email: FieldRef<"ContactUs", 'String'>
+    readonly subject: FieldRef<"ContactUs", 'String'>
+    readonly message: FieldRef<"ContactUs", 'String'>
+    readonly createdAt: FieldRef<"ContactUs", 'DateTime'>
+    readonly updatedAt: FieldRef<"ContactUs", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContactUs findUnique
+   */
+  export type ContactUsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactUs to fetch.
+     */
+    where: ContactUsWhereUniqueInput
+  }
+
+  /**
+   * ContactUs findUniqueOrThrow
+   */
+  export type ContactUsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactUs to fetch.
+     */
+    where: ContactUsWhereUniqueInput
+  }
+
+  /**
+   * ContactUs findFirst
+   */
+  export type ContactUsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactUs to fetch.
+     */
+    where?: ContactUsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contactuses to fetch.
+     */
+    orderBy?: ContactUsOrderByWithRelationInput | ContactUsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contactuses.
+     */
+    cursor?: ContactUsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contactuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contactuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contactuses.
+     */
+    distinct?: ContactUsScalarFieldEnum | ContactUsScalarFieldEnum[]
+  }
+
+  /**
+   * ContactUs findFirstOrThrow
+   */
+  export type ContactUsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactUs to fetch.
+     */
+    where?: ContactUsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contactuses to fetch.
+     */
+    orderBy?: ContactUsOrderByWithRelationInput | ContactUsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Contactuses.
+     */
+    cursor?: ContactUsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contactuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contactuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Contactuses.
+     */
+    distinct?: ContactUsScalarFieldEnum | ContactUsScalarFieldEnum[]
+  }
+
+  /**
+   * ContactUs findMany
+   */
+  export type ContactUsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * Filter, which Contactuses to fetch.
+     */
+    where?: ContactUsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Contactuses to fetch.
+     */
+    orderBy?: ContactUsOrderByWithRelationInput | ContactUsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Contactuses.
+     */
+    cursor?: ContactUsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Contactuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Contactuses.
+     */
+    skip?: number
+    distinct?: ContactUsScalarFieldEnum | ContactUsScalarFieldEnum[]
+  }
+
+  /**
+   * ContactUs create
+   */
+  export type ContactUsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ContactUs.
+     */
+    data: XOR<ContactUsCreateInput, ContactUsUncheckedCreateInput>
+  }
+
+  /**
+   * ContactUs createMany
+   */
+  export type ContactUsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Contactuses.
+     */
+    data: ContactUsCreateManyInput | ContactUsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactUs createManyAndReturn
+   */
+  export type ContactUsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * The data used to create many Contactuses.
+     */
+    data: ContactUsCreateManyInput | ContactUsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactUs update
+   */
+  export type ContactUsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ContactUs.
+     */
+    data: XOR<ContactUsUpdateInput, ContactUsUncheckedUpdateInput>
+    /**
+     * Choose, which ContactUs to update.
+     */
+    where: ContactUsWhereUniqueInput
+  }
+
+  /**
+   * ContactUs updateMany
+   */
+  export type ContactUsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Contactuses.
+     */
+    data: XOR<ContactUsUpdateManyMutationInput, ContactUsUncheckedUpdateManyInput>
+    /**
+     * Filter which Contactuses to update
+     */
+    where?: ContactUsWhereInput
+    /**
+     * Limit how many Contactuses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactUs updateManyAndReturn
+   */
+  export type ContactUsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * The data used to update Contactuses.
+     */
+    data: XOR<ContactUsUpdateManyMutationInput, ContactUsUncheckedUpdateManyInput>
+    /**
+     * Filter which Contactuses to update
+     */
+    where?: ContactUsWhereInput
+    /**
+     * Limit how many Contactuses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactUs upsert
+   */
+  export type ContactUsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ContactUs to update in case it exists.
+     */
+    where: ContactUsWhereUniqueInput
+    /**
+     * In case the ContactUs found by the `where` argument doesn't exist, create a new ContactUs with this data.
+     */
+    create: XOR<ContactUsCreateInput, ContactUsUncheckedCreateInput>
+    /**
+     * In case the ContactUs was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContactUsUpdateInput, ContactUsUncheckedUpdateInput>
+  }
+
+  /**
+   * ContactUs delete
+   */
+  export type ContactUsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+    /**
+     * Filter which ContactUs to delete.
+     */
+    where: ContactUsWhereUniqueInput
+  }
+
+  /**
+   * ContactUs deleteMany
+   */
+  export type ContactUsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Contactuses to delete
+     */
+    where?: ContactUsWhereInput
+    /**
+     * Limit how many Contactuses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactUs without action
+   */
+  export type ContactUsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactUs
+     */
+    select?: ContactUsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactUs
+     */
+    omit?: ContactUsOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model NewLetter
+   */
+
+  export type AggregateNewLetter = {
+    _count: NewLetterCountAggregateOutputType | null
+    _min: NewLetterMinAggregateOutputType | null
+    _max: NewLetterMaxAggregateOutputType | null
+  }
+
+  export type NewLetterMinAggregateOutputType = {
+    id: string | null
+    email: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewLetterMaxAggregateOutputType = {
+    id: string | null
+    email: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewLetterCountAggregateOutputType = {
+    id: number
+    email: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NewLetterMinAggregateInputType = {
+    id?: true
+    email?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NewLetterMaxAggregateInputType = {
+    id?: true
+    email?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NewLetterCountAggregateInputType = {
+    id?: true
+    email?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NewLetterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewLetter to aggregate.
+     */
+    where?: NewLetterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewLetters to fetch.
+     */
+    orderBy?: NewLetterOrderByWithRelationInput | NewLetterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NewLetterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewLetters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewLetters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NewLetters
+    **/
+    _count?: true | NewLetterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NewLetterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NewLetterMaxAggregateInputType
+  }
+
+  export type GetNewLetterAggregateType<T extends NewLetterAggregateArgs> = {
+        [P in keyof T & keyof AggregateNewLetter]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNewLetter[P]>
+      : GetScalarType<T[P], AggregateNewLetter[P]>
+  }
+
+
+
+
+  export type NewLetterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewLetterWhereInput
+    orderBy?: NewLetterOrderByWithAggregationInput | NewLetterOrderByWithAggregationInput[]
+    by: NewLetterScalarFieldEnum[] | NewLetterScalarFieldEnum
+    having?: NewLetterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NewLetterCountAggregateInputType | true
+    _min?: NewLetterMinAggregateInputType
+    _max?: NewLetterMaxAggregateInputType
+  }
+
+  export type NewLetterGroupByOutputType = {
+    id: string
+    email: string
+    createdAt: Date
+    updatedAt: Date
+    _count: NewLetterCountAggregateOutputType | null
+    _min: NewLetterMinAggregateOutputType | null
+    _max: NewLetterMaxAggregateOutputType | null
+  }
+
+  type GetNewLetterGroupByPayload<T extends NewLetterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NewLetterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NewLetterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NewLetterGroupByOutputType[P]>
+            : GetScalarType<T[P], NewLetterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NewLetterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["newLetter"]>
+
+  export type NewLetterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["newLetter"]>
+
+  export type NewLetterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["newLetter"]>
+
+  export type NewLetterSelectScalar = {
+    id?: boolean
+    email?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NewLetterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "createdAt" | "updatedAt", ExtArgs["result"]["newLetter"]>
+
+  export type $NewLetterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NewLetter"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      email: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["newLetter"]>
+    composites: {}
+  }
+
+  type NewLetterGetPayload<S extends boolean | null | undefined | NewLetterDefaultArgs> = $Result.GetResult<Prisma.$NewLetterPayload, S>
+
+  type NewLetterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NewLetterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NewLetterCountAggregateInputType | true
+    }
+
+  export interface NewLetterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NewLetter'], meta: { name: 'NewLetter' } }
+    /**
+     * Find zero or one NewLetter that matches the filter.
+     * @param {NewLetterFindUniqueArgs} args - Arguments to find a NewLetter
+     * @example
+     * // Get one NewLetter
+     * const newLetter = await prisma.newLetter.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NewLetterFindUniqueArgs>(args: SelectSubset<T, NewLetterFindUniqueArgs<ExtArgs>>): Prisma__NewLetterClient<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one NewLetter that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NewLetterFindUniqueOrThrowArgs} args - Arguments to find a NewLetter
+     * @example
+     * // Get one NewLetter
+     * const newLetter = await prisma.newLetter.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NewLetterFindUniqueOrThrowArgs>(args: SelectSubset<T, NewLetterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NewLetterClient<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewLetter that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewLetterFindFirstArgs} args - Arguments to find a NewLetter
+     * @example
+     * // Get one NewLetter
+     * const newLetter = await prisma.newLetter.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NewLetterFindFirstArgs>(args?: SelectSubset<T, NewLetterFindFirstArgs<ExtArgs>>): Prisma__NewLetterClient<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewLetter that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewLetterFindFirstOrThrowArgs} args - Arguments to find a NewLetter
+     * @example
+     * // Get one NewLetter
+     * const newLetter = await prisma.newLetter.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NewLetterFindFirstOrThrowArgs>(args?: SelectSubset<T, NewLetterFindFirstOrThrowArgs<ExtArgs>>): Prisma__NewLetterClient<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more NewLetters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewLetterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NewLetters
+     * const newLetters = await prisma.newLetter.findMany()
+     * 
+     * // Get first 10 NewLetters
+     * const newLetters = await prisma.newLetter.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const newLetterWithIdOnly = await prisma.newLetter.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NewLetterFindManyArgs>(args?: SelectSubset<T, NewLetterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a NewLetter.
+     * @param {NewLetterCreateArgs} args - Arguments to create a NewLetter.
+     * @example
+     * // Create one NewLetter
+     * const NewLetter = await prisma.newLetter.create({
+     *   data: {
+     *     // ... data to create a NewLetter
+     *   }
+     * })
+     * 
+     */
+    create<T extends NewLetterCreateArgs>(args: SelectSubset<T, NewLetterCreateArgs<ExtArgs>>): Prisma__NewLetterClient<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many NewLetters.
+     * @param {NewLetterCreateManyArgs} args - Arguments to create many NewLetters.
+     * @example
+     * // Create many NewLetters
+     * const newLetter = await prisma.newLetter.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NewLetterCreateManyArgs>(args?: SelectSubset<T, NewLetterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many NewLetters and returns the data saved in the database.
+     * @param {NewLetterCreateManyAndReturnArgs} args - Arguments to create many NewLetters.
+     * @example
+     * // Create many NewLetters
+     * const newLetter = await prisma.newLetter.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many NewLetters and only return the `id`
+     * const newLetterWithIdOnly = await prisma.newLetter.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NewLetterCreateManyAndReturnArgs>(args?: SelectSubset<T, NewLetterCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a NewLetter.
+     * @param {NewLetterDeleteArgs} args - Arguments to delete one NewLetter.
+     * @example
+     * // Delete one NewLetter
+     * const NewLetter = await prisma.newLetter.delete({
+     *   where: {
+     *     // ... filter to delete one NewLetter
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NewLetterDeleteArgs>(args: SelectSubset<T, NewLetterDeleteArgs<ExtArgs>>): Prisma__NewLetterClient<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one NewLetter.
+     * @param {NewLetterUpdateArgs} args - Arguments to update one NewLetter.
+     * @example
+     * // Update one NewLetter
+     * const newLetter = await prisma.newLetter.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NewLetterUpdateArgs>(args: SelectSubset<T, NewLetterUpdateArgs<ExtArgs>>): Prisma__NewLetterClient<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more NewLetters.
+     * @param {NewLetterDeleteManyArgs} args - Arguments to filter NewLetters to delete.
+     * @example
+     * // Delete a few NewLetters
+     * const { count } = await prisma.newLetter.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NewLetterDeleteManyArgs>(args?: SelectSubset<T, NewLetterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewLetters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewLetterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NewLetters
+     * const newLetter = await prisma.newLetter.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NewLetterUpdateManyArgs>(args: SelectSubset<T, NewLetterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewLetters and returns the data updated in the database.
+     * @param {NewLetterUpdateManyAndReturnArgs} args - Arguments to update many NewLetters.
+     * @example
+     * // Update many NewLetters
+     * const newLetter = await prisma.newLetter.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more NewLetters and only return the `id`
+     * const newLetterWithIdOnly = await prisma.newLetter.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NewLetterUpdateManyAndReturnArgs>(args: SelectSubset<T, NewLetterUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one NewLetter.
+     * @param {NewLetterUpsertArgs} args - Arguments to update or create a NewLetter.
+     * @example
+     * // Update or create a NewLetter
+     * const newLetter = await prisma.newLetter.upsert({
+     *   create: {
+     *     // ... data to create a NewLetter
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NewLetter we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NewLetterUpsertArgs>(args: SelectSubset<T, NewLetterUpsertArgs<ExtArgs>>): Prisma__NewLetterClient<$Result.GetResult<Prisma.$NewLetterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of NewLetters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewLetterCountArgs} args - Arguments to filter NewLetters to count.
+     * @example
+     * // Count the number of NewLetters
+     * const count = await prisma.newLetter.count({
+     *   where: {
+     *     // ... the filter for the NewLetters we want to count
+     *   }
+     * })
+    **/
+    count<T extends NewLetterCountArgs>(
+      args?: Subset<T, NewLetterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NewLetterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NewLetter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewLetterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NewLetterAggregateArgs>(args: Subset<T, NewLetterAggregateArgs>): Prisma.PrismaPromise<GetNewLetterAggregateType<T>>
+
+    /**
+     * Group by NewLetter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewLetterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NewLetterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NewLetterGroupByArgs['orderBy'] }
+        : { orderBy?: NewLetterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NewLetterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNewLetterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NewLetter model
+   */
+  readonly fields: NewLetterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NewLetter.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NewLetterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the NewLetter model
+   */
+  interface NewLetterFieldRefs {
+    readonly id: FieldRef<"NewLetter", 'String'>
+    readonly email: FieldRef<"NewLetter", 'String'>
+    readonly createdAt: FieldRef<"NewLetter", 'DateTime'>
+    readonly updatedAt: FieldRef<"NewLetter", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * NewLetter findUnique
+   */
+  export type NewLetterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * Filter, which NewLetter to fetch.
+     */
+    where: NewLetterWhereUniqueInput
+  }
+
+  /**
+   * NewLetter findUniqueOrThrow
+   */
+  export type NewLetterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * Filter, which NewLetter to fetch.
+     */
+    where: NewLetterWhereUniqueInput
+  }
+
+  /**
+   * NewLetter findFirst
+   */
+  export type NewLetterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * Filter, which NewLetter to fetch.
+     */
+    where?: NewLetterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewLetters to fetch.
+     */
+    orderBy?: NewLetterOrderByWithRelationInput | NewLetterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewLetters.
+     */
+    cursor?: NewLetterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewLetters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewLetters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewLetters.
+     */
+    distinct?: NewLetterScalarFieldEnum | NewLetterScalarFieldEnum[]
+  }
+
+  /**
+   * NewLetter findFirstOrThrow
+   */
+  export type NewLetterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * Filter, which NewLetter to fetch.
+     */
+    where?: NewLetterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewLetters to fetch.
+     */
+    orderBy?: NewLetterOrderByWithRelationInput | NewLetterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewLetters.
+     */
+    cursor?: NewLetterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewLetters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewLetters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewLetters.
+     */
+    distinct?: NewLetterScalarFieldEnum | NewLetterScalarFieldEnum[]
+  }
+
+  /**
+   * NewLetter findMany
+   */
+  export type NewLetterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * Filter, which NewLetters to fetch.
+     */
+    where?: NewLetterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewLetters to fetch.
+     */
+    orderBy?: NewLetterOrderByWithRelationInput | NewLetterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NewLetters.
+     */
+    cursor?: NewLetterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewLetters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewLetters.
+     */
+    skip?: number
+    distinct?: NewLetterScalarFieldEnum | NewLetterScalarFieldEnum[]
+  }
+
+  /**
+   * NewLetter create
+   */
+  export type NewLetterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * The data needed to create a NewLetter.
+     */
+    data: XOR<NewLetterCreateInput, NewLetterUncheckedCreateInput>
+  }
+
+  /**
+   * NewLetter createMany
+   */
+  export type NewLetterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NewLetters.
+     */
+    data: NewLetterCreateManyInput | NewLetterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NewLetter createManyAndReturn
+   */
+  export type NewLetterCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * The data used to create many NewLetters.
+     */
+    data: NewLetterCreateManyInput | NewLetterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NewLetter update
+   */
+  export type NewLetterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * The data needed to update a NewLetter.
+     */
+    data: XOR<NewLetterUpdateInput, NewLetterUncheckedUpdateInput>
+    /**
+     * Choose, which NewLetter to update.
+     */
+    where: NewLetterWhereUniqueInput
+  }
+
+  /**
+   * NewLetter updateMany
+   */
+  export type NewLetterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NewLetters.
+     */
+    data: XOR<NewLetterUpdateManyMutationInput, NewLetterUncheckedUpdateManyInput>
+    /**
+     * Filter which NewLetters to update
+     */
+    where?: NewLetterWhereInput
+    /**
+     * Limit how many NewLetters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewLetter updateManyAndReturn
+   */
+  export type NewLetterUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * The data used to update NewLetters.
+     */
+    data: XOR<NewLetterUpdateManyMutationInput, NewLetterUncheckedUpdateManyInput>
+    /**
+     * Filter which NewLetters to update
+     */
+    where?: NewLetterWhereInput
+    /**
+     * Limit how many NewLetters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewLetter upsert
+   */
+  export type NewLetterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * The filter to search for the NewLetter to update in case it exists.
+     */
+    where: NewLetterWhereUniqueInput
+    /**
+     * In case the NewLetter found by the `where` argument doesn't exist, create a new NewLetter with this data.
+     */
+    create: XOR<NewLetterCreateInput, NewLetterUncheckedCreateInput>
+    /**
+     * In case the NewLetter was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NewLetterUpdateInput, NewLetterUncheckedUpdateInput>
+  }
+
+  /**
+   * NewLetter delete
+   */
+  export type NewLetterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+    /**
+     * Filter which NewLetter to delete.
+     */
+    where: NewLetterWhereUniqueInput
+  }
+
+  /**
+   * NewLetter deleteMany
+   */
+  export type NewLetterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewLetters to delete
+     */
+    where?: NewLetterWhereInput
+    /**
+     * Limit how many NewLetters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewLetter without action
+   */
+  export type NewLetterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewLetter
+     */
+    select?: NewLetterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewLetter
+     */
+    omit?: NewLetterOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4618,6 +6803,29 @@ export namespace Prisma {
   };
 
   export type MediaFileScalarFieldEnum = (typeof MediaFileScalarFieldEnum)[keyof typeof MediaFileScalarFieldEnum]
+
+
+  export const ContactUsScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    subject: 'subject',
+    message: 'message',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContactUsScalarFieldEnum = (typeof ContactUsScalarFieldEnum)[keyof typeof ContactUsScalarFieldEnum]
+
+
+  export const NewLetterScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NewLetterScalarFieldEnum = (typeof NewLetterScalarFieldEnum)[keyof typeof NewLetterScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4955,6 +7163,115 @@ export namespace Prisma {
     tripLogId?: StringNullableWithAggregatesFilter<"MediaFile"> | string | null
   }
 
+  export type ContactUsWhereInput = {
+    AND?: ContactUsWhereInput | ContactUsWhereInput[]
+    OR?: ContactUsWhereInput[]
+    NOT?: ContactUsWhereInput | ContactUsWhereInput[]
+    id?: StringFilter<"ContactUs"> | string
+    name?: StringFilter<"ContactUs"> | string
+    email?: StringFilter<"ContactUs"> | string
+    subject?: StringFilter<"ContactUs"> | string
+    message?: StringFilter<"ContactUs"> | string
+    createdAt?: DateTimeFilter<"ContactUs"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactUs"> | Date | string
+  }
+
+  export type ContactUsOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactUsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    AND?: ContactUsWhereInput | ContactUsWhereInput[]
+    OR?: ContactUsWhereInput[]
+    NOT?: ContactUsWhereInput | ContactUsWhereInput[]
+    name?: StringFilter<"ContactUs"> | string
+    subject?: StringFilter<"ContactUs"> | string
+    message?: StringFilter<"ContactUs"> | string
+    createdAt?: DateTimeFilter<"ContactUs"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactUs"> | Date | string
+  }, "id" | "email">
+
+  export type ContactUsOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContactUsCountOrderByAggregateInput
+    _max?: ContactUsMaxOrderByAggregateInput
+    _min?: ContactUsMinOrderByAggregateInput
+  }
+
+  export type ContactUsScalarWhereWithAggregatesInput = {
+    AND?: ContactUsScalarWhereWithAggregatesInput | ContactUsScalarWhereWithAggregatesInput[]
+    OR?: ContactUsScalarWhereWithAggregatesInput[]
+    NOT?: ContactUsScalarWhereWithAggregatesInput | ContactUsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ContactUs"> | string
+    name?: StringWithAggregatesFilter<"ContactUs"> | string
+    email?: StringWithAggregatesFilter<"ContactUs"> | string
+    subject?: StringWithAggregatesFilter<"ContactUs"> | string
+    message?: StringWithAggregatesFilter<"ContactUs"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ContactUs"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ContactUs"> | Date | string
+  }
+
+  export type NewLetterWhereInput = {
+    AND?: NewLetterWhereInput | NewLetterWhereInput[]
+    OR?: NewLetterWhereInput[]
+    NOT?: NewLetterWhereInput | NewLetterWhereInput[]
+    id?: StringFilter<"NewLetter"> | string
+    email?: StringFilter<"NewLetter"> | string
+    createdAt?: DateTimeFilter<"NewLetter"> | Date | string
+    updatedAt?: DateTimeFilter<"NewLetter"> | Date | string
+  }
+
+  export type NewLetterOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewLetterWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    AND?: NewLetterWhereInput | NewLetterWhereInput[]
+    OR?: NewLetterWhereInput[]
+    NOT?: NewLetterWhereInput | NewLetterWhereInput[]
+    createdAt?: DateTimeFilter<"NewLetter"> | Date | string
+    updatedAt?: DateTimeFilter<"NewLetter"> | Date | string
+  }, "id" | "email">
+
+  export type NewLetterOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NewLetterCountOrderByAggregateInput
+    _max?: NewLetterMaxOrderByAggregateInput
+    _min?: NewLetterMinOrderByAggregateInput
+  }
+
+  export type NewLetterScalarWhereWithAggregatesInput = {
+    AND?: NewLetterScalarWhereWithAggregatesInput | NewLetterScalarWhereWithAggregatesInput[]
+    OR?: NewLetterScalarWhereWithAggregatesInput[]
+    NOT?: NewLetterScalarWhereWithAggregatesInput | NewLetterScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"NewLetter"> | string
+    email?: StringWithAggregatesFilter<"NewLetter"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"NewLetter"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"NewLetter"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -5218,6 +7535,125 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
     tripLogId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ContactUsCreateInput = {
+    id?: string
+    name: string
+    email: string
+    subject: string
+    message: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactUsUncheckedCreateInput = {
+    id?: string
+    name: string
+    email: string
+    subject: string
+    message: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactUsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactUsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactUsCreateManyInput = {
+    id?: string
+    name: string
+    email: string
+    subject: string
+    message: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactUsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactUsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewLetterCreateInput = {
+    id?: string
+    email: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewLetterUncheckedCreateInput = {
+    id?: string
+    email: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewLetterUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewLetterUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewLetterCreateManyInput = {
+    id?: string
+    email: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewLetterUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewLetterUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5495,6 +7931,57 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumMediaFileTypeFilter<$PrismaModel>
     _max?: NestedEnumMediaFileTypeFilter<$PrismaModel>
+  }
+
+  export type ContactUsCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactUsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactUsMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewLetterCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewLetterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewLetterMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type TripLogCreateNestedManyWithoutUserInput = {
