@@ -3,7 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Calendar, Clock, Globe, MapPin, Plus, X } from "lucide-react";
+import {
+  Asterisk,
+  Calendar,
+  Clock,
+  Globe,
+  MapPin,
+  Plus,
+  X,
+} from "lucide-react";
 
 import {
   Form,
@@ -163,7 +171,12 @@ export default function MemoryForm() {
             name="country"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm font-medium">Country</FormLabel>
+                <FormLabel className="text-sm font-medium">
+                  <span>
+                    <Asterisk className="w-4 h-4" color="red" />
+                  </span>
+                  Country
+                </FormLabel>
                 <div className="relative">
                   <FormControl>
                     <Input
@@ -213,6 +226,9 @@ export default function MemoryForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-sm font-medium">
+                  <span>
+                    <Asterisk className="w-4 h-4" color="red" />
+                  </span>
                   Country Code
                 </FormLabel>
                 <FormControl>
@@ -235,7 +251,12 @@ export default function MemoryForm() {
             name="city"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm font-medium">City</FormLabel>
+                <FormLabel className="text-sm font-medium">
+                  <span>
+                    <Asterisk className="w-4 h-4" color="red" />
+                  </span>
+                  City
+                </FormLabel>
                 <FormControl>
                   <Input
                     autoComplete="off"
@@ -273,6 +294,9 @@ export default function MemoryForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium">
+                    <span>
+                      <Asterisk className="w-4 h-4" color="red" />
+                    </span>
                     Duration (days)
                   </FormLabel>
                   <div className="relative">
@@ -298,6 +322,9 @@ export default function MemoryForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium">
+                    <span>
+                      <Asterisk className="w-4 h-4" color="red" />
+                    </span>
                     Visited On
                   </FormLabel>
                   <div className="relative">
@@ -333,6 +360,9 @@ export default function MemoryForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-sm font-medium">
+                  <span>
+                    <Asterisk className="w-4 h-4" color="red" />
+                  </span>
                   Specific Location
                 </FormLabel>
                 <div className="relative">
@@ -358,6 +388,9 @@ export default function MemoryForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium">
+                    <span>
+                      <Asterisk className="w-4 h-4" color="red" />
+                    </span>
                     Latitude
                   </FormLabel>
                   <FormControl>
@@ -387,6 +420,9 @@ export default function MemoryForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium">
+                    <span>
+                      <Asterisk className="w-4 h-4" color="red" />
+                    </span>
                     Longitude
                   </FormLabel>
                   <FormControl>
@@ -417,7 +453,12 @@ export default function MemoryForm() {
             name="notes"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm font-medium">Notes</FormLabel>
+                <FormLabel className="text-sm font-medium">
+                  <span>
+                    <Asterisk className="w-4 h-4" color="red" />
+                  </span>
+                  Notes
+                </FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Write something memorable..."
@@ -439,7 +480,12 @@ export default function MemoryForm() {
             name="tags"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm font-medium">Tags</FormLabel>
+                <FormLabel className="text-sm font-medium">
+                  <span>
+                    <Asterisk className="w-4 h-4" color="red" />
+                  </span>
+                  Tags
+                </FormLabel>
                 <div className="flex flex-wrap gap-2 mb-2">
                   {field.value.map((tag) => (
                     <Badge

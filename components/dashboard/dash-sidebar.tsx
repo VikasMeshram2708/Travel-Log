@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/sidebar";
 import { dashData } from "@/data";
 import Link from "next/link";
-import { Button, buttonVariants } from "../ui/button";
+import { buttonVariants } from "../ui/button";
 import { LogOut } from "lucide-react";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import { cn } from "@/lib/utils";

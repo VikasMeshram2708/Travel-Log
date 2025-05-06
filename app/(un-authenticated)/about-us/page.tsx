@@ -3,6 +3,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Brain, Check, Instagram, Share, Twitter, Users } from "lucide-react";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "About Us | TravelPass - Travel Smarter, Explore Freely",
@@ -125,6 +126,9 @@ export default function AboutUs() {
           <Button size="lg">Contact Us</Button>
         </div>
       </section>
+      <div className="pt-5">
+        <Footer />
+      </div>
     </div>
   );
 }

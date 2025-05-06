@@ -16,7 +16,7 @@ import {
 import MemoryForm from "@/components/dashboard/memory-form";
 import { Plus } from "lucide-react";
 import { DashTravelChart } from "@/components/dashboard/dash-travel-chart";
-// import DashStats from "@/components/dashboard/dash-stats";
+import DashStats from "@/components/dashboard/dash-stats";
 
 export default function DashboardPage() {
   return (
@@ -67,7 +67,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats Cards */}
-      {/* <DashStats /> */}
+      <DashStats />
       {/* Recent Places Section */}
       <div className="mt-8">
         <div className="flex items-center justify-between mb-4">

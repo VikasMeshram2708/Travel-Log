@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -60,8 +59,8 @@ export default async function ProfilePage() {
           <Image
             src={"https://picsum.photos/200"}
             alt={user.name}
-            width={64}
-            height={64}
+            width={100}
+            height={100}
             className="w-full h-full object-cover"
           />
         </div>
@@ -99,20 +98,21 @@ export default async function ProfilePage() {
                       {new Date(log.visitedOn).toLocaleDateString()}
                     </p>
                   </div>
-                  {Array.from({ length: 4 }).map((_, idx) => (
-                    <div
-                      key={idx}
-                      className="w-12 h-12 rounded-md overflow-hidden"
-                    >
-                      <Image
-                        src="https://picsum.photos/200/"
-                        alt={log.location}
-                        width={48}
-                        height={48}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
+                  <div className="flex gap-x-2">
+                    {Array.from({ length: 4 }).map((_, idx) => (
+                      <div
+                        key={idx}
+                        className="relative w-20 h-20 rounded-md overflow-hidden"
+                      >
+                        <Image
+                          src="https://picsum.photos/200/"
+                          alt={log.location}
+                          layout="fill"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
                   {/* {log.mediaFiles.length > 0 && (
                     <div className="w-12 h-12 rounded-md overflow-hidden">
                       <Image
@@ -173,11 +173,12 @@ export default async function ProfilePage() {
 
       {/* Actions */}
       <div className="flex justify-end">
-        <LogoutLink>
-          <Button variant="ghost" className="flex items-center gap-2">
-            <LogOut className="w-4 h-4" />
-            Sign Out
-          </Button>
+        <LogoutLink
+          postLogoutRedirectURL="/"
+          className="flex items-center gap-x-2"
+        >
+          <LogOut className="w-4 h-4" />
+          Sign Out
         </LogoutLink>
       </div>
     </div>

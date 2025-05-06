@@ -27,16 +27,15 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-export async function generateStaticProps() {
+export async function generateStaticParams() {
   const { getUser } = getKindeServerSession();
   const kindeUser = await getUser();
 
   if (!kindeUser) {
-    throw notFound();
+    return [];
   }
 
   const user = await prisma.user.findUnique({
@@ -51,6 +50,10 @@ export async function generateStaticProps() {
       },
     },
   });
+
+  if (!user || !user?.tripLogs) {
+    return [];
+  }
 
   return user?.tripLogs?.map((travel) => ({
     location: travel?.location,
@@ -121,10 +124,20 @@ export default async function RecentPlaces() {
               >
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg flex items-center gap-2 capitalize">
-                      <MapPin className="w-4 h-4 text-primary" />
-                      {travel.location}
-                    </CardTitle>
+                    <Link
+                      href={`/dashboard/recent-places/${encodeURIComponent(
+                        travel.location.toLowerCase().replace(/\s+/g, "-")
+                      )}?lat=${encodeURIComponent(
+                        travel.latitude
+                      )}&lng=${encodeURIComponent(
+                        travel.longitude
+                      )}&tlId=${encodeURIComponent(travel.id)} `}
+                    >
+                      <CardTitle className="text-lg flex items-center gap-2 capitalize">
+                        <MapPin className="w-4 h-4 text-primary" />
+                        {travel.location}
+                      </CardTitle>
+                    </Link>
                     <CardDescription>
                       <DropdownMenu>
                         <DropdownMenuTrigger>
@@ -143,23 +156,16 @@ export default async function RecentPlaces() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <Link
-                    href={`/dashboard/recent-places/${encodeURIComponent(
-                      travel.location.toLowerCase().replace(/\s+/g, "-")
-                    )}?lat=${encodeURIComponent(
-                      travel.latitude
-                    )}&lng=${encodeURIComponent(
-                      travel.longitude
-                    )}&tlId=${encodeURIComponent(travel.id)} `}
-                  >
-                    <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground">
+                    {travel?.city}
+                    <span className="ml-3">
                       {travel.visitedOn.toLocaleDateString("en-IN", {
                         year: "numeric",
                         month: "short",
                         day: "numeric",
                       })}
-                    </p>
-                  </Link>
+                    </span>
+                  </p>
                 </CardContent>
               </Card>
             ))}

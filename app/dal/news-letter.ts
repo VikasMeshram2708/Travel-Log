@@ -2,7 +2,7 @@
 
 import prisma from "@/lib/prisma";
 
-export async function subscribe(prevState: any, formData: FormData) {
+export async function subscribe(prevState: unknown, formData: FormData) {
   try {
     const emailValue = formData.get("email");
 

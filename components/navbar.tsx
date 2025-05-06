@@ -2,7 +2,9 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import {
   getKindeServerSession,
+  LoginLink,
   LogoutLink,
+  RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import { LogOut } from "lucide-react";
 import {
@@ -26,12 +28,12 @@ export async function Navbar() {
             <h1 className="text-xl sm:text-2xl font-semibold">Travel Log</h1>
           </Link>
           <div className="flex items-center gap-x-4">
-            <Link href="/api/auth/login">
+            <LoginLink postLoginRedirectURL="/dashboard">
               <Button variant={"ghost"}>Login</Button>
-            </Link>
-            <Link href="/api/auth/register">
+            </LoginLink>
+            <RegisterLink>
               <Button>Register</Button>
-            </Link>
+            </RegisterLink>
           </div>
         </div>
       </nav>

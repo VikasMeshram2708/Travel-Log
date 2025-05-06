@@ -6,15 +6,7 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { Label } from "@/components/ui/label";
-import {
-  FileIcon,
-  FolderIcon,
-  ImageIcon,
-  Loader2,
-  UploadCloud,
-  X,
-} from "lucide-react";
+import { FileIcon, ImageIcon, Loader2, UploadCloud, X } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
 import {
