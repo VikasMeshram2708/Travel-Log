@@ -158,7 +158,19 @@ const UploadMediaBtn = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="default" className="gap-2">
+        <Button
+          size={"lg"}
+          variant="outline"
+          className="hover:text-white cursor-pointer gap-2 border-2
+           bg-gradient-to-r
+            from-pink-400
+            hover:from-pink-500
+           via-red-400
+           hover:via-red-500
+            to-yellow-400
+            hover:to-yellow-500
+             text-white"
+        >
           <ImageIcon className="h-4 w-4" />
           Upload Your Journey Memories
         </Button>

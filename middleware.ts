@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { withAuth } from "@kinde-oss/kinde-auth-nextjs/middleware";
 import { NextRequest } from "next/server";
 
 export default withAuth(
   async function middleware(req: NextRequest) {
-    console.log(req);
+    // console.log(req);
   },
   {
     // Middleware still runs on all routes, but doesn't protect the blog route
@@ -16,7 +17,7 @@ export default withAuth(
       "/help-center",
       "/terms",
     ],
-  },
+  }
 );
 
 export const config = {

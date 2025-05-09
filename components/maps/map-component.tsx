@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import type { LatLngTuple } from "leaflet";
-import { useSearchParams } from "next/navigation";
 
 // Dynamically import components
 const MapContainer = dynamic(
@@ -24,18 +23,46 @@ const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
   ssr: false,
 });
 
-export default function MapComponent() {
-  const [position, setPosition] = useState<LatLngTuple>([28.6448, 77.216721]);
-  const params = useSearchParams();
-  const lat = params.get("lat") ?? 0;
-  const lng = params.get("lng") ?? 0;
+// This child component safely uses useMapEvents
+import { useMapEvents } from "react-leaflet";
+import { MapLocationDetails } from "@/types";
+import { useStore } from "@/store/store";
 
-  useEffect(() => {
-    // console.log("location", { lat, lng });
-    if (lat || lng) {
-      setPosition([+lat, +lng]);
+function LocationClickHandler({
+  onClick,
+}: {
+  onClick: (latlng: LatLngTuple) => void;
+}) {
+  const { fillLocDetails } = useStore();
+  //
+  async function getLocationName(lat: number, lng: number) {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
+      );
+      const json: MapLocationDetails = await response.json();
+      fillLocDetails(json);
+    } catch (e) {
+      console.error(e);
     }
-  }, [lat, lng]);
+  }
+
+  useMapEvents({
+    click(e) {
+      const latlng: LatLngTuple = [e.latlng.lat, e.latlng.lng];
+      console.log("ev", e);
+      onClick(latlng);
+      getLocationName(e.latlng.lat, e.latlng.lng);
+    },
+  });
+  return null;
+}
+
+export default function MapComponent() {
+  const defaultPosition: LatLngTuple = [28.6448, 77.216721];
+  const [markerPosition, setMarkerPosition] = useState<LatLngTuple | null>(
+    defaultPosition
+  );
 
   useEffect(() => {
     // Fix for missing marker icons
@@ -57,7 +84,7 @@ export default function MapComponent() {
   return (
     <div style={{ height: "50vh", width: "100%" }}>
       <MapContainer
-        center={position}
+        center={defaultPosition}
         zoom={13}
         scrollWheelZoom={false}
         className="z-0"
@@ -67,11 +94,15 @@ export default function MapComponent() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        <LocationClickHandler onClick={(latlng) => setMarkerPosition(latlng)} />
+        {markerPosition && (
+          <Marker position={markerPosition}>
+            <Popup>
+              Latitude: {markerPosition[0]} <br />
+              Longitude: {markerPosition[1]}
+            </Popup>
+          </Marker>
+        )}
       </MapContainer>
     </div>
   );

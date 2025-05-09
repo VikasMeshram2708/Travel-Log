@@ -1,43 +1,23 @@
-import { CityDetails, CountryDetails } from "@/types";
+import { MapLocationDetails } from "@/types";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type StoreProps = {
-  visitedPlacesCount: 0;
-  defaultPlaceCoords: [number, number];
-  findCountry: (countryName: string) => Promise<CountryDetails[]>;
-  findCity: (text: string) => Promise<CityDetails>;
+  locDetails: MapLocationDetails | null;
+  fillLocDetails: (data: MapLocationDetails) => void;
 };
 
-const BaseURL = process.env.NEXT_PUBLIC_COUNTRY_BASE_URL;
-
-// console.log("BaseURL", BaseURL);
-
-export const useStore = create<StoreProps>(() => ({
-  visitedPlacesCount: 0,
-  defaultPlaceCoords: [27.133662, 81.963219],
-  findCountry: async (countryName: string) => {
-    try {
-      const response = await fetch(
-        `${BaseURL}/${encodeURIComponent(countryName)}`
-      );
-      const json = await response.json();
-      // console.log("json", json);
-      return json;
-    } catch (e) {
-      console.error(e);
+export const useStore = create<StoreProps>()(
+  persist(
+    (set) => ({
+      locDetails: null,
+      fillLocDetails: (data) => set({ locDetails: data }),
+    }),
+    {
+      name: "travelLog",
+      partialize: (state) => ({
+        locDetails: state.locDetails,
+      }),
     }
-  },
-  findCity: async (text: string) => {
-    try {
-      const response = await fetch("/api/getcity", {
-        method: "POST",
-        body: JSON.stringify({ q: text }),
-      });
-      const json = await response.json();
-      // console.log("city-jons", json);
-      return json;
-    } catch (e) {
-      console.error(e);
-    }
-  },
-}));
+  )
+);

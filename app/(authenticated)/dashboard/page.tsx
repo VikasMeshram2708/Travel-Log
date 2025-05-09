@@ -6,15 +6,6 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import MemoryForm from "@/components/dashboard/memory-form";
-import { Plus } from "lucide-react";
 import { DashTravelChart } from "@/components/dashboard/dash-travel-chart";
 import DashStats from "@/components/dashboard/dash-stats";
 
@@ -48,22 +39,6 @@ export default function DashboardPage() {
             Your personal travel memories and statistics
           </p>
         </div>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button className="gap-2" size={"lg"}>
-              <Plus className="h-5 w-5" />
-              Add Memory
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-5xl">
-            <DialogHeader>
-              <DialogTitle className="text-center">
-                Document Your Journey
-              </DialogTitle>
-            </DialogHeader>
-            <MemoryForm />
-          </DialogContent>
-        </Dialog>
       </div>
 
       {/* Stats Cards */}

@@ -17,10 +17,15 @@ export const memorySchema = z.object({
     .max(150, "City is too long")
     .trim(),
 
-  duration: z
+  durationValue: z
     .string()
-    .min(1, "Duration is required")
-    .max(150, "Duration is too long")
+    .min(1, "Duration Value is required")
+    .max(150, "Duration Value is too long")
+    .trim(),
+  durationUnit: z
+    .string()
+    .min(1, "Duration Unit is required")
+    .max(150, "Duration Unit is too long")
     .trim(),
 
   location: z
