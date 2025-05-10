@@ -19,9 +19,7 @@ export default async function ProfilePage() {
   const { getUser } = getKindeServerSession();
   const kindeUser = await getUser();
 
-  if (!kindeUser) {
-    throw notFound();
-  }
+  if (!kindeUser) throw notFound();
 
   const user = await prisma.user.findUnique({
     where: { email: kindeUser.email as string },
@@ -38,7 +36,7 @@ export default async function ProfilePage() {
 
   if (!user) {
     return (
-      <div className="max-w-md mx-auto px-4 py-8">
+      <div className="">
         <Card>
           <CardHeader>
             <CardTitle>Welcome Traveler!</CardTitle>
@@ -52,12 +50,12 @@ export default async function ProfilePage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8 space-y-6">
+    <div className="space-y-6">
       {/* Profile Header */}
       <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow">
+        <div className="w-16 h-16 rounded-full overflow-hidden border shadow">
           <Image
-            src={"https://picsum.photos/200"}
+            src="https://picsum.photos/200"
             alt={user.name}
             width={100}
             height={100}
@@ -83,56 +81,30 @@ export default async function ProfilePage() {
           </CardTitle>
           <CardDescription>Your most recent adventures</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           {user.tripLogs.length > 0 ? (
             user.tripLogs.map((log) => (
               <div
                 key={log.id}
-                className="border-b pb-4 last:border-b-0 last:pb-0"
+                className="space-y-2 border-b pb-4 last:border-b-0 last:pb-0"
               >
-                <div className="flex justify-between items-start">
+                <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="font-medium">{log.location}</h3>
+                    <h3 className="font-medium text-base">{log.location}</h3>
                     <p className="text-sm text-muted-foreground flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       {new Date(log.visitedOn).toLocaleDateString()}
                     </p>
                   </div>
-                  <div className="flex gap-x-2">
-                    {Array.from({ length: 4 }).map((_, idx) => (
-                      <div
-                        key={idx}
-                        className="relative w-20 h-20 rounded-md overflow-hidden"
-                      >
-                        <Image
-                          src="https://picsum.photos/200/"
-                          alt={log.location}
-                          layout="fill"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  {/* {log.mediaFiles.length > 0 && (
-                    <div className="w-12 h-12 rounded-md overflow-hidden">
-                      <Image
-                        src={log.mediaFiles[0]}
-                        alt={log.location}
-                        width={48}
-                        height={48}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )} */}
                 </div>
                 {log.notes && (
-                  <p className="text-sm mt-2 flex items-start gap-2">
+                  <p className="text-sm flex items-start gap-2 text-muted-foreground">
                     <FileText className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground">{log.notes}</span>
+                    {log.notes}
                   </p>
                 )}
                 {log.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-2">
+                  <div className="flex flex-wrap gap-2">
                     {log.tags.map((tag) => (
                       <Badge key={tag} variant="outline" className="text-xs">
                         {tag}
@@ -175,7 +147,7 @@ export default async function ProfilePage() {
       <div className="flex justify-end">
         <LogoutLink
           postLogoutRedirectURL="/"
-          className="flex items-center gap-x-2"
+          className="flex items-center gap-2 text-sm text-red-600 hover:underline"
         >
           <LogOut className="w-4 h-4" />
           Sign Out

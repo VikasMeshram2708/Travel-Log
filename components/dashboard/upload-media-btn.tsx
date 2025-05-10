@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { FileIcon, ImageIcon, Loader2, UploadCloud, X } from "lucide-react";
+import { FileIcon, Loader2, Sparkles, UploadCloud, X } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
 import {
@@ -18,8 +18,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { useSearchParams } from "next/navigation";
 import { saveMediaMemory } from "@/app/dal/actions";
+import { Badge } from "../ui/badge";
 
 type AuthResponse = {
   signature: string;
@@ -28,16 +28,12 @@ type AuthResponse = {
   publicKey: string;
 };
 
-const UploadMediaBtn = () => {
+const UploadMediaBtn = ({ tripId }: { tripId: string }) => {
   const [progress, setProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
-
-  // search params
-  const params = useSearchParams();
-  const tripId = params.get("tlId");
 
   const authenticator = async (): Promise<AuthResponse> => {
     try {
@@ -161,26 +157,22 @@ const UploadMediaBtn = () => {
         <Button
           size={"lg"}
           variant="outline"
-          className="hover:text-white cursor-pointer gap-2 border-2
-           bg-gradient-to-r
-            from-pink-400
-            hover:from-pink-500
-           via-red-400
-           hover:via-red-500
-            to-yellow-400
-            hover:to-yellow-500
-             text-white"
+          className="relative border border-pink-500 to-yellow-500 cursor-pointer"
         >
-          <ImageIcon className="h-4 w-4" />
+          <Badge className="absolute -top-3 right-0 bg-amber-400 rounded-full">
+            New
+          </Badge>
+          <Sparkles />
+          {/* <ImageIcon className="h-4 w-4" /> */}
           Upload Your Journey Memories
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          <DialogTitle className="text-lg font-semibold ">
             Share Your Travel Memories
           </DialogTitle>
-          <DialogDescription className="text-sm text-gray-500 dark:text-gray-400">
+          <DialogDescription className="text-sm ">
             Upload photos and videos from your adventures (Max 10MB)
           </DialogDescription>
         </DialogHeader>
@@ -283,9 +275,7 @@ const UploadMediaBtn = () => {
           {progress > 0 && (
             <div className="space-y-3">
               <div className="flex justify-between text-sm font-medium">
-                <span className="text-gray-700 dark:text-gray-300">
-                  Uploading...
-                </span>
+                <span className="">Uploading...</span>
                 <span className="text-primary">{progress}%</span>
               </div>
               <Progress value={progress} className="h-2" />

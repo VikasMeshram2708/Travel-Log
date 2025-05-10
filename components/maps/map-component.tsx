@@ -33,7 +33,7 @@ function LocationClickHandler({
 }: {
   onClick: (latlng: LatLngTuple) => void;
 }) {
-  const { fillLocDetails } = useStore();
+  const { setLocationDetails, toggleAddNewLocationBtn } = useStore();
   //
   async function getLocationName(lat: number, lng: number) {
     try {
@@ -41,7 +41,7 @@ function LocationClickHandler({
         `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
       );
       const json: MapLocationDetails = await response.json();
-      fillLocDetails(json);
+      setLocationDetails(json);
     } catch (e) {
       console.error(e);
     }
@@ -53,6 +53,7 @@ function LocationClickHandler({
       console.log("ev", e);
       onClick(latlng);
       getLocationName(e.latlng.lat, e.latlng.lng);
+      toggleAddNewLocationBtn();
     },
   });
   return null;

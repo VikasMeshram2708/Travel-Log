@@ -4,7 +4,9 @@
 
 <!-- TODO: -->
 
-- [ ] Remove the console.logs, Test route
+- [x] Find a way to Upload Media Files
+
+- [x] Remove the console.logs, Test route
 
 ### TODO
 
@@ -17,6 +19,10 @@
 - [x] Rest Static Pages (e.g Privacy Policy, About, etc.)
 
 - [x] Debounce functionality
+
+## Stretch
+
+- [ ] Add Subscription.
 
 ### Helpers
 

@@ -65,6 +65,7 @@ const MEDIA_FILE_TYPES = ["VIDEO", "IMAGE"] as const;
 export const MediaFileEnum = z.enum(MEDIA_FILE_TYPES, {
   description: "Type of media file (VIDEO or IMAGE)",
 });
+
 export const mediaSchema = z.object({
   url: z.string().min(1, { message: "Media url is required" }),
   mediaFileType: MediaFileEnum.describe("Type of media content"),

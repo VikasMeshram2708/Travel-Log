@@ -1,34 +1,10 @@
 import { Button } from "@/components/ui/button";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { DashTravelChart } from "@/components/dashboard/dash-travel-chart";
 import DashStats from "@/components/dashboard/dash-stats";
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen space-y-6 p-6">
-      {/* Breadcrumb */}
-      <Breadcrumb className="mb-6">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/" className="hover:text-primary">
-              Home
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard" className="text-primary">
-              Dashboard
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
+    <div className="min-h-screen space-y-6">
       {/* Welcome Header */}
       <div className="flex justify-between items-center mb-8">
         <div>

@@ -3,20 +3,27 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type StoreProps = {
-  locDetails: MapLocationDetails | null;
-  fillLocDetails: (data: MapLocationDetails) => void;
+  addNewLocation: boolean;
+  locationDetails: MapLocationDetails | null;
+  setLocationDetails: (data: MapLocationDetails) => void;
+  clearLocationDetails: () => void;
+  toggleAddNewLocationBtn: () => void;
 };
 
 export const useStore = create<StoreProps>()(
   persist(
     (set) => ({
-      locDetails: null,
-      fillLocDetails: (data) => set({ locDetails: data }),
+      addNewLocation: false,
+      locationDetails: null,
+      setLocationDetails: (data) => set({ locationDetails: data }),
+      clearLocationDetails: () => set({ locationDetails: null }),
+      toggleAddNewLocationBtn: () =>
+        set((state) => ({ addNewLocation: !state.addNewLocation })),
     }),
     {
       name: "travelLog",
       partialize: (state) => ({
-        locDetails: state.locDetails,
+        locationDetails: state.locationDetails,
       }),
     }
   )

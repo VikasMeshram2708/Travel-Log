@@ -28,10 +28,13 @@ export async function Navbar() {
             <h1 className="text-xl sm:text-2xl font-semibold">Travel Log</h1>
           </Link>
           <div className="flex items-center gap-x-4">
-            <LoginLink postLoginRedirectURL="/dashboard">
+            <LoginLink
+              postLoginRedirectURL="/dashboard"
+              className="cursor-pointer"
+            >
               <Button variant={"ghost"}>Login</Button>
             </LoginLink>
-            <RegisterLink>
+            <RegisterLink className="cursor-pointer">
               <Button>Register</Button>
             </RegisterLink>
           </div>
@@ -73,7 +76,7 @@ export async function Navbar() {
               </span>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <LogoutLink className="flex items-center gap-x-1">
+              <LogoutLink className="flex items-center gap-x-1 cursor-pointer">
                 <LogOut />
                 Logout
               </LogoutLink>

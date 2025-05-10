@@ -26,7 +26,7 @@ export interface CountryDetails {
   timezones: string[];
   continents: string[];
   flags: Flags;
-  coatOfArms: CoatOfArms;
+  coatOfArms: {};
   startOfWeek: string;
   capitalInfo: CapitalInfo;
   postalCode: PostalCode;
@@ -188,3 +188,21 @@ export interface Address {
   country: string;
   country_code: string;
 }
+
+// Trip Log
+type TripLog = {
+  createdAt: Date;
+  id: string;
+  updatedAt: Date;
+  country: string;
+  countryCode: string;
+  city: string;
+  location: string;
+  latitude: string;
+  longitude: string;
+  visitedOn: Date;
+  duration: string;
+  notes: string | null;
+  tags: string[];
+  userId: string | null;
+};

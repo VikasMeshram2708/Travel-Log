@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { mediaSchema, MediaSchema, memorySchema, MemorySchema } from "@/models";
+import { mediaSchema, MediaSchema, memorySchema } from "@/models";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 import assert from "node:assert";
@@ -95,6 +95,7 @@ export async function saveMediaMemory(data: MediaSchema) {
     return {
       parseError: parsed.error.flatten().fieldErrors,
       success: false,
+      message: "Schema validation failed",
     };
   }
   assert.ok(parsed.success, "Schema validation failed");
@@ -139,7 +140,7 @@ export async function saveMemory(data: unknown) {
   if (!parsed.success) {
     return {
       formError: parsed.error.flatten().fieldErrors,
-      success: true,
+      success: false,
       message: "Schema validation failed.",
     };
   }
