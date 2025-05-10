@@ -111,6 +111,7 @@ export async function saveMediaMemory(data: MediaSchema) {
         fileSize,
       },
     });
+    revalidatePath("/dashboard/locations/all/**");
     return {
       success: true,
       message: "Media uploaded successfully",
@@ -158,6 +159,18 @@ export async function saveMemory(data: unknown) {
     tags,
     visitedOn,
   } = parsed.data;
+
+  const tenantUser = await prisma.user.upsert({
+    where: { email: user.email as string },
+    update: {}, // No updates needed if the user exists
+    create: {
+      name: user.given_name ?? "",
+      picture: user.picture,
+      email: user.email ?? "",
+      role: "USER",
+      tenantId: user.id,
+    },
+  });
   await prisma.tripLog.create({
     data: {
       city,
@@ -170,11 +183,7 @@ export async function saveMemory(data: unknown) {
       notes,
       tags,
       location,
-      user: {
-        connect: {
-          email: user?.email as string,
-        },
-      },
+      userId: tenantUser.id,
     },
   });
   revalidatePath("/dashboard/locations");
@@ -185,9 +194,29 @@ export async function saveMemory(data: unknown) {
 }
 
 // Save image (Currently not implemented, placeholder)
-export async function saveImage(data: unknown) {
-  console.log("Received image data", data);
+export async function DeleteTripLog({ tripId }: { tripId: string }) {
+  // validate the trip id
+  const tripExist = await prisma.tripLog.findUnique({
+    where: {
+      id: tripId,
+    },
+  });
+  if (!tripExist) {
+    return {
+      success: false,
+      message: "Trip log does not exist",
+    };
+  }
+
+  await prisma.tripLog.delete({
+    where: {
+      id: tripId,
+    },
+  });
+
+  revalidatePath("/dashboard/locations/all");
   return {
     success: true,
+    message: "Deleted",
   };
 }

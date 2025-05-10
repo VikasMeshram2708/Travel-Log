@@ -61,10 +61,7 @@ export default async function TravelLogContainer() {
         {logs?.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-10 border border-dashed rounded bg-muted/20">
             <p className="text-muted-foreground mb-2">No trips recorded yet</p>
-            <Button variant="outline" size="sm" className="gap-1">
-              <Plus className="h-4 w-4" />
-              <span>Add first trip</span>
-            </Button>
+            <p>Select your place on map then click the Add Trip on top</p>
           </div>
         ) : (
           <div className="">

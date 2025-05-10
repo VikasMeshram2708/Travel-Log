@@ -24,11 +24,28 @@ import UploadMediaBtn from "@/components/dashboard/upload-media-btn";
 import Image from "next/image";
 
 type DetailsPageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
+export async function generateStaticParams() {
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
+  const logs = await prisma.tripLog.findMany({
+    where: {
+      user: {
+        email: user?.email as string,
+      },
+    },
+  });
+
+  return logs?.map((log) => ({
+    id: log.id,
+  }));
+}
+
 export default async function DetailsPage({ params }: DetailsPageProps) {
-  const { id } = params;
+  const { id } = await params;
   if (!id) return notFound();
 
   const { getUser, isAuthenticated } = getKindeServerSession();
@@ -48,6 +65,9 @@ export default async function DetailsPage({ params }: DetailsPageProps) {
   const medias = await prisma.mediaFile.findMany({
     where: {
       tripLogId: log.id,
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 

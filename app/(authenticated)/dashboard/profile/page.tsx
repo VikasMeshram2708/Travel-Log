@@ -142,17 +142,6 @@ export default async function ProfilePage() {
           </CardHeader>
         </Card>
       </div>
-
-      {/* Actions */}
-      <div className="flex justify-end">
-        <LogoutLink
-          postLogoutRedirectURL="/"
-          className="flex items-center gap-2 text-sm text-red-600 hover:underline"
-        >
-          <LogOut className="w-4 h-4" />
-          Sign Out
-        </LogoutLink>
-      </div>
     </div>
   );
 }

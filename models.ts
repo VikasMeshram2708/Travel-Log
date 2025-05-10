@@ -18,10 +18,9 @@ export const memorySchema = z.object({
     .trim(),
 
   durationValue: z
-    .string()
+    .number()
     .min(1, "Duration Value is required")
-    .max(150, "Duration Value is too long")
-    .trim(),
+    .max(150, "Duration Value is too long"),
   durationUnit: z
     .string()
     .min(1, "Duration Unit is required")

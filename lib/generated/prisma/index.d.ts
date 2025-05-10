@@ -3669,6 +3669,8 @@ export namespace Prisma {
     url: string | null
     mediaType: $Enums.MediaFileType | null
     tripLogId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type MediaFileMaxAggregateOutputType = {
@@ -3678,6 +3680,8 @@ export namespace Prisma {
     url: string | null
     mediaType: $Enums.MediaFileType | null
     tripLogId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type MediaFileCountAggregateOutputType = {
@@ -3687,6 +3691,8 @@ export namespace Prisma {
     url: number
     mediaType: number
     tripLogId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -3698,6 +3704,8 @@ export namespace Prisma {
     url?: true
     mediaType?: true
     tripLogId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type MediaFileMaxAggregateInputType = {
@@ -3707,6 +3715,8 @@ export namespace Prisma {
     url?: true
     mediaType?: true
     tripLogId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type MediaFileCountAggregateInputType = {
@@ -3716,6 +3726,8 @@ export namespace Prisma {
     url?: true
     mediaType?: true
     tripLogId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -3798,6 +3810,8 @@ export namespace Prisma {
     url: string
     mediaType: $Enums.MediaFileType
     tripLogId: string | null
+    createdAt: Date
+    updatedAt: Date
     _count: MediaFileCountAggregateOutputType | null
     _min: MediaFileMinAggregateOutputType | null
     _max: MediaFileMaxAggregateOutputType | null
@@ -3824,6 +3838,8 @@ export namespace Prisma {
     url?: boolean
     mediaType?: boolean
     tripLogId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
   }, ExtArgs["result"]["mediaFile"]>
 
@@ -3834,6 +3850,8 @@ export namespace Prisma {
     url?: boolean
     mediaType?: boolean
     tripLogId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
   }, ExtArgs["result"]["mediaFile"]>
 
@@ -3844,6 +3862,8 @@ export namespace Prisma {
     url?: boolean
     mediaType?: boolean
     tripLogId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
   }, ExtArgs["result"]["mediaFile"]>
 
@@ -3854,9 +3874,11 @@ export namespace Prisma {
     url?: boolean
     mediaType?: boolean
     tripLogId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type MediaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fileId" | "fileSize" | "url" | "mediaType" | "tripLogId", ExtArgs["result"]["mediaFile"]>
+  export type MediaFileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fileId" | "fileSize" | "url" | "mediaType" | "tripLogId" | "createdAt" | "updatedAt", ExtArgs["result"]["mediaFile"]>
   export type MediaFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tripLog?: boolean | MediaFile$tripLogArgs<ExtArgs>
   }
@@ -3879,6 +3901,8 @@ export namespace Prisma {
       url: string
       mediaType: $Enums.MediaFileType
       tripLogId: string | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["mediaFile"]>
     composites: {}
   }
@@ -4309,6 +4333,8 @@ export namespace Prisma {
     readonly url: FieldRef<"MediaFile", 'String'>
     readonly mediaType: FieldRef<"MediaFile", 'MediaFileType'>
     readonly tripLogId: FieldRef<"MediaFile", 'String'>
+    readonly createdAt: FieldRef<"MediaFile", 'DateTime'>
+    readonly updatedAt: FieldRef<"MediaFile", 'DateTime'>
   }
     
 
@@ -6799,7 +6825,9 @@ export namespace Prisma {
     fileSize: 'fileSize',
     url: 'url',
     mediaType: 'mediaType',
-    tripLogId: 'tripLogId'
+    tripLogId: 'tripLogId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type MediaFileScalarFieldEnum = (typeof MediaFileScalarFieldEnum)[keyof typeof MediaFileScalarFieldEnum]
@@ -7113,6 +7141,8 @@ export namespace Prisma {
     url?: StringFilter<"MediaFile"> | string
     mediaType?: EnumMediaFileTypeFilter<"MediaFile"> | $Enums.MediaFileType
     tripLogId?: StringNullableFilter<"MediaFile"> | string | null
+    createdAt?: DateTimeFilter<"MediaFile"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaFile"> | Date | string
     tripLog?: XOR<TripLogNullableScalarRelationFilter, TripLogWhereInput> | null
   }
 
@@ -7123,6 +7153,8 @@ export namespace Prisma {
     url?: SortOrder
     mediaType?: SortOrder
     tripLogId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     tripLog?: TripLogOrderByWithRelationInput
   }
 
@@ -7136,6 +7168,8 @@ export namespace Prisma {
     url?: StringFilter<"MediaFile"> | string
     mediaType?: EnumMediaFileTypeFilter<"MediaFile"> | $Enums.MediaFileType
     tripLogId?: StringNullableFilter<"MediaFile"> | string | null
+    createdAt?: DateTimeFilter<"MediaFile"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaFile"> | Date | string
     tripLog?: XOR<TripLogNullableScalarRelationFilter, TripLogWhereInput> | null
   }, "id" | "fileId">
 
@@ -7146,6 +7180,8 @@ export namespace Prisma {
     url?: SortOrder
     mediaType?: SortOrder
     tripLogId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: MediaFileCountOrderByAggregateInput
     _max?: MediaFileMaxOrderByAggregateInput
     _min?: MediaFileMinOrderByAggregateInput
@@ -7161,6 +7197,8 @@ export namespace Prisma {
     url?: StringWithAggregatesFilter<"MediaFile"> | string
     mediaType?: EnumMediaFileTypeWithAggregatesFilter<"MediaFile"> | $Enums.MediaFileType
     tripLogId?: StringNullableWithAggregatesFilter<"MediaFile"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"MediaFile"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MediaFile"> | Date | string
   }
 
   export type ContactUsWhereInput = {
@@ -7481,6 +7519,8 @@ export namespace Prisma {
     fileSize: string
     url: string
     mediaType?: $Enums.MediaFileType
+    createdAt?: Date | string
+    updatedAt?: Date | string
     tripLog?: TripLogCreateNestedOneWithoutMediaFilesInput
   }
 
@@ -7491,6 +7531,8 @@ export namespace Prisma {
     url: string
     mediaType?: $Enums.MediaFileType
     tripLogId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaFileUpdateInput = {
@@ -7499,6 +7541,8 @@ export namespace Prisma {
     fileSize?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tripLog?: TripLogUpdateOneWithoutMediaFilesNestedInput
   }
 
@@ -7509,6 +7553,8 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
     tripLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaFileCreateManyInput = {
@@ -7518,6 +7564,8 @@ export namespace Prisma {
     url: string
     mediaType?: $Enums.MediaFileType
     tripLogId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaFileUpdateManyMutationInput = {
@@ -7526,6 +7574,8 @@ export namespace Prisma {
     fileSize?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaFileUncheckedUpdateManyInput = {
@@ -7535,6 +7585,8 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
     tripLogId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ContactUsCreateInput = {
@@ -7903,6 +7955,8 @@ export namespace Prisma {
     url?: SortOrder
     mediaType?: SortOrder
     tripLogId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type MediaFileMaxOrderByAggregateInput = {
@@ -7912,6 +7966,8 @@ export namespace Prisma {
     url?: SortOrder
     mediaType?: SortOrder
     tripLogId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type MediaFileMinOrderByAggregateInput = {
@@ -7921,6 +7977,8 @@ export namespace Prisma {
     url?: SortOrder
     mediaType?: SortOrder
     tripLogId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumMediaFileTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8358,6 +8416,8 @@ export namespace Prisma {
     fileSize: string
     url: string
     mediaType?: $Enums.MediaFileType
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaFileUncheckedCreateWithoutTripLogInput = {
@@ -8366,6 +8426,8 @@ export namespace Prisma {
     fileSize: string
     url: string
     mediaType?: $Enums.MediaFileType
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaFileCreateOrConnectWithoutTripLogInput = {
@@ -8431,6 +8493,8 @@ export namespace Prisma {
     url?: StringFilter<"MediaFile"> | string
     mediaType?: EnumMediaFileTypeFilter<"MediaFile"> | $Enums.MediaFileType
     tripLogId?: StringNullableFilter<"MediaFile"> | string | null
+    createdAt?: DateTimeFilter<"MediaFile"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaFile"> | Date | string
   }
 
   export type UserUpsertWithoutTripLogsInput = {
@@ -8622,6 +8686,8 @@ export namespace Prisma {
     fileSize: string
     url: string
     mediaType?: $Enums.MediaFileType
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaFileUpdateWithoutTripLogInput = {
@@ -8630,6 +8696,8 @@ export namespace Prisma {
     fileSize?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaFileUncheckedUpdateWithoutTripLogInput = {
@@ -8638,6 +8706,8 @@ export namespace Prisma {
     fileSize?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaFileUncheckedUpdateManyWithoutTripLogInput = {
@@ -8646,6 +8716,8 @@ export namespace Prisma {
     fileSize?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     mediaType?: EnumMediaFileTypeFieldUpdateOperationsInput | $Enums.MediaFileType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
