@@ -10,6 +10,12 @@ import {
 } from "@/components/ui/breadcrumb";
 import { usePathname } from "next/navigation";
 
+// Helper function to check if a string is a UUID
+const isUUID = (str: string) => {
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  return uuidRegex.test(str);
+};
+
 export default function DashBreadcrumb() {
   const pathname = usePathname();
 
@@ -46,9 +52,14 @@ export default function DashBreadcrumb() {
       currentPath += `/${segment}`;
       const isLast = index === segments.length - 1;
 
+      // Skip showing UUIDs and other IDs in breadcrumb
+      if (isUUID(segment)) {
+        return;
+      }
+
       breadcrumbs.push({
         name: capitalize(segment),
-        href: isLast ? "#" : currentPath, // Use '#' for current page
+        href: isLast ? "#" : currentPath,
       });
     });
 

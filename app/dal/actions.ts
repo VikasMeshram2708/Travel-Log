@@ -139,10 +139,13 @@ export async function saveMemory(data: unknown) {
 
   const parsed = memorySchema.safeParse(data);
   if (!parsed.success) {
+    const er = parsed.error.flatten().fieldErrors;
+    const errorMessages = Object.entries(er)
+      .map(([field, errors]) => `${field}: ${errors.join(", ")}`)
+      .join("; ");
     return {
-      formError: parsed.error.flatten().fieldErrors,
       success: false,
-      message: "Schema validation failed.",
+      message: `Invalid data - ${errorMessages}`,
     };
   }
 

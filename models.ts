@@ -39,8 +39,8 @@ export const memorySchema = z.object({
 
   notes: z
     .string()
-    .min(5, "Notes must be at least 5 characters")
-    .max(1000, "Notes can't exceed 1000 characters")
+    .min(1, "Notes must be at least 1 characters")
+    .max(500, "Notes can't exceed 500 characters")
     .trim(),
 
   tags: z

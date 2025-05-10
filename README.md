@@ -1,6 +1,10 @@
 # Trave Log
 
-### Before Pushing to Production.
+### Before Pushing to Production
+
+<!-- TODO -->
+
+- [ ] Add Dynamic Dashboard
 
 ### BUG
 
@@ -39,6 +43,8 @@
 ## Stretch
 
 - [ ] Add Subscription for REVENUE.
+- [ ] Allow users to detect their locations.
+- [ ] Show spinner while delete the trip log.
 
 ### Helpers
 

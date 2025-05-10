@@ -1,4 +1,4 @@
-import { Home, LocationEdit, PersonStanding } from "lucide-react";
+import { Cpu, Home, LocationEdit, PersonStanding } from "lucide-react";
 
 export const dashData = [
   {
@@ -10,6 +10,11 @@ export const dashData = [
     title: "Locations",
     href: "/dashboard/locations",
     icon: <LocationEdit />,
+  },
+  {
+    title: "All Memories",
+    href: "/dashboard/locations/all",
+    icon: <Cpu />,
   },
   {
     title: "Profile",

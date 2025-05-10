@@ -16,12 +16,15 @@ import {
   Navigation,
   Globe,
   Image as ImageIcon,
+  ChevronLeft,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { Separator } from "@/components/ui/separator";
 import UploadMediaBtn from "@/components/dashboard/upload-media-btn";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type DetailsPageProps = {
   params: Promise<{ id: string }>;
@@ -75,6 +78,12 @@ export default async function DetailsPage({ params }: DetailsPageProps) {
 
   return (
     <div className="">
+      <Button asChild variant={"link"}>
+        <Link href="/dashboard/locations">
+          <ChevronLeft />
+          Go Back
+        </Link>
+      </Button>
       <div className="flex flex-col gap-6">
         {/* Header Section */}
         <div className="flex items-center gap-2 justify-between">
