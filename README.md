@@ -4,7 +4,7 @@
 
 <!-- TODO -->
 
-- [ ] Add Dynamic Dashboard
+- [x] Add Dynamic Dashboard
 
 ### BUG
 

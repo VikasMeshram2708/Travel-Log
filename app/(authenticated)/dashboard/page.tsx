@@ -1,10 +1,35 @@
 import { Button } from "@/components/ui/button";
-import { DashTravelChart } from "@/components/dashboard/dash-travel-chart";
 import DashStats from "@/components/dashboard/dash-stats";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { notFound, redirect } from "next/navigation";
+import prisma from "@/lib/prisma";
+import DashTravelChart from "@/components/dashboard/dash-travel-chart";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const { getUser, isAuthenticated } = getKindeServerSession();
+  if (!(await isAuthenticated())) {
+    redirect("/api/auth/login");
+  }
+
+  const user = await getUser();
+
+  if (!user) {
+    notFound();
+  }
+
+  const logs = await prisma.tripLog.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    where: {
+      user: {
+        email: user?.email as string,
+      },
+    },
+  });
   return (
     <div className="min-h-screen space-y-6">
+      {/* <pre>{JSON.stringify(logs, null, 2)}</pre> */}
       {/* Welcome Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -28,7 +53,7 @@ export default function DashboardPage() {
           </Button>
         </div>
         {/* <RecentPlaces /> */}
-        <DashTravelChart />
+        <DashTravelChart logs={logs} />
       </div>
     </div>
   );
