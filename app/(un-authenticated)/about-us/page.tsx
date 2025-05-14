@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Brain, Check, Instagram, Share, Twitter, Users } from "lucide-react";
 import { Footer } from "@/components/footer";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About Us | TravelPass - Travel Smarter, Explore Freely",
@@ -15,7 +16,7 @@ export default function AboutUs() {
   return (
     <div className="container mx-auto px-4 py-12">
       <section className="max-w-4xl mx-auto text-center mb-16">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-6">
+        <h1 className="text-4xl font-bold tracking-tight dark:text-white sm:text-5xl mb-6">
           Discover Our Story
         </h1>
         <p className="text-xl text-muted-foreground leading-relaxed">
@@ -123,7 +124,11 @@ export default function AboutUs() {
               Instagram
             </a>
           </Button>
-          <Button size="lg">Contact Us</Button>
+          <Button size="lg">
+            <Link href="/contact-us">
+              Contact Us
+            </Link>
+          </Button>
         </div>
       </section>
       <div className="pt-5">

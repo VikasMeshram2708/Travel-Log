@@ -7,11 +7,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import prisma from "@/lib/prisma";
-import {
-  getKindeServerSession,
-  LogoutLink,
-} from "@kinde-oss/kinde-auth-nextjs/server";
-import { LogOut, MapPin, Globe, Calendar, FileText } from "lucide-react";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { MapPin, Globe, Calendar, FileText } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { TripLog } from "@/types";
 import { useState, useMemo } from "react";
@@ -105,7 +106,7 @@ export default function DashTravelChart({ logs }: { logs: TripLog[] }) {
     );
 
     const timelineData = sortedLogs.map((log, index) => ({
-      name: formatDate(log.visitedOn),
+      name: formatDate(log.visitedOn.toDateString()),
       cumulative: index + 1,
       duration: extractDurationValue(log.duration),
     }));
@@ -308,7 +309,7 @@ export default function DashTravelChart({ logs }: { logs: TripLog[] }) {
                     layout="vertical"
                     align="right"
                     verticalAlign="middle"
-                    formatter={(value, entry, index) => (
+                    formatter={(value, entry) => (
                       <span className="text-sm">
                         {value} (
                         {(

@@ -4,6 +4,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 import DashTravelChart from "@/components/dashboard/dash-travel-chart";
+import Link from "next/link";
 
 export default async function DashboardPage() {
   const { getUser, isAuthenticated } = getKindeServerSession();
@@ -49,7 +50,9 @@ export default async function DashboardPage() {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">Recent Adventures</h2>
           <Button variant="ghost" className="text-primary">
-            View All
+            <Link href="/dashboard/locations/all">
+              View All
+            </Link>
           </Button>
         </div>
         {/* <RecentPlaces /> */}

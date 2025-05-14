@@ -106,7 +106,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/privacy"
+                  href="/privacy-policy"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Privacy Policy

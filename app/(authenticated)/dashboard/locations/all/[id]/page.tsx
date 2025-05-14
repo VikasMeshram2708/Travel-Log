@@ -213,13 +213,13 @@ export default async function DetailsPage({ params }: DetailsPageProps) {
                   {medias.map((media) => (
                     <div
                       key={media.id}
-                      className="relative w-full h-56 rounded-lg overflow-hidden border"
+                      className="relative aspect-video overflow-hidden border"
                     >
                       <Image
                         src={media.url}
                         alt={`Trip media ${media.id}`}
                         fill
-                        className="object-cover"
+                        className="object-cover bg-contain"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         priority={false}
                       />

@@ -6,8 +6,8 @@ import { notFound } from "next/navigation";
 import React, { useRef } from "react";
 
 export default function DeleteTrip({ tripId }: { tripId: string }) {
-  if (!tripId) return notFound();
   const closeRef = useRef<HTMLButtonElement | null>(null);
+  if (!tripId) return notFound();
   async function handleDelete() {
     try {
       const result = await DeleteTripLog({ tripId });

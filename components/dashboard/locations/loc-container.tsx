@@ -1,10 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { Calendar, MapPin, Plane, Plus } from "lucide-react";
+import { Calendar, MapPin, Plane } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 import { Suspense } from "react";
 import Link from "next/link";
